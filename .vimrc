@@ -29,6 +29,9 @@ Plugin 'sheerun/vim-polyglot'
 " OneDark color scheme 
 Plugin 'joshdick/onedark.vim'
 
+" Asynchronous Lint Engine
+Plugin 'dense-analysis/ale'
+
 " All of your Plugins must be added before the following line
 
 call vundle#end()            " required
