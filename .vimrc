@@ -24,14 +24,8 @@ Plugin 'vim-syntastic/syntastic'
 " NERDTree
 Plugin 'scrooloose/nerdtree'
 
-" Language packs
-Plugin 'sheerun/vim-polyglot'
-
 " OneDark color scheme 
 Plugin 'joshdick/onedark.vim'
-
-" Asynchronous Lint Engine
-Plugin 'dense-analysis/ale'
 
 " All of your Plugins must be added before the following line
 
@@ -133,4 +127,4 @@ set history=1000
 map <F2> :NERDTreeToggle<CR>
 
 " copy to system clipboard
-" set clipboard=unnamedplus
+set clipboard=unnamedplus
