@@ -96,7 +96,7 @@ set linebreak
 syntax on
 
 " set colorscheme
-" colorscheme onedark
+colorscheme onedark
 
 " always show cursor position
 set ruler
