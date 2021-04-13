@@ -76,10 +76,10 @@ cp .vimrc /home/$USER/.vimrc &&
 echo ".vimrc"
 
 cp settings.json /home/$USER/.config/Code/User/settings.json &&
-echo "settings.json (VSCode)"
+printf "settings.json \t(VSCode)\n"
 
 cp config /home/$USER/.config/Code/User/config &&
-echo "config (terminator)"
+printf "config \t\t(terminator)\n"
 
 ###########
 # Set wallpaper
