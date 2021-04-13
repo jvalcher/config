@@ -1,3 +1,5 @@
+
+
 #!/bin/bash
 
 # bash_aliases
@@ -13,3 +15,5 @@ cp /home/$USER/.config/Code/User/settings.json .
 git add .
 git commit -m "update"
 git push origin
+
+

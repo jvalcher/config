@@ -1,0 +1,42 @@
+
+
+###########
+# Provision
+###########
+
+sudo apt update
+sudo apt upgrade -y
+
+sudo apt-get install -y \
+    
+    google-chrome-stable \
+    terminator \
+    gnome-tweaks \
+    snapd
+
+sudo snap install \
+    
+    spotify \
+    discord \
+    --classic code
+
+
+#############
+# Copy settings
+#############
+
+# bash_aliases
+cp .bash_aliases /home/$USER/.bash_aliases
+. /home/$USER/.bashrc
+
+# vim
+cp .vimrc /home/$USER/.vimrc
+
+# VSCode
+cp settings.json /home/$USER/.config/Code/User/settings.json
+
+# set wallpaper
+cp wallpaper.jpeg ~/Pictures
+gsettings set org.gnome.desktop.background picture-uri file:////home/$USER/Pictures/forest.jpeg
+
+
