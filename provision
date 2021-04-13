@@ -1,5 +1,8 @@
 
 
+# View README.md for details
+
+
 #!/bin/bash
 
 
@@ -91,7 +94,7 @@ echo "________________"
 
 WALLPAPER="wallpaper/codeRain.jpg"
 cp $WALLPAPER /home/$USER/Pictures &&
-source files/dbus.sh unity &&
+source scripts/dbus.sh unity &&
 gsettings set org.gnome.desktop.background picture-uri file:///home/$USER/Pictures/$WALLPAPER && 
 echo "$WALLPAPER"
 

@@ -6,7 +6,7 @@ Provisioning scripts
 
 ./push
 -----
-Copies local configuration files into this directory and pushes them to GitHub
+Copies local configuration files into ./files/ and pushes repo to GitHub
 
 
 ./provision
