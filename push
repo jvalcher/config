@@ -11,6 +11,9 @@ cp /home/$USER/.vimrc .
 # VSCode
 cp /home/$USER/.config/Code/User/settings.json .
 
+# Terminator
+cp /home/$USER/.config/terminator/config .
+
 # push to github
 git add .
 git commit -m "update"

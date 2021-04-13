@@ -78,6 +78,8 @@ echo ".vimrc"
 cp settings.json /home/$USER/.config/Code/User/settings.json &&
 echo "settings.json (VSCode)"
 
+cp config /home/$USER/.config/Code/User/config &&
+echo "config (terminator)"
 
 ###########
 # Set wallpaper

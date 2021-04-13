@@ -1,0 +1,26 @@
+[global_config]
+  window_state = maximise
+  title_transmit_bg_color = "#000000"
+  suppress_multiple_term_dialog = True
+[keybindings]
+[profiles]
+  [[default]]
+    background_color = "#282828"
+    background_darkness = 0.76
+    cursor_color = "#aaaaaa"
+    font = Ubuntu weight=255 16
+    foreground_color = "#ebdbb2"
+    scrollback_infinite = True
+  [[jvalcher]]
+    background_color = "#282828"
+    cursor_color = "#aaaaaa"
+    foreground_color = "#ebdbb2"
+[layouts]
+  [[default]]
+    [[[child1]]]
+      parent = window0
+      type = Terminal
+    [[[window0]]]
+      parent = ""
+      type = Window
+[plugins]
