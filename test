@@ -1,0 +1,11 @@
+printf "\n\n"
+printf "Setting wallpaper...\n"
+echo "________________"
+
+WALLPAPER="forest.jpg" &&
+PICTURES_DIR="/home/$USER/Pictures" &&
+cp wallpapers/* $PICTURES_DIR &&
+source scripts/dbus.sh unity &&
+gsettings set org.gnome.desktop.background picture-uri file:///$PICTURES_DIR/$WALLPAPER &&
+echo "$PICTURES_DIR/$WALLPAPER"
+

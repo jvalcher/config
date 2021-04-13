@@ -89,11 +89,12 @@ printf "\n\n"
 printf "Setting wallpaper...\n"
 echo "________________"
 
-WALLPAPER="wallpaper/codeRain.jpg"
-cp $WALLPAPER /home/$USER/Pictures &&
+WALLPAPER="codeRain.jpg" &&
+PICTURES_DIR="/home/$USER/Pictures" &&
+cp wallpapers/* $PICTURES_DIR &&
 source scripts/dbus.sh unity &&
-gsettings set org.gnome.desktop.background picture-uri file:///home/$USER/Pictures/$WALLPAPER && 
-echo "$WALLPAPER"
+gsettings set org.gnome.desktop.background picture-uri file:///$PICTURES_DIR/$WALLPAPER &&
+echo "$PICTURES_DIR/$WALLPAPER"
 
 
 ##########
