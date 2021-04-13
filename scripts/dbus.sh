@@ -1,6 +1,6 @@
 
 
-# Set the DBUS_SESSION_BUS_ADDRESS environmental variable
+# Sets the DBUS_SESSION_BUS_ADDRESS environmental variable
 # Used in ../provision to set the wallpaper
 
 #!/bin/bash
