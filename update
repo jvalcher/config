@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# bash_aliases
+cp /home/$USER/.bash_aliases .
+
+# vim
+cp /home/$USER/.vimrc .
+
+# VSCode
+cp /home/$USER/.config/Code/User/settings.json .
+
+# push to github
+git add .
+git commit -m "update"
+git push origin

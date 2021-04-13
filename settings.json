@@ -1,0 +1,40 @@
+{
+    "workbench.startupEditor": "newUntitledFile",
+    "workbench.editorAssociations": [
+        {
+            "viewType": "jupyter.notebook.ipynb",
+            "filenamePattern": "*.ipynb"
+        }
+    ],
+    "editor.fontSize": 18,
+    "explorer.confirmDragAndDrop": false,
+    "window.zoomLevel": 1,
+    "editor.autoClosingBrackets": "never",
+    "editor.autoClosingDelete": "never",
+    "editor.autoClosingOvertype": "never",
+    "editor.autoClosingQuotes": "never",
+    "editor.autoIndent": "none",
+    "editor.autoSurround": "never",
+    "editor.quickSuggestions": false,
+    "editor.fontLigatures": null,
+
+    /* user additions */
+    "editor.suggestOnTriggerCharacters": false,
+    "editor.wordBasedSuggestions": false,
+    "editor.parameterHints.enabled": false,
+    "editor.acceptSuggestionOnCommitCharacter": false,
+    "editor.codeActionsOnSave": false,
+    "editor.formatOnType": false,
+    "editor.detectIndentation": false,
+    "editor.tabSize": 4,
+    "[html]": {
+        "editor.tabSize": 2,
+    },
+    "editor.insertSpaces": true,
+    "html.autoClosingTags": false,
+    "html.format.enable": false,
+    "html.validate.scripts": false,
+    "html.suggest.html5": false,
+    "html.format.extraLiners": ""
+
+}
