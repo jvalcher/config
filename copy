@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# bash_aliases
+cp .bash_aliases /home/$USER/.bash_aliases
+. /home/$USER/.bashrc
+
+# vim
+cp .vimrc /home/$USER/.vimrc
+
+# VSCode
+cp settings.json /home/$USER/.config/Code/User/settings.json
