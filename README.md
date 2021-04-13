@@ -1,15 +1,16 @@
 
 ------------
-Configuration files
+Provisioning scripts
 ------------
 
 
 ./push
 -----
-Copies local configuration files and pushes them to GitHub
+Copies local configuration files into this directory and pushes them to GitHub
 
-./copy
+
+./provision
 -----
-Copies configuration files onto local system
+Provisions current Ubuntu system idempotently
 
 

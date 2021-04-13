@@ -1,42 +1,107 @@
 
 
+#!/bin/bash
+
+
 ###########
-# Provision
+# Install software
 ###########
 
+printf "\n\nApt software installing...\n"
+echo "________________"
 sudo apt update
-sudo apt upgrade -y
+sudo apt upgrade -y &&
 
 sudo apt-get install -y \
-    
     google-chrome-stable \
     terminator \
     gnome-tweaks \
-    snapd
+    snapd \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release &&
 
-sudo snap install \
-    
-    spotify \
-    discord \
-    --classic code
+printf "\n\nDocker installing...\n"
+echo "________________"
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg &&
+echo \
+  "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null &&
+sudo apt-get update &&
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io &&
+sudo usermod -aG docker ${USER} &&
+docker run hello-world &&
+
+printf "\n\nDocker-compose installing...\n"
+echo "________________"
+sudo curl -L "https://github.com/docker/compose/releases/download/1.29.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose &&
+sudo chmod +x /usr/local/bin/docker-compose &&
+docker-compose --version &&
+
+
+printf "\n\nAnsible installing...\n"
+echo "________________"
+sudo apt install software-properties-common -y &&
+sudo apt-add-repository --yes --update ppa:ansible/ansible &&
+sudo apt install ansible -y &&
+
+
+printf "\n\nRemoving unnecessary Apt files...\n"
+echo "________________"
+sudo apt autoremove -y &&
+
+
+printf "\n\nSnap software installing...\n"
+echo "________________"
+sudo snap install spotify &&
+sudo snap install discord &&
+sudo snap install --classic code &&
 
 
 #############
-# Copy settings
+# Copy configuration files
 #############
 
-# bash_aliases
-cp .bash_aliases /home/$USER/.bash_aliases
-. /home/$USER/.bashrc
+printf "\n\n"
+printf "Copying configuration files...\n" 
+echo "________________"
 
-# vim
-cp .vimrc /home/$USER/.vimrc
+cp .bash_aliases /home/$USER/.bash_aliases &&
+. /home/$USER/.bashrc &&
+echo ".bash_aliases"
 
-# VSCode
-cp settings.json /home/$USER/.config/Code/User/settings.json
+cp .vimrc /home/$USER/.vimrc &&
+echo ".vimrc"
 
-# set wallpaper
-cp wallpaper.jpeg ~/Pictures
-gsettings set org.gnome.desktop.background picture-uri file:////home/$USER/Pictures/forest.jpeg
+cp settings.json /home/$USER/.config/Code/User/settings.json &&
+echo "settings.json (VSCode)"
+
+
+###########
+# Set wallpaper
+###########
+
+printf "\n\n"
+printf "Setting wallpaper...\n"
+echo "________________"
+
+WALLPAPER="wallpaper/codeRain.jpg"
+cp $WALLPAPER /home/$USER/Pictures &&
+source ./dbus.sh unity &&
+gsettings set org.gnome.desktop.background picture-uri file:///home/$USER/Pictures/$WALLPAPER && 
+echo "$WALLPAPER"
+
+
+##########
+# Exit message
+##########
+
+printf "\n\n\n"
+echo "________________"
+printf "Provisioning complete\n"
+echo "________________"
+printf "\n\n"
 
 
