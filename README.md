@@ -4,13 +4,13 @@ Provisioning scripts
 ------------
 
 
-./push
------
-Copies local configuration files into ./files/ and pushes repo to GitHub
-
-
 ./provision
 -----
-Provisions current Ubuntu system idempotently
+Provisions local Ubuntu system idempotently
+
+
+./push
+-----
+Copies local configuration files into ./files and pushes repo to GitHub
 
 
