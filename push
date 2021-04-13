@@ -3,16 +3,16 @@
 #!/bin/bash
 
 # bash_aliases
-cp /home/$USER/.bash_aliases .
+cp /home/$USER/.bash_aliases files/
 
 # vim
-cp /home/$USER/.vimrc .
+cp /home/$USER/.vimrc files/
 
 # VSCode
-cp /home/$USER/.config/Code/User/settings.json .
+cp /home/$USER/.config/Code/User/settings.json files/
 
 # Terminator
-cp /home/$USER/.config/terminator/config .
+cp /home/$USER/.config/terminator/config files/
 
 # push to github
 git add .

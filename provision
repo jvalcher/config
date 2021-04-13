@@ -68,17 +68,17 @@ printf "\n\n"
 printf "Copying configuration files...\n" 
 echo "________________"
 
-cp .bash_aliases /home/$USER/.bash_aliases &&
+cp files/.bash_aliases /home/$USER/.bash_aliases &&
 . /home/$USER/.bashrc &&
 echo ".bash_aliases"
 
-cp .vimrc /home/$USER/.vimrc &&
+cp files/.vimrc /home/$USER/.vimrc &&
 echo ".vimrc"
 
-cp settings.json /home/$USER/.config/Code/User/settings.json &&
+cp files/settings.json /home/$USER/.config/Code/User/settings.json &&
 printf "settings.json \t(VSCode)\n"
 
-cp config /home/$USER/.config/Code/User/config &&
+cp files/config /home/$USER/.config/Code/User/config &&
 printf "config \t\t(terminator)\n"
 
 ###########
@@ -91,7 +91,7 @@ echo "________________"
 
 WALLPAPER="wallpaper/codeRain.jpg"
 cp $WALLPAPER /home/$USER/Pictures &&
-source ./dbus.sh unity &&
+source files/dbus.sh unity &&
 gsettings set org.gnome.desktop.background picture-uri file:///home/$USER/Pictures/$WALLPAPER && 
 echo "$WALLPAPER"
 
