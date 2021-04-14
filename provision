@@ -7,7 +7,7 @@
 # Install software
 ###########
 
-printf "\n\nApt software installing...\n"
+printf "\n\nInstalling Apt software...\n"
 echo "________________"
 sudo apt update
 sudo apt upgrade -y &&
@@ -22,8 +22,11 @@ sudo apt-get install -y \
     curl \
     gnupg \
     lsb-release &&
+    googlecl 
+    pandoc
 
-printf "\n\nDocker installing...\n"
+
+printf "\n\nInstalling Docker...\n"
 echo "________________"
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg &&
 echo \
@@ -34,14 +37,14 @@ sudo apt-get install -y docker-ce docker-ce-cli containerd.io &&
 sudo usermod -aG docker ${USER} &&
 docker run hello-world &&
 
-printf "\n\nDocker-compose installing...\n"
+printf "\n\nInstalling Docker-compose...\n"
 echo "________________"
 sudo curl -L "https://github.com/docker/compose/releases/download/1.29.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose &&
 sudo chmod +x /usr/local/bin/docker-compose &&
 docker-compose --version &&
 
 
-printf "\n\nAnsible installing...\n"
+printf "\n\nInstalling Ansible...\n"
 echo "________________"
 sudo apt install software-properties-common -y &&
 sudo apt-add-repository --yes --update ppa:ansible/ansible &&
@@ -53,11 +56,22 @@ echo "________________"
 sudo apt autoremove -y &&
 
 
-printf "\n\nSnap software installing...\n"
+printf "\n\nInstalling Snap software...\n"
 echo "________________"
 sudo snap install spotify &&
 sudo snap install discord &&
 sudo snap install --classic code &&
+
+
+#############
+# Install easytether
+#############
+
+printf "\n\n"
+printf "Installing EasyTether...\n" 
+echo "________________"
+sudo dpkg -i scripts/easytether_0.8.9_amd64_ubuntu_20-04.deb &&
+easy
 
 
 #############
