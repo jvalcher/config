@@ -10,6 +10,9 @@ cp /home/$USER/.vimrc files/
 
 # VSCode
 cp /home/$USER/.config/Code/User/settings.json files/
+cp /home/$USER/.config/Code/User/config files/
+code --list-extensions >/home/$USER/.config/Code/User/extensions
+cp /home/$USER/.config/Code/User/extensions files/
 
 # Terminator
 cp /home/$USER/.config/terminator/config files/
