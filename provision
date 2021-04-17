@@ -99,9 +99,9 @@ cp files/config /home/$USER/.config/Code/User/config &&
 printf "config \t(VSCode)\n"
 
 cp files/extensions /home/$USER/.config/Code/User/extensions &&
-printf "config \t(VSCode)\n"
+printf "\n\nInstalling VSCode extensions...\n"
 echo "________________"
-cat extensions | xargs -L 1 code --install-extension
+cat files/extensions | xargs -L 1 code --install-extension &&
 
 
 ###########
