@@ -3,23 +3,23 @@
 #!/bin/bash
 
 # bash_aliases
-cp /home/$USER/.bash_aliases files/
+cp /home/$USER/.bash_aliases files/ &&
 
 # vim
-cp /home/$USER/.vimrc files/
+cp /home/$USER/.vimrc files/ &&
 
 # VSCode
-cp /home/$USER/.config/Code/User/settings.json files/
-cp /home/$USER/.config/Code/User/config files/
-code --list-extensions >/home/$USER/.config/Code/User/extensions
-cp /home/$USER/.config/Code/User/extensions files/
+cp /home/$USER/.config/Code/User/settings.json files/ &&
+cp /home/$USER/.config/Code/User/config files/ &&
+code --list-extensions >/home/$USER/.config/Code/User/extensions &&
+cp /home/$USER/.config/Code/User/extensions files/ &&
 
 # Terminator
-cp /home/$USER/.config/terminator/config files/
+cp /home/$USER/.config/terminator/config files/ &&
 
 # push to github
-git add .
-git commit -m "update"
+git add . &&
+git commit -m "update" &&
 git push origin
 
 
