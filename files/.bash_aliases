@@ -9,4 +9,5 @@ alias graph="git log --graph --abbrev-commit --decorate --format=format:'%C(bold
 # easytether
 alias easy="sudo systemctl restart systemd-networkd && sudo easytether-usb"
 
-
+# poetry
+export PATH="$HOME/.poetry/bin:$PATH"
