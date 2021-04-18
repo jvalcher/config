@@ -13,7 +13,7 @@ sudo apt update
 sudo apt upgrade -y &&
 
 sudo apt-get install -y \
-    vim-gtk
+    vim-gtk \
     google-chrome-stable \
     terminator \
     gnome-tweaks \
@@ -22,8 +22,8 @@ sudo apt-get install -y \
     ca-certificates \
     curl \
     gnupg \
-    lsb-release &&
-    googlecl 
+    lsb-release \
+    googlecl \
     pandoc
 
 
@@ -64,6 +64,7 @@ sudo snap install discord &&
 sudo snap install --classic code &&
 sudo snap install gimp &&
 sudo snap install --classic blender &&
+sudo snap install --classic node &&
 
 
 #############
