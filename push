@@ -17,6 +17,9 @@ cp /home/$USER/.config/Code/User/extensions files/ &&
 # Terminator
 cp /home/$USER/.config/terminator/config files/ &&
 
+# singing bowl sound
+cp /home/$USER/Music/singing_bowl.wav files/ &&
+
 # push to github
 git add . &&
 git commit -m "update" &&
