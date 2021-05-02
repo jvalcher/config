@@ -113,6 +113,12 @@ printf "\n\nInstalling VSCode extensions...\n"
 echo "________________"
 cat files/extensions | xargs -L 1 code --install-extension &&
 
+printf "\n\n"
+printf "Installing Tmux Plugin Manager and plugins...\n" 
+echo "________________"
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+tmux source ~/.tmux.conf
+~/.tmux/plugins/tpm/bin/install_plugins
 
 ###########
 # Set wallpaper
