@@ -14,6 +14,7 @@ sudo apt upgrade -y &&
 
 sudo apt-get install -y \
     vim-gtk \
+    tmux \
     google-chrome-stable \
     terminator \
     gnome-tweaks \
