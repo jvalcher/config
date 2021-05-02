@@ -19,6 +19,7 @@ cp /home/$USER/.config/terminator/config files/ &&
 
 # Tmux
 cp /home/$USER/.tmux.conf files/ &&
+cp -r /home/$USER/.tmux files/ &&
 
 # Scripts
 cp -r /home/$USER/Scripts files/ &&
