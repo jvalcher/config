@@ -19,7 +19,7 @@ sudo apt-get install -y \
     terminator \
     gnome-tweaks \
     snapd \
-    xclip \
+    xsel \
     apt-transport-https \
     ca-certificates \
     curl \
