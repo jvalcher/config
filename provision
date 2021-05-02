@@ -25,6 +25,7 @@ sudo apt-get install -y \
     gnupg \
     lsb-release \
     pandoc \
+    yarn \
     nodejs \
     npm 
 sudo apt install -y virtualbox virtualbox-ext-pack
