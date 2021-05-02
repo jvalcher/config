@@ -98,6 +98,9 @@ printf "config \t\t(terminator)\n"
 cp files/.vimrc /home/$USER/.vimrc &&
 echo ".vimrc"
 
+cp files/.tmux.conf /home/$USER/.tmux.conf &&
+echo ".tmux.conf"
+
 cp files/settings.json /home/$USER/.config/Code/User/settings.json &&
 printf "settings.json \t(VSCode)\n"
 
