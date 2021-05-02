@@ -110,9 +110,8 @@ printf "settings.json \t(VSCode)\n"
 cp files/config /home/$USER/.config/Code/User/config &&
 printf "config \t(VSCode)\n"
 
-cp files/Scripts /home/$USER/ &&
-printf "\n\n~/Scripts...\n"
-echo "________________"
+cp -r files/Scripts /home/$USER/ &&
+printf "~/Scripts...\n"
 
 cat files/extensions | xargs -L 1 code --install-extension &&
 cp files/extensions /home/$USER/.config/Code/User/extensions &&
