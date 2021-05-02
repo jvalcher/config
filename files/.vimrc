@@ -128,3 +128,8 @@ map <F2> :NERDTreeToggle<CR>
 
 " copy to system clipboard
 set clipboard=unnamedplus
+
+
+" Tmux window rename
+autocmd BufReadPost,FileReadPost,BufNewFile * call system("tmux rename-window " . expand("%"))
+autocmd VimLeave * call system("echo ${PWD##*/} | xargs tmux rename-window")
