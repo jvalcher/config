@@ -20,6 +20,9 @@ cp /home/$USER/.config/terminator/config files/ &&
 # Tmux
 cp /home/$USER/.tmux.conf files/ &&
 
+# Scripts
+cp -r /home/$USER/Scripts files/ &&
+
 # singing bowl sound
 cp /home/$USER/Music/singing_bowl.wav files/ &&
 
