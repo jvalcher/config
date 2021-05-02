@@ -131,5 +131,5 @@ set clipboard=unnamedplus
 
 
 " Tmux window rename
-autocmd BufReadPost,FileReadPost,BufNewFile * call system("tmux rename-window " . expand("%"))
+autocmd BufReadPost,FileReadPost,BufNewFile * call system("tmux rename-window " . expand("%:t"))
 autocmd VimLeave * call system("echo ${PWD##*/} | xargs tmux rename-window")
