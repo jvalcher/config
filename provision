@@ -103,6 +103,8 @@ echo ".vimrc"
 
 cp files/.tmux.conf /home/$USER/.tmux.conf &&
 echo ".tmux.conf"
+cp -r files/.tmux /home/$USER/ && 
+echo ".tmux/"
 
 cp files/settings.json /home/$USER/.config/Code/User/settings.json &&
 printf "settings.json \t(VSCode)\n"
