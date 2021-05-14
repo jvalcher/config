@@ -28,7 +28,8 @@ sudo apt-get install -y \
     pandoc \
     yarn \
     nodejs \
-    npm 
+    npm \
+    libglib2.0-dev-bin 
 sudo apt install -y virtualbox virtualbox-ext-pack
 
 
