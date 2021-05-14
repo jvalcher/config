@@ -136,12 +136,15 @@ printf "\n\n"
 printf "Setting wallpaper...\n"
 echo "________________"
 
-WALLPAPER="beaker.jpg" &&
+WALLPAPER="codeRain.jpg" &&
 PICTURES_DIR="/home/$USER/Pictures" &&
 cp wallpapers/* $PICTURES_DIR &&
 source scripts/dbus.sh unity &&
 gsettings set org.gnome.desktop.background picture-uri file:///$PICTURES_DIR/$WALLPAPER &&
 echo "$PICTURES_DIR/$WALLPAPER"
+
+# Check IT/Linux/Tools Chrome shortcuts for repo script 
+# to set login screen
 
 
 ##########
