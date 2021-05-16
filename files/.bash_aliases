@@ -11,3 +11,6 @@ alias easy="sudo systemctl restart systemd-networkd && sudo easytether-usb"
 
 # poetry
 export PATH="$HOME/.poetry/bin:$PATH"
+
+# search for string in pwd files
+alias strS="grep -rnw . -e "
