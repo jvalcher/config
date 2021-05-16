@@ -27,12 +27,19 @@ Plugin 'scrooloose/nerdtree'
 " OneDark color scheme 
 Plugin 'joshdick/onedark.vim'
 
+" glench/vim-jinja2-syntax
+Plugin 'glench/vim-jinja2-syntax'
+
+
+" INSTALL PLUGINS with:   
+    "  :source %
+    "  :PluginInstall
+
+
 " All of your Plugins must be added before the following line
 
 call vundle#end()            " required
 filetype plugin indent on    " required
-
-" INSTALL PLUGINS with:   :PluginInstall
 
 
 """""""""""""""""""""""""""""""""
