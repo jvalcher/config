@@ -72,9 +72,6 @@ set number
 " new lines inherit indentation of previous lines
 set autoindent
 
-" convert tabs to spaces, backspace removes tab
-set softtabstop=4 expandtab
-
 " round indentation to nearest multiple of shiftwidth when shifting lines
 set shiftround
 
@@ -83,6 +80,12 @@ set shiftwidth=4
 
 " insert tabstop number of spaces when tab is pressed
 set tabstop=4
+
+" convert tabs to spaces, backspace removes tab
+set softtabstop=4 expandtab
+
+" set tabs to 2 for htm, html, yml files
+autocmd BufRead,BufNewFile *.htm,*.html,*.yml setlocal tabstop=2 shiftwidth=2 softtabstop=2
 
 " ignore case when searching
 set ignorecase
