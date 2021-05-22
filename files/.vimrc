@@ -34,6 +34,9 @@ Plugin 'glench/vim-jinja2-syntax'
 " INSTALL PLUGINS with:   
     "  :source %
     "  :PluginInstall
+" DELETE PLUGINS
+    " delete Plugin line above
+    " :PluginUpdate
 
 
 " All of your Plugins must be added before the following line
@@ -143,3 +146,11 @@ set clipboard=unnamedplus
 " Tmux window rename
 autocmd BufReadPost,FileReadPost,BufNewFile * call system("tmux rename-window " . expand("%:t"))
 autocmd VimLeave * call system("echo ${PWD##*/} | xargs tmux rename-window")
+
+" Reselect visual mode selection for indenting
+vnoremap < <gv
+vnoremap > >gv
+
+" Preserve copied data when replacing with visual mode
+xnoremap <expr> p '"_d"'.v:register.'p'
+

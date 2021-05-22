@@ -4,6 +4,7 @@ ecmel.vscode-html-css
 formulahendry.code-runner
 mgmcdermott.vscode-language-babel
 ms-python.python
+ms-python.vscode-pylance
 ms-toolsai.jupyter
 ritwickdey.LiveServer
 thekalinga.bootstrap4-vscode
