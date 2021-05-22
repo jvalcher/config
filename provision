@@ -71,6 +71,7 @@ sudo snap install --classic code &&
 sudo snap install gimp &&
 sudo snap install --classic blender &&
 sudo snap install postman &&
+sudo snap install gnome-terminator --beta &&
 
 
 #############
