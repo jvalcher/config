@@ -154,3 +154,9 @@ vnoremap > >gv
 " Preserve copied data when replacing with visual mode
 xnoremap <expr> p '"_d"'.v:register.'p'
 
+" Search with no highlights
+set nohlsearch
+
+" Navigate long lines with g+
+nnoremap j gj
+nnoremap k gk
