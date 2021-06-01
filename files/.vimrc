@@ -160,3 +160,4 @@ set nohlsearch
 " Navigate long lines with g+
 nnoremap j gj
 nnoremap k gk
+

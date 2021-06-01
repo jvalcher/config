@@ -1,4 +1,6 @@
 
+# prompt
+PS1="\e[1;34m$ \e[m"
 
 # add ~/.local/bin to path
 export PATH=$PATH:/home/jvalcher/.local/bin
@@ -14,3 +16,6 @@ export PATH="$HOME/.poetry/bin:$PATH"
 
 # search for string in pwd files
 alias strS="grep -rnw . -e "
+
+# python
+alias py="python3 "

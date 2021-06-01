@@ -7,6 +7,8 @@
   new_tab = <Primary>t
   split_horiz = <Primary>o
   split_vert = <Primary>e
+  move_tab_right = <Shift>Right
+  move_tab_left = <Shift>Left
   next_tab = <Primary>Right
   prev_tab = <Primary>Left
 [profiles]
