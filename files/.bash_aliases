@@ -24,7 +24,7 @@ alias py="python3 "
 function tab_title {
   if [ -z "$1" ]
   then
-    title=${PWD##*/} # current directory
+    title="${PWD##*/}/" # current directory
   else
     title=$1 # first param
   fi

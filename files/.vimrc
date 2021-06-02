@@ -142,10 +142,15 @@ map <F2> :NERDTreeToggle<CR>
 " copy to system clipboard
 set clipboard=unnamedplus
 
-
-" Tmux window rename
-autocmd BufReadPost,FileReadPost,BufNewFile * call system("tmux rename-window " . expand("%:t"))
-autocmd VimLeave * call system("echo ${PWD##*/} | xargs tmux rename-window")
+" terminal tab title
+let &titlestring = expand("%:t")
+if &term == "screen"
+  set t_ts=^[k
+  set t_fs=^[\
+endif
+if &term == "screen" || &term == "xterm"
+  set title
+endif 
 
 " Reselect visual mode selection for indenting
 vnoremap < <gv
