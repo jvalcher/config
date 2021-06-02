@@ -97,7 +97,7 @@ cp files/.bash_aliases /home/$USER/.bash_aliases &&
 . /home/$USER/.bashrc &&
 echo ".bash_aliases"
 
-cp files/config /home/$USER/.config/Code/User/config &&
+cp files/config /home/$USER/.config/terminator/config &&
 printf "config \t\t(terminator)\n"
 
 cp files/.vimrc /home/$USER/.vimrc &&

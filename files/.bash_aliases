@@ -1,6 +1,6 @@
 
 # prompt
-PS1="\e[1;34m$ \e[m"
+PS1="\e[1;34m\W/ $ \e[m"
 
 # add ~/.local/bin to path
 export PATH=$PATH:/home/jvalcher/.local/bin
