@@ -18,16 +18,19 @@
     cursor_color = "#aaaaaa"
     font = Ubuntu weight=255 16
     foreground_color = "#ebdbb2"
+    show_titlebar = False
     scrollback_infinite = True
   [[jvalcher]]
     background_color = "#282828"
     cursor_color = "#aaaaaa"
     foreground_color = "#ebdbb2"
+    show_titlebar = False
 [layouts]
   [[default]]
     [[[child1]]]
       parent = window0
       type = Terminal
+      profile = jvalcher
     [[[window0]]]
       parent = ""
       type = Window
