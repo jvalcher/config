@@ -17,6 +17,9 @@ cp /home/$USER/.config/Code/User/extensions files/ &&
 # Terminator
 cp /home/$USER/.config/terminator/config files/ &&
 
+# gtk.css
+cp /home/$USER/.config/gtk-3.0/gtk.css files/ &&
+
 # Tmux
 cp /home/$USER/.tmux.conf files/ &&
 cp -r /home/$USER/.tmux files/ &&

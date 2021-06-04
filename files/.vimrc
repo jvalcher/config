@@ -142,15 +142,9 @@ map <F2> :NERDTreeToggle<CR>
 " copy to system clipboard
 set clipboard=unnamedplus
 
-" terminal tab title
-let &titlestring = expand("%:t")
-if &term == "screen"
-  set t_ts=^[k
-  set t_fs=^[\
-endif
-if &term == "screen" || &term == "xterm"
-  set title
-endif 
+" set terminal tab title to filename
+autocmd BufEnter * call system("tmux rename-window " . expand("%:t"))
+autocmd VimLeave * call system("tmux rename-window bash")
 
 " Reselect visual mode selection for indenting
 vnoremap < <gv
