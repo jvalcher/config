@@ -35,11 +35,11 @@ cp files/.bash_aliases /home/$USER/.bash_aliases &&
 . /home/$USER/.bashrc &&
 echo ".bash_aliases"
 
-cp files/.vimrc /home/$USER/.vimrc &&
-echo ".vimrc"
-
 cp -r files/Scripts /home/$USER/ &&
 printf "~/Scripts...\n"
+
+cp files/.vimrc /home/$USER/.vimrc &&
+echo ".vimrc"
 
 cp files/.tmux.conf /home/$USER/.tmux.conf &&
 echo ".tmux.conf"
@@ -47,9 +47,14 @@ cp -r files/.tmux /home/$USER/ &&
 echo ".tmux/"
 
 printf "\n\n"
+printf "Installing Vim Vundle plugins...\n" 
+echo "________________"
+vim +PluginInstall +qall
+echo "Complete"
+
+printf "\n\n"
 printf "Installing Tmux Plugin Manager and plugins...\n" 
 echo "________________"
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 tmux source ~/.tmux.conf
 ~/.tmux/plugins/tpm/bin/install_plugins
 
