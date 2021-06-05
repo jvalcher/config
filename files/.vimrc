@@ -160,3 +160,6 @@ set nohlsearch
 nnoremap j gj
 nnoremap k gk
 
+" remap y,p to use xclip
+vmap "+y :!xclip -f -sel clip
+map "+p :r!xclip -o -sel clip

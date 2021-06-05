@@ -1,0 +1,23 @@
+
+
+#!/bin/bash
+
+# bash_aliases
+cp /home/$USER/.bash_aliases files/ &&
+
+# vim
+cp /home/$USER/.vimrc files/ &&
+
+# Tmux
+cp /home/$USER/.tmux.conf files/ &&
+cp -r /home/$USER/.tmux files/ &&
+
+# Scripts
+cp -r /home/$USER/Scripts files/ &&
+
+# push to github
+git add . &&
+git commit -m "update" &&
+git push origin
+
+
