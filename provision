@@ -132,13 +132,6 @@ echo ".tmux.conf"
 cp -r files/.tmux /home/$USER/ && 
 echo ".tmux/"
 
-printf "\n\n"
-printf "Installing Tmux Plugin Manager and plugins...\n" 
-echo "________________"
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-tmux source ~/.tmux.conf
-~/.tmux/plugins/tpm/bin/install_plugins
-
 ###########
 # Set wallpaper
 ###########
@@ -150,12 +143,13 @@ echo "________________"
 WALLPAPER="codeRain.jpg" &&
 LOGIN="darkWave.jpeg" &&
 PICTURES_DIR="/home/$USER/Pictures" &&
+
 cp wallpapers/* $PICTURES_DIR &&
 source scripts/dbus.sh unity &&
-gsettings set org.gnome.desktop.background picture-uri file:///$PICTURES_DIR/$WALLPAPER &&
+sudo gsettings set org.gnome.desktop.background picture-uri file:///$PICTURES_DIR/$WALLPAPER &&
 echo "$PICTURES_DIR/$WALLPAPER"
 # Change login screen
-sudo ./scripts/change-gdm-background ./$PICTURES_DIR/$LOGIN
+sudo ./scripts/change-gdm-background $PICTURES_DIR/$LOGIN
 
 
 ###########
@@ -165,12 +159,13 @@ sudo ./scripts/change-gdm-background ./$PICTURES_DIR/$LOGIN
 printf "\n\n"
 printf "Configuring launcher...\n"
 echo "________________"
+printf "Bottom position, centered, transparent, size=64, unity-backlit\n"
 
 gsettings set org.gnome.shell.extensions.dash-to-dock extend-height false
 gsettings set org.gnome.shell.extensions.dash-to-dock dock-position BOTTOM
 gsettings set org.gnome.shell.extensions.dash-to-dock transparency-mode FIXED
 gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 64
-gsettings set org.gnome.shell.extensions.dash-to-dock unity-backlit-items true
+
 
 ##########
 # Exit message

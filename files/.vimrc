@@ -142,9 +142,11 @@ map <F2> :NERDTreeToggle<CR>
 " copy to system clipboard
 set clipboard=unnamedplus
 
-" set terminal tab title to filename
-autocmd BufEnter * call system("tmux rename-window " . expand("%:t"))
-autocmd VimLeave * call system("tmux rename-window bash")
+" set tab title to filename in tmux
+"autocmd BufEnter * call system("tmux rename-window \\\\\\\\" . expand("%:t"))
+"autocmd VimLeave * call system("tmux rename-window bash")
+autocmd VimEnter * call system("tmux rename-window " . expand("%:t"))
+autocmd VimLeave * call system("tmux source-file ~/.tmux.conf")
 
 " Reselect visual mode selection for indenting
 vnoremap < <gv
@@ -156,7 +158,7 @@ xnoremap <expr> p '"_d"'.v:register.'p'
 " Search with no highlights
 set nohlsearch
 
-" Navigate long lines with g+
+" Navigate up/down long lines with g+...
 nnoremap j gj
 nnoremap k gk
 

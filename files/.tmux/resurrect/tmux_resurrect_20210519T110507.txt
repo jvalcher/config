@@ -1,5 +1,0 @@
-pane	0	1	:microblog.py	0	:-	1	:/home/jvalcher/Git/practice/flask/flask_mega_tutorial/microblog	1	vim	:vim microblog.py
-pane	0	2	:microblog	1	:*	1	:/home/jvalcher/Git/practice/flask/flask_mega_tutorial/microblog/app	1	bash	:
-window	0	1	0	:-	afbd,158x40,0,0,0
-window	0	2	1	:*	afbe,158x40,0,0,1
-state	0	
