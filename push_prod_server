@@ -1,0 +1,11 @@
+
+
+#!/bin/bash
+
+
+# push to github
+git add . &&
+git commit -m "update" &&
+git push origin
+
+
