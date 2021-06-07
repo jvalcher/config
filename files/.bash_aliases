@@ -1,6 +1,6 @@
 
 # prompt
-PS1="\e[1;34m\W/ $ \e[m"
+PS1="\[\033[1;34m\]\W/ $ \[\033[0m\]"
 
 # add ~/.local/bin to path
 export PATH=$PATH:/home/jvalcher/.local/bin
@@ -11,9 +11,6 @@ alias graph="git log --graph --abbrev-commit --decorate --format=format:'%C(bold
 # easytether
 alias easy="sudo easytether-usb"
 
-# poetry
-export PATH="$HOME/.poetry/bin:$PATH"
-
 # search for string in pwd files
 alias strS="grep -rnw . -e "
 
@@ -21,16 +18,16 @@ alias strS="grep -rnw . -e "
 alias py="python3 "
 
 # auto set tab name
-function tab_title {
-  if [ -z "$1" ]
-  then
-    title="${PWD##*/}/" # current directory
-  else
-    title=$1 # first param
-  fi
-  echo -n -e "\033]0;$title\007"
-}
-cd() { builtin cd "$@" && tab_title; }
-pushd() { builtin pushd "$@" && tab_title; }
-popd() { builtin popd "$@" && tab_title; }
-tab_title
+#function tab_title {
+#  if [ -z "$1" ]
+#  then
+#    title="${PWD##*/}/" # current directory
+#  else
+#    title=$1 # first param
+#  fi
+#  echo -n -e "\033]0;$title\007"
+#}
+#cd() { builtin cd "$@" && tab_title; }
+#pushd() { builtin pushd "$@" && tab_title; }
+#popd() { builtin popd "$@" && tab_title; }
+#tab_title
