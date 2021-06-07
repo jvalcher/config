@@ -1,0 +1,31 @@
+[legacy]
+default-show-menubar=false
+headerbar=@mb false
+menu-accelerator-enabled=false
+schema-version=uint32 3
+
+[legacy/profiles:]
+default='0d23f1b5-66df-4df6-960d-375dbc6e0590'
+list=['b1dcc9dd-5262-4d8d-a863-c897e6d979b9', '0d23f1b5-66df-4df6-960d-375dbc6e0590']
+
+[legacy/profiles:/:0d23f1b5-66df-4df6-960d-375dbc6e0590]
+audible-bell=false
+custom-command='tmux'
+default-size-columns=132
+default-size-rows=43
+use-custom-command=true
+use-theme-colors=false
+use-theme-transparency=false
+visible-name='jvalcher'
+
+[legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
+audible-bell=false
+background-color='rgb(46,52,54)'
+bold-color-same-as-fg=true
+default-size-columns=511
+font='Ubuntu Mono 18'
+foreground-color='rgb(211,215,207)'
+scroll-on-keystroke=false
+scrollbar-policy='never'
+use-system-font=false
+use-theme-colors=false

@@ -127,6 +127,10 @@ cat files/extensions | xargs -L 1 code --install-extension &&
 cp files/gtk.css /home/$USER/.config/gtk-3.0/gtk.css &&
 echo "gtk.css"
 
+dconf reset -f /org/gnome/terminal/
+dconf load /org/gnome/terminal/ < files/gnome_terminal_jvalcher
+echo "gnome-terminal"
+
 cp files/.tmux.conf /home/$USER/.tmux.conf &&
 echo ".tmux.conf"
 cp -r files/.tmux /home/$USER/ && 
