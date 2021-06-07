@@ -52,11 +52,6 @@ echo "________________"
 vim +PluginInstall +qall
 echo "Complete"
 
-printf "\n\n"
-printf "Installing Tmux Plugin Manager and plugins...\n" 
-echo "________________"
-tmux source ~/.tmux.conf
-~/.tmux/plugins/tpm/bin/install_plugins
 
 ##########
 # Exit message
