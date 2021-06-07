@@ -145,8 +145,8 @@ set clipboard=unnamedplus
 " set tab title to filename in tmux
 "autocmd BufEnter * call system("tmux rename-window \\\\\\\\" . expand("%:t"))
 "autocmd VimLeave * call system("tmux rename-window bash")
-autocmd VimEnter * call system("tmux rename-window " . expand("%:t"))
-autocmd VimLeave * call system("tmux source-file ~/.tmux.conf")
+autocmd BufReadPost,FileReadPost,BufNewFile,BufEnter * call system("tmux rename-window " . expand("%:t"))
+autocmd VimLeave * call system("tmux setw automatic-rename")
 
 " Reselect visual mode selection for indenting
 vnoremap < <gv
