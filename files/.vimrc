@@ -143,8 +143,7 @@ map <F2> :NERDTreeToggle<CR>
 set clipboard=unnamedplus
 
 " set tab title to filename in tmux
-autocmd BufReadPost,FileReadPost,BufNewFile,BufEnter * call system("tmux rename-window " . expand("%:t"))
-autocmd VimLeave * call system("tmux setw automatic-rename")
+autocmd VimEnter * call system("tmux rename-window " . expand("%:t"))
 
 " Reselect visual mode selection for indenting
 vnoremap < <gv
