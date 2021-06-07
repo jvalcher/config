@@ -41,6 +41,10 @@ printf "~/Scripts...\n"
 cp files/.vimrc /home/$USER/.vimrc &&
 echo ".vimrc"
 
+dconf reset -f /org/gnome/terminal/
+dconf load /org/gnome/terminal/ < files/gnome_terminal_jvalcher
+echo "gnome-terminal"
+
 cp files/.tmux.conf /home/$USER/.tmux.conf &&
 echo ".tmux.conf"
 cp -r files/.tmux /home/$USER/ && 
