@@ -22,7 +22,7 @@ sudo apt-get install -y \
     terminator \
     gnome-tweaks \
     snapd \
-    xsel \
+    xclip \
     apt-transport-https \
     ca-certificates \
     curl \

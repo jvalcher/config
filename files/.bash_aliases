@@ -18,7 +18,6 @@ alias strS="grep -rnw . -e "
 alias py="python3 "
 
 # Change Tmux window title in terminal prompt to "<basepath>/"
-
 # If Tmux running...
 tmux ls > /dev/null 2>&1
 TMUX_STATUS=$?
