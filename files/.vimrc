@@ -142,9 +142,6 @@ map <F2> :NERDTreeToggle<CR>
 " copy to system clipboard
 set clipboard=unnamedplus
 
-" set tab title to filename in tmux
-autocmd VimEnter * call system("tmux rename-window " . expand("%:t"))
-
 " Reselect visual mode selection for indenting
 vnoremap < <gv
 vnoremap > >gv
@@ -158,4 +155,11 @@ set nohlsearch
 " Navigate up/down long lines with g+...
 nnoremap j gj
 nnoremap k gk
+
+" set tmux title on window save
+if exists('$TMUX')
+    autocmd VimEnter,BufWrite * call system("tmux rename-window ' " . expand("%:t") . " '")
+    "let tmuxtitle = system("tmux display-message -p '#W'")
+    autocmd VimLeave * call system("tmux setw automatic-rename")
+endif
 
