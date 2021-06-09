@@ -40,7 +40,7 @@ if [ $TMUX_STATUS -eq 0 ]; then
 
         basepathTitle
 
-        return $CD_STATUS
+        return "$CD_STATUS"
     }
 
     # Change vim functionality to change title 
