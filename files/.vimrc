@@ -163,3 +163,6 @@ if exists('$TMUX')
     autocmd VimLeave * call system("tmux setw automatic-rename")
 endif
 
+" remove random characters
+set t_RV=
+set t_u7=

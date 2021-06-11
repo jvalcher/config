@@ -17,6 +17,10 @@ alias strS="grep -rnw . -e "
 # python
 alias py="python3 "
 
+# pip
+alias pip3="pip"
+
+
 # Change Tmux window title in terminal prompt to "<basepath>/"
 # If Tmux running...
 tmux ls > /dev/null 2>&1
