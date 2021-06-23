@@ -128,10 +128,6 @@ cat files/extensions | xargs -L 1 code --install-extension &&
 cp files/gtk.css /home/$USER/.config/gtk-3.0/gtk.css &&
 echo "gtk.css"
 
-mkdir /home/$USER/bin 2> /dev/null &&
-cp files/site_refresh /home/$USER/bin/site_refresh &&
-echo "site_refresh"
-
 dconf reset -f /org/gnome/terminal/
 dconf load /org/gnome/terminal/ < files/gnome_terminal_jvalcher
 echo "gnome-terminal"

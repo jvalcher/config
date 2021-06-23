@@ -63,3 +63,6 @@ if [ $TMUX_STATUS -eq 0 ]; then
     basepathTitle
 
 fi
+
+# copy pwd to clipboard
+alias pclip="pwd | xclip -sel clip"

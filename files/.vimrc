@@ -13,7 +13,7 @@ call vundle#begin()
 " call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 
 " add all your plugins here (note older versions of Vundle
 " used Bundle instead of Plugin)
@@ -30,6 +30,9 @@ Plugin 'joshdick/onedark.vim'
 " glench/vim-jinja2-syntax
 Plugin 'glench/vim-jinja2-syntax'
 
+" Emmet-vim
+Plugin 'mattn/emmet-vim'
+
 
 " INSTALL PLUGINS with:   
     "  :source %
@@ -37,6 +40,9 @@ Plugin 'glench/vim-jinja2-syntax'
 " DELETE PLUGINS
     " delete Plugin line above
     " :PluginUpdate
+" :PluginList
+" :PluginSearch foo
+" :PluginClean
 
 
 " All of your Plugins must be added before the following line
@@ -166,6 +172,3 @@ endif
 " remove random characters
 set t_RV=
 set t_u7=
-
-" write and refresh firefox for webdev
-cmap ww<cr> w<cr> :silent! !~/bin/refresh<cr>
