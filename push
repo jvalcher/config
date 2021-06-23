@@ -33,6 +33,9 @@ cp -r /home/$USER/Scripts files/ &&
 # singing bowl sound
 cp /home/$USER/Music/singing_bowl.wav files/ &&
 
+# Chrome refresh script
+cp /home/$USER/bin/site_refresh files/ &&
+
 # push to github
 git add . &&
 git commit -m "update" &&

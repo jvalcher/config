@@ -166,3 +166,6 @@ endif
 " remove random characters
 set t_RV=
 set t_u7=
+
+" write and refresh firefox for webdev
+cmap ww<cr> w<cr> :silent! !~/bin/refresh<cr>

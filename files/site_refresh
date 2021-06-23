@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# switch to firefox and refresh active tab
+
+#xdotool search --name "Mozilla Firefox" windowactivate --sync
+xdotool search --class google-chrome windowactivate --sync
+sleep 0.5
+xdotool key ctrl+shift+r
+xdotool search --class gnome-terminal windowactivate --sync
