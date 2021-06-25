@@ -172,3 +172,8 @@ endif
 " remove random characters
 set t_RV=
 set t_u7=
+
+" remap emmet trigger (ctrl+z)
+" html:5 + <c+z+,>
+let g:user_emmet_leader_key='<C-Z>'
+
