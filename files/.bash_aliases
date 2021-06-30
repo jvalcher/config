@@ -7,30 +7,20 @@ PS1="\[\033[1;33m\]\W/ $ \[\033[0m\]"
 export PATH=$PATH:/home/$USER/.local/bin
 export PATH=$PATH:/home/$USER/bin
 
+
 # ll -> vertical file list, no info
 function llr () {
 
     if [ $# -eq 0 ]
     then
-        echo ""
-        LS_OUT=$(ls --format=single-column --color=always -1 | sed "s/^/    /")
-        for out in $LS_OUT
-        do
-            printf "    $out\n"
-        done
-        echo ""
+        printf "\n$(ls -1 --color=always| sed 's/^/    /')\n\n"
 
     else
-        echo ""
-        LS_OUT_M=$(ls --format=single-column --color=always "$1")
-        for out in $LS_OUT_M
-        do
-            printf "    $out\n"
-        done
-        echo ""
+        printf "\n$(ls -1 --color=always $1 | sed 's/^/    /')\n\n"
     fi
 }
 alias ll="llr"
+
 
 # git graph
 alias graph="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"

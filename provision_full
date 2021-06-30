@@ -17,9 +17,9 @@ sudo apt upgrade -y &&
 
 sudo apt-get install -y \
     vim-gtk \
+    vim-nox \
     tmux \
     google-chrome-stable \
-    terminator \
     gnome-tweaks \
     snapd \
     xclip \
@@ -35,8 +35,17 @@ sudo apt-get install -y \
     libglib2.0-dev-bin \
     gsettings-desktop-schemas \
     obs-studio \
-    xdotool
+    xdotool \
+    cmake \
+    build-essential \
+    python3-dev \
+    mono-complete \
+    golang \
+    nodejs \
+    default-jdk \
+    aptitude
 sudo apt install -y virtualbox virtualbox-ext-pack
+sudo aptitude install npm
 
 
 printf "\n\nInstalling Docker...\n"

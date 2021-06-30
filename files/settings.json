@@ -1,11 +1,8 @@
 {
     "workbench.startupEditor": "newUntitledFile",
-    "workbench.editorAssociations": [
-        {
-            "viewType": "jupyter.notebook.ipynb",
-            "filenamePattern": "*.ipynb"
-        }
-    ],
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter.notebook.ipynb"
+    },
     "editor.fontSize": 18,
     "explorer.confirmDragAndDrop": false,
     "window.zoomLevel": 1,

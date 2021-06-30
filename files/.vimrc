@@ -33,6 +33,12 @@ Plugin 'glench/vim-jinja2-syntax'
 " Emmet-vim
 Plugin 'mattn/emmet-vim'
 
+" Nginx syntax
+Plugin 'nginx.vim'
+
+" YouCompleteMe autocomplete
+Plugin 'ycm-core/YouCompleteMe'
+
 
 " INSTALL PLUGINS with:   
     "  :source %
