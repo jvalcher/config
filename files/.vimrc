@@ -27,9 +27,6 @@ Plugin 'scrooloose/nerdtree'
 " OneDark color scheme 
 Plugin 'joshdick/onedark.vim'
 
-" glench/vim-jinja2-syntax
-Plugin 'glench/vim-jinja2-syntax'
-
 " Emmet-vim
 Plugin 'mattn/emmet-vim'
 
@@ -37,7 +34,10 @@ Plugin 'mattn/emmet-vim'
 Plugin 'nginx.vim'
 
 " YouCompleteMe autocomplete
-Plugin 'ycm-core/YouCompleteMe'
+"Plugin 'ycm-core/YouCompleteMe'
+
+" glench/vim-jinja2-syntax
+"Plugin 'glench/vim-jinja2-syntax'
 
 
 " INSTALL PLUGINS with:   
@@ -183,3 +183,6 @@ set t_u7=
 " html:5 + <c+z+,>
 let g:user_emmet_leader_key='<C-Z>'
 
+" vim-syntastic passive mode, F3 to check, F4 to reset
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
+nnoremap <F3> :SyntasticCheck<CR>
