@@ -187,6 +187,6 @@ let g:user_emmet_leader_key='<C-Z>'
 "let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
 "nnoremap <F3> :SyntasticCheck<CR>
 
-" remap scrolling
-noremap <C-K> <C-E>
-noremap <C-J> <C-Y>
+" remap scrolling (ctrl+ d,f)
+noremap <C-F> <C-E>
+noremap <C-D> <C-Y>
