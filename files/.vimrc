@@ -184,5 +184,9 @@ set t_u7=
 let g:user_emmet_leader_key='<C-Z>'
 
 " vim-syntastic passive mode, F3 to check, F4 to reset
-let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
-nnoremap <F3> :SyntasticCheck<CR>
+"let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
+"nnoremap <F3> :SyntasticCheck<CR>
+
+" remap scrolling
+noremap <C-K> <C-E>
+noremap <C-J> <C-Y>
