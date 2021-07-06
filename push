@@ -7,6 +7,7 @@ cp /home/$USER/.bash_aliases files/ &&
 
 # vim
 cp /home/$USER/.vimrc files/ &&
+mkdir -p /home/$USER/Git/config/files/.vim && cp -r /home/$USER/.vim/colors files/ &&
 
 # VSCode
 cp /home/$USER/.config/Code/User/settings.json files/ &&

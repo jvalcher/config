@@ -1,6 +1,22 @@
+""""""""""""""""""""""""""""""""""""""""""
+"VIM-PLUG
+""""""""""
+call plug#begin('~/.vim/plugged')
+
+
+"Colorschemes
+Plug 'eemed/sitruuna.vim'
+
+
+""""""""""""""""""
+call plug#end()
+"""""""""""""""""""
+
+
 
 """"""""""""""""""""""""""""""""""""""""""
-"Vundle settings
+"VUNDLE
+""""""""
 
 set nocompatible              " required
 filetype off                  " required
@@ -23,9 +39,6 @@ Plugin 'vim-syntastic/syntastic'
 
 " NERDTree
 Plugin 'scrooloose/nerdtree'
-
-" OneDark color scheme 
-Plugin 'joshdick/onedark.vim'
 
 " Emmet-vim
 Plugin 'mattn/emmet-vim'
@@ -121,8 +134,14 @@ set linebreak
 syntax on
 
 " set colorscheme
-"colorscheme onedark
-colorscheme apprentice
+colorscheme onedark
+"colorscheme apprentice
+"colorscheme pink-moon
+"colorscheme tender
+"colorscheme sitruuna
+"colorscheme twilight256
+"colorscheme jellybeans
+"color happy_hacking
 
 " always show cursor position
 set ruler
@@ -196,5 +215,4 @@ noremap <C-D> <C-Y>
 set timeout timeoutlen=50
 
 " line number color
-set termguicolors
 "highlight CursorLineNr ctermfg=35 ctermbg=0 guifg=#11721B guibg=#08280B
