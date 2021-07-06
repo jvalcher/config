@@ -121,7 +121,8 @@ set linebreak
 syntax on
 
 " set colorscheme
-colorscheme onedark
+"colorscheme onedark
+colorscheme apprentice
 
 " always show cursor position
 set ruler
@@ -193,3 +194,7 @@ noremap <C-D> <C-Y>
 
 " escape delay
 set timeout timeoutlen=50
+
+" line number color
+set termguicolors
+"highlight CursorLineNr ctermfg=35 ctermbg=0 guifg=#11721B guibg=#08280B
