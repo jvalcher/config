@@ -190,3 +190,6 @@ let g:user_emmet_leader_key='<C-Z>'
 " remap scrolling (ctrl+ d,f)
 noremap <C-F> <C-E>
 noremap <C-D> <C-Y>
+
+" escape delay
+set timeout timeoutlen=3000
