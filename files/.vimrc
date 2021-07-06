@@ -192,4 +192,4 @@ noremap <C-F> <C-E>
 noremap <C-D> <C-Y>
 
 " escape delay
-set timeout timeoutlen=3000
+set timeout timeoutlen=50
