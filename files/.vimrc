@@ -122,7 +122,7 @@ set linebreak
 syntax on
 
 " set colorscheme
-colorscheme onedark
+silent! colorscheme onedark
 "colorscheme apprentice
 "colorscheme pink-moon
 "colorscheme tender

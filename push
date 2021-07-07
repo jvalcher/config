@@ -7,9 +7,6 @@ cp /home/$USER/.bash_aliases files/
 
 # vim
 cp /home/$USER/.vimrc files/
-if [ -d /home/$USER/.vim/colors ]; then
-    mkdir -p /home/$USER/Git/config/files/.vim && cp -r /home/$USER/.vim/colors files/
-fi
 
 # sudoers.d
 sudo cp /etc/sudoers.d/jvalcher files/

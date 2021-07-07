@@ -22,7 +22,7 @@ if [ ! -x "$(command -v glib-compile-resources)" ]; then
     echo 'Additional glib 2.0 libraries need to be installed.'
     read -p 'Type y or Y to proceed. Any other key to exit: ' -n 1
     if [[ "$REPLY" =~ ^[yY]$ ]]; then
-	apt install libglib2.0-dev-bin
+	sudo apt install libglib2.0-dev-bin
     else
 	echo "This tool can't run without required libraries"
 	echo "Exiting."
@@ -47,14 +47,8 @@ mv "$gdm3Resource~" "$gdm3Resource"
 if [ "$?" -eq 0 ]; then
     chmod 644 "$gdm3Resource"
     echo 'GDM background sucessfully restored.'
-    read -p 'Do you want to restart gdm to apply change? (y/n):' -n 1
-	echo
-	if [[ "$REPLY" =~ ^[yY]$ ]]; then
-	    service gdm restart
-	else
-	    echo 'Restart GDM service to apply change.'
-	    exit 0
-	fi
+    echo 'Restart GDM service to apply change.'
+    exit 0
 fi
 }
 
@@ -99,18 +93,10 @@ if [ "$?" -eq 0 ]; then
 # Solve a permission change issue (thanks to @huepf from github).
     chmod 644 "$gdm3Resource"
     echo 'GDM background sucessfully changed.'
-    read -p 'Do you want to restart gdm to apply change? (y/n):' -n 1
-    echo
-    # If change was successful apply ask for gdm restart.
-    if [[ "$REPLY" =~ ^[yY]$ ]]; then
-	service gdm restart
-    else
 	echo "Change will be applied only after restarting gdm"
-	echo
-    fi
 else
     # If something went wrong, restore backup file.
-    echo 'something went wrong.'
+    echo 'Something went wrong.'
     restore
     echo 'No changes were applied.'
 fi

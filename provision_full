@@ -36,35 +36,56 @@ sudo apt-get install -y \
     build-essential \
     python3-dev \
     mono-complete \
-    golang \
-    nodejs \
     aptitude
 sudo apt install -y virtualbox virtualbox-ext-pack
 
 
+
+printf "\n\nCopying, sourcing .bash_aliases...\n"
+echo "________________"
+cp files/.bash_aliases /home/$USER/.bash_aliases
+. /home/$USER/.bashrc
+
+
+
 printf "\n\nInstalling Docker...\n"
 echo "________________"
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg 
-echo \
-  "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
-  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null 
-sudo apt-get update 
-sudo apt-get install -y docker-ce docker-ce-cli containerd.io
-sudo usermod -aG docker ${USER}
-docker run hello-world
+DOCK_KEY="/usr/share/keyrings/docker-archive-keyring.gpg"
+if [ -e $DOCK_KEY ]; then
+    printf "Already installed\n"
+else
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg 
+    echo \
+    "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+    $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null 
+    sudo apt-get update 
+    sudo apt-get install -y docker-ce docker-ce-cli containerd.io
+    sudo usermod -aG docker ${USER}
+    docker run hello-world
+fi
 
-printf "\n\nInstalling Docker-compose...\n"
+printf "\n\nInstalling docker-compose...\n"
 echo "________________"
-sudo curl -L "https://github.com/docker/compose/releases/download/1.29.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose
-docker-compose --version
+DC="/usr/local/bin/docker-compose"
+if [ -e $DC ]; then
+    printf "Already installed\n"
+else
+    sudo curl -L "https://github.com/docker/compose/releases/download/1.29.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+    sudo chmod +x /usr/local/bin/docker-compose
+    docker-compose --version
+fi
 
 
 printf "\n\nInstalling Ansible...\n"
 echo "________________"
-sudo apt install software-properties-common -y
-sudo apt-add-repository --yes --update ppa:ansible/ansible
-sudo apt install ansible -y
+ANSIBLE_STATUS=$(dpkg -s ansible | echo $?)
+if [ $ANSIBLE_STATUS -eq 0 ]; then
+    printf "Already installed\n"
+else
+    sudo apt install software-properties-common -y
+    sudo apt-add-repository -y --update ppa:ansible/ansible
+    sudo apt install ansible -y
+fi
 
 
 printf "\n\nRemoving unnecessary Apt files...\n"
@@ -76,11 +97,11 @@ printf "\n\nInstalling Snap software...\n"
 echo "________________"
 sudo snap install spotify
 sudo snap install discord
-sudo snap install --classic code
 sudo snap install gimp
-sudo snap install --classic blender
 sudo snap install postman
 sudo snap install shotcut --classic
+#sudo snap install --classic code
+#sudo snap install --classic blender
 
 
 #############
@@ -90,8 +111,15 @@ sudo snap install shotcut --classic
 printf "\n\n"
 printf "Installing EasyTether...\n" 
 echo "________________"
-sudo dpkg -i scripts/easytether_0.8.9_amd64_ubuntu_20-04.deb &&
-easy
+ET="/usr/bin/easytether-usb"
+if [ -e $ET ]; then
+    printf "Already installed\n"
+else
+    sudo dpkg -i scripts/easytether_0.8.9_amd64_ubuntu_20-04.deb &&
+    sudo systemctl restart systemd-networkd
+    # .bash_aliases 
+    easy
+fi
 
 
 #############
@@ -102,16 +130,12 @@ printf "\n\n"
 printf "Copying configuration files...\n" 
 echo "________________"
 
-sudo cp files/jvalcher /etc/sudoers.d/
+sudo cp files/jvalcher /etc/sudoers.d/jvalcher
 printf "jvalcher \t\t(sudoers.d)\n"
 
-sudo cp files/touchpad_toggle /usr/bin/local/
-sudo chown $USER /usr/bin/local/touchpad_toggle
+sudo cp files/touchpad_toggle /usr/local/bin/
+sudo chown $USER /usr/local/bin/touchpad_toggle
 printf "touchpad_toggle\n"
-
-cp files/.bash_aliases /home/$USER/.bash_aliases
-. /home/$USER/.bashrc
-echo ".bash_aliases"
 
 cp files/config /home/$USER/.config/terminator/config
 printf "config \t\t(terminator)\n"
@@ -119,20 +143,20 @@ printf "config \t\t(terminator)\n"
 cp files/.vimrc /home/$USER/.vimrc
 echo ".vimrc"
 
-cp files/settings.json /home/$USER/.config/Code/User/settings.json
-printf "settings.json \t(VSCode)\n"
-
-cp files/config /home/$USER/.config/Code/User/config
-printf "config \t(VSCode)\n"
-
 cp -r files/Scripts /home/$USER/
 printf "~/Scripts...\n"
 
-cat files/extensions | xargs -L 1 code --install-extension 
-cp files/extensions /home/$USER/.config/Code/User/extensions 
-printf "\n\nInstalling VSCode extensions...\n"
-echo "________________"
-cat files/extensions | xargs -L 1 code --install-extension
+#cp files/settings.json /home/$USER/.config/Code/User/settings.json
+#printf "settings.json \t(VSCode)\n"
+#
+#cp files/config /home/$USER/.config/Code/User/config
+#printf "config \t(VSCode)\n"
+#
+#cat files/extensions | xargs -L 1 code --install-extension 
+#cp files/extensions /home/$USER/.config/Code/User/extensions 
+#printf "\n\nInstalling VSCode extensions...\n"
+#echo "________________"
+#cat files/extensions | xargs -L 1 code --install-extension
 
 cp files/gtk.css /home/$USER/.config/gtk-3.0/gtk.css
 echo "gtk.css"
@@ -152,8 +176,14 @@ printf "singing_bowl.wav\n"
 printf "\n\n"
 printf "Installing Vim Vundle plugins...\n" 
 echo "________________"
-vim +PluginInstall +qall
-echo "Complete"
+VIM_DIR="/home/$USER/.vim/bundle/Vundle.vim"
+if [ -e $VIM_DIR/bundle/Vundle.vim ]; then
+    printf "Alread installed\n"
+else
+    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+    vim +PluginInstall +qall
+    echo "Complete"
+fi
 
 
 ###########
@@ -173,7 +203,7 @@ source scripts/dbus.sh unity
 sudo gsettings set org.gnome.desktop.background picture-uri file:///$PICTURES_DIR/$WALLPAPER
 echo "$PICTURES_DIR/$WALLPAPER"
 # Change login screen
-sudo ./scripts/change-gdm-background $PICTURES_DIR/$LOGIN
+sudo scripts/change-gdm-background $PICTURES_DIR/$LOGIN
 
 
 ###########
@@ -184,7 +214,6 @@ printf "\n\n"
 printf "Configuring launcher...\n"
 echo "________________"
 printf "Bottom position, centered, transparent, size=64, unity-backlit\n"
-
 gsettings set org.gnome.shell.extensions.dash-to-dock extend-height false
 gsettings set org.gnome.shell.extensions.dash-to-dock dock-position BOTTOM
 gsettings set org.gnome.shell.extensions.dash-to-dock transparency-mode FIXED
