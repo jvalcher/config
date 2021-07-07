@@ -37,6 +37,9 @@ alias py="python3 "
 # pip
 alias pip3="pip"
 
+# activate cursor selection for windows to get PID
+alias winSel="xprop _NET_WM_PID | sed 's/_NET_WM_PID(CARDINAL) = //' | ps 'cat'"
+
 
 # Change Tmux window title in terminal prompt to "<basepath>/"
 # If Tmux running...
