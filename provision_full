@@ -142,6 +142,9 @@ echo ".tmux.conf"
 cp -r files/.tmux /home/$USER/ 
 echo ".tmux/"
 
+cp files/singing_bowl.wav /home/$USER/Music/
+printf "singing_bowl.wav\n"
+
 printf "\n\n"
 printf "Installing Vim Vundle plugins...\n" 
 echo "________________"
