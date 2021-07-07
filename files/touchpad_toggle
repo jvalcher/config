@@ -1,0 +1,41 @@
+# Toggle laptop touchpad on/off
+
+
+#!/bin/bash
+
+printf "hello?\n"
+# HP Envy touchpad
+DEV_NAME_HP="SynPS/2 Synaptics TouchPad"
+# Asus ROG Zephyrus touchpad
+DEV_NAME_ASUS="ELAN1200:00 04F3:30E9 Touchpad"
+
+# 0 exit code if touchpad present
+HP_EXIT=$(xinput --list | grep -q "$DEV_NAME_HP"; echo $?)
+ASUS_EXIT=$(xinput --list | grep -q "$DEV_NAME_ASUS"; echo $?)
+
+# toggle function
+function toggle () {
+
+    # device ID
+    DEV_ID=$(xinput --list --id-only "$DEV_NAME")
+    
+    # current state (enabled==1, disabled==0)
+    STATE=$(xinput list-props "$DEV_NAME" | grep "Device Enabled" | grep -o "[01]$")
+
+    # toggle
+    if [ $STATE -eq 1 ]; then
+        xinput disable $DEV_ID
+    else
+        xinput enable $DEV_ID
+    fi
+}
+
+# toggle touchpad that exited 0
+if [[ $HP_EXIT == 0 ]]; then
+    DEV_NAME="$DEV_NAME_HP"
+    toggle
+elif [[ $ASUS_EXIT == 0 ]]; then
+    DEV_NAME="$DEV_NAME_ASUS"
+    toggle
+fi
+

@@ -7,7 +7,6 @@ PS1="\[\033[1;33m\]\W/ $ \[\033[0m\]"
 export PATH=$PATH:/home/$USER/.local/bin
 export PATH=$PATH:/home/$USER/bin
 
-
 # ll -> vertical file list, no info
 function llr () {
 

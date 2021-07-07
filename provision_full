@@ -105,6 +105,10 @@ echo "________________"
 sudo cp files/jvalcher /etc/sudoers.d/
 printf "jvalcher \t\t(sudoers.d)\n"
 
+sudo cp files/touchpad_toggle /usr/bin/local/
+sudo chown $USER /usr/bin/local/touchpad_toggle
+printf "touchpad_toggle\n"
+
 cp files/.bash_aliases /home/$USER/.bash_aliases
 . /home/$USER/.bashrc
 echo ".bash_aliases"
