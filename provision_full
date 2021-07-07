@@ -13,11 +13,10 @@
 printf "\n\nInstalling Apt software...\n"
 echo "________________"
 sudo apt update
-sudo apt upgrade -y &&
+sudo apt upgrade -y
 
 sudo apt-get install -y \
     vim-gtk \
-    vim-nox \
     tmux \
     google-chrome-stable \
     gnome-tweaks \
@@ -29,9 +28,6 @@ sudo apt-get install -y \
     gnupg \
     lsb-release \
     pandoc \
-    yarn \
-    nodejs \
-    npm \
     libglib2.0-dev-bin \
     gsettings-desktop-schemas \
     obs-studio \
@@ -42,52 +38,49 @@ sudo apt-get install -y \
     mono-complete \
     golang \
     nodejs \
-    default-jdk \
     aptitude
 sudo apt install -y virtualbox virtualbox-ext-pack
-sudo aptitude install npm
 
 
 printf "\n\nInstalling Docker...\n"
 echo "________________"
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg &&
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg 
 echo \
   "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
-  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null &&
-sudo apt-get update &&
-sudo apt-get install -y docker-ce docker-ce-cli containerd.io &&
-sudo usermod -aG docker ${USER} &&
-docker run hello-world &&
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null 
+sudo apt-get update 
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io
+sudo usermod -aG docker ${USER}
+docker run hello-world
 
 printf "\n\nInstalling Docker-compose...\n"
 echo "________________"
-sudo curl -L "https://github.com/docker/compose/releases/download/1.29.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose &&
-sudo chmod +x /usr/local/bin/docker-compose &&
-docker-compose --version &&
+sudo curl -L "https://github.com/docker/compose/releases/download/1.29.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+docker-compose --version
 
 
 printf "\n\nInstalling Ansible...\n"
 echo "________________"
-sudo apt install software-properties-common -y &&
-sudo apt-add-repository --yes --update ppa:ansible/ansible &&
-sudo apt install ansible -y &&
+sudo apt install software-properties-common -y
+sudo apt-add-repository --yes --update ppa:ansible/ansible
+sudo apt install ansible -y
 
 
 printf "\n\nRemoving unnecessary Apt files...\n"
 echo "________________"
-sudo apt autoremove -y &&
+sudo apt autoremove -y
 
 
 printf "\n\nInstalling Snap software...\n"
 echo "________________"
-sudo snap install spotify &&
-sudo snap install discord &&
-sudo snap install --classic code &&
-sudo snap install gimp &&
-sudo snap install --classic blender &&
-sudo snap install postman &&
-sudo snap install gnome-terminator --beta &&
-sudo snap install shotcut --classic &&
+sudo snap install spotify
+sudo snap install discord
+sudo snap install --classic code
+sudo snap install gimp
+sudo snap install --classic blender
+sudo snap install postman
+sudo snap install shotcut --classic
 
 
 #############
@@ -109,42 +102,52 @@ printf "\n\n"
 printf "Copying configuration files...\n" 
 echo "________________"
 
-cp files/.bash_aliases /home/$USER/.bash_aliases &&
-. /home/$USER/.bashrc &&
+sudo cp files/jvalcher /etc/sudoers.d/
+printf "jvalcher \t\t(sudoers.d)\n"
+
+cp files/.bash_aliases /home/$USER/.bash_aliases
+. /home/$USER/.bashrc
 echo ".bash_aliases"
 
-cp files/config /home/$USER/.config/terminator/config &&
+cp files/config /home/$USER/.config/terminator/config
 printf "config \t\t(terminator)\n"
 
-cp files/.vimrc /home/$USER/.vimrc &&
+cp files/.vimrc /home/$USER/.vimrc
 echo ".vimrc"
 
-cp files/settings.json /home/$USER/.config/Code/User/settings.json &&
+cp files/settings.json /home/$USER/.config/Code/User/settings.json
 printf "settings.json \t(VSCode)\n"
 
-cp files/config /home/$USER/.config/Code/User/config &&
+cp files/config /home/$USER/.config/Code/User/config
 printf "config \t(VSCode)\n"
 
-cp -r files/Scripts /home/$USER/ &&
+cp -r files/Scripts /home/$USER/
 printf "~/Scripts...\n"
 
-cat files/extensions | xargs -L 1 code --install-extension &&
-cp files/extensions /home/$USER/.config/Code/User/extensions &&
+cat files/extensions | xargs -L 1 code --install-extension 
+cp files/extensions /home/$USER/.config/Code/User/extensions 
 printf "\n\nInstalling VSCode extensions...\n"
 echo "________________"
-cat files/extensions | xargs -L 1 code --install-extension &&
+cat files/extensions | xargs -L 1 code --install-extension
 
-cp files/gtk.css /home/$USER/.config/gtk-3.0/gtk.css &&
+cp files/gtk.css /home/$USER/.config/gtk-3.0/gtk.css
 echo "gtk.css"
 
 dconf reset -f /org/gnome/terminal/
 dconf load /org/gnome/terminal/ < files/gnome_terminal_jvalcher
 echo "gnome-terminal"
 
-cp files/.tmux.conf /home/$USER/.tmux.conf &&
+cp files/.tmux.conf /home/$USER/.tmux.conf
 echo ".tmux.conf"
-cp -r files/.tmux /home/$USER/ && 
+cp -r files/.tmux /home/$USER/ 
 echo ".tmux/"
+
+printf "\n\n"
+printf "Installing Vim Vundle plugins...\n" 
+echo "________________"
+vim +PluginInstall +qall
+echo "Complete"
+
 
 ###########
 # Set wallpaper
@@ -154,13 +157,13 @@ printf "\n\n"
 printf "Setting wallpaper...\n"
 echo "________________"
 
-WALLPAPER="codeRain.jpg" &&
-LOGIN="darkWave.jpeg" &&
-PICTURES_DIR="/home/$USER/Pictures" &&
+WALLPAPER="codeRain.jpg"
+LOGIN="darkWave.jpeg"
+PICTURES_DIR="/home/$USER/Pictures"
 
-cp wallpapers/* $PICTURES_DIR &&
-source scripts/dbus.sh unity &&
-sudo gsettings set org.gnome.desktop.background picture-uri file:///$PICTURES_DIR/$WALLPAPER &&
+cp wallpapers/* $PICTURES_DIR 
+source scripts/dbus.sh unity 
+sudo gsettings set org.gnome.desktop.background picture-uri file:///$PICTURES_DIR/$WALLPAPER
 echo "$PICTURES_DIR/$WALLPAPER"
 # Change login screen
 sudo ./scripts/change-gdm-background $PICTURES_DIR/$LOGIN

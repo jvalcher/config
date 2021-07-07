@@ -1,18 +1,3 @@
-""""""""""""""""""""""""""""""""""""""""""
-"VIM-PLUG
-""""""""""
-call plug#begin('~/.vim/plugged')
-
-
-"Colorschemes
-Plug 'eemed/sitruuna.vim'
-
-
-""""""""""""""""""
-call plug#end()
-"""""""""""""""""""
-
-
 
 """"""""""""""""""""""""""""""""""""""""""
 "VUNDLE
@@ -45,6 +30,9 @@ Plugin 'mattn/emmet-vim'
 
 " Nginx syntax
 Plugin 'nginx.vim'
+
+" onedark colorscheme
+Plugin 'joshdick/onedark.vim'
 
 " YouCompleteMe autocomplete
 "Plugin 'ycm-core/YouCompleteMe'

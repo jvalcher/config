@@ -13,7 +13,7 @@
 printf "\n\nInstalling Apt software...\n"
 echo "________________"
 sudo apt update
-sudo apt upgrade -y &&
+sudo apt upgrade -y 
 
 sudo apt-get install -y \
     vim-gtk \
@@ -31,23 +31,23 @@ printf "\n\n"
 printf "Copying configuration files...\n" 
 echo "________________"
 
-cp files/.bash_aliases /home/$USER/.bash_aliases &&
-. /home/$USER/.bashrc &&
+cp files/.bash_aliases /home/$USER/.bash_aliases
+. /home/$USER/.bashrc 
 echo ".bash_aliases"
 
-cp -r files/Scripts /home/$USER/ &&
+cp -r files/Scripts /home/$USER/ 
 printf "~/Scripts...\n"
 
-cp files/.vimrc /home/$USER/.vimrc &&
+cp files/.vimrc /home/$USER/.vimrc 
 echo ".vimrc"
 
 dconf reset -f /org/gnome/terminal/
 dconf load /org/gnome/terminal/ < files/gnome_terminal_jvalcher
 echo "gnome-terminal"
 
-cp files/.tmux.conf /home/$USER/.tmux.conf &&
+cp files/.tmux.conf /home/$USER/.tmux.conf 
 echo ".tmux.conf"
-cp -r files/.tmux /home/$USER/ && 
+cp -r files/.tmux /home/$USER/ 
 echo ".tmux/"
 
 printf "\n\n"

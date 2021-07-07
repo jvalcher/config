@@ -3,40 +3,45 @@
 #!/bin/bash
 
 # bash_aliases
-cp /home/$USER/.bash_aliases files/ &&
+cp /home/$USER/.bash_aliases files/
 
 # vim
-cp /home/$USER/.vimrc files/ &&
-mkdir -p /home/$USER/Git/config/files/.vim && cp -r /home/$USER/.vim/colors files/ &&
+cp /home/$USER/.vimrc files/
+if [ -d /home/$USER/.vim/colors ]; then
+    mkdir -p /home/$USER/Git/config/files/.vim && cp -r /home/$USER/.vim/colors files/
+fi
+
+# sudoers.d
+sudo cp /etc/sudoers.d/jvalcher files/
 
 # VSCode
-cp /home/$USER/.config/Code/User/settings.json files/ &&
-cp /home/$USER/.config/Code/User/config files/ &&
-code --list-extensions >/home/$USER/.config/Code/User/extensions &&
-cp /home/$USER/.config/Code/User/extensions files/ &&
+cp /home/$USER/.config/Code/User/settings.json files/
+cp /home/$USER/.config/Code/User/config files/ 
+code --list-extensions >/home/$USER/.config/Code/User/extensions 
+cp /home/$USER/.config/Code/User/extensions files/ 
 
 # Terminator
-cp /home/$USER/.config/terminator/config files/ &&
+cp /home/$USER/.config/terminator/config files/ 
 
 # gtk.css
-cp /home/$USER/.config/gtk-3.0/gtk.css files/ &&
+cp /home/$USER/.config/gtk-3.0/gtk.css files/ 
 
 # gnome-terminal
-dconf dump /org/gnome/terminal/ > files/gnome_terminal_jvalcher &&
+dconf dump /org/gnome/terminal/ > files/gnome_terminal_jvalcher 
 
 # Tmux
-cp /home/$USER/.tmux.conf files/ &&
-cp -r /home/$USER/.tmux files/ &&
+cp /home/$USER/.tmux.conf files/ 
+cp -r /home/$USER/.tmux files/ 
 
 # Scripts
-cp -r /home/$USER/Scripts files/ &&
+cp -r /home/$USER/Scripts files/
 
 # singing bowl sound
-cp /home/$USER/Music/singing_bowl.wav files/ &&
+cp /home/$USER/Music/singing_bowl.wav files/
 
 # push to github
-git add . &&
-git commit -m "update" &&
+git add . 
+git commit -m "update"
 git push origin
 
 
