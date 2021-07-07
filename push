@@ -20,9 +20,6 @@ cp /home/$USER/.config/Code/User/config files/
 code --list-extensions >/home/$USER/.config/Code/User/extensions 
 cp /home/$USER/.config/Code/User/extensions files/ 
 
-# Terminator
-cp /home/$USER/.config/terminator/config files/ 
-
 # gtk.css
 cp /home/$USER/.config/gtk-3.0/gtk.css files/ 
 
@@ -31,7 +28,6 @@ dconf dump /org/gnome/terminal/ > files/gnome_terminal_jvalcher
 
 # Tmux
 cp /home/$USER/.tmux.conf files/ 
-cp -r /home/$USER/.tmux files/ 
 
 # Scripts
 cp -r /home/$USER/Scripts files/
