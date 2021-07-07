@@ -7,6 +7,7 @@ PS1="\[\033[1;33m\]\W/ $ \[\033[0m\]"
 export PATH=$PATH:/home/$USER/.local/bin
 export PATH=$PATH:/home/$USER/bin
 
+
 # ll -> vertical file list, no info
 function llr () {
 
@@ -39,6 +40,16 @@ alias pip3="pip"
 # activate cursor selection for windows to get PID
 alias winSel="xprop _NET_WM_PID | sed 's/_NET_WM_PID(CARDINAL) = //' | ps 'cat'"
 
+# copy pwd to clipboard
+alias pclip="pwd | xclip -sel clip"
+
+# outputs .c filename as program name without .c
+function gco () {
+    FILE="$1"
+    OUTPUT_FILE="${FILE%.*}"
+    gcc -o $OUTPUT_FILE $FILE
+    printf "\n    Output file:  $OUTPUT_FILE\n\n"
+}
 
 # Change Tmux window title in terminal prompt to "<basepath>/"
 # If Tmux running...
@@ -83,5 +94,3 @@ if [ $TMUX_STATUS -eq 0 ]; then
 
 fi
 
-# copy pwd to clipboard
-alias pclip="pwd | xclip -sel clip"

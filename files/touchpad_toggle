@@ -1,4 +1,6 @@
 # Toggle laptop touchpad on/off
+#
+# Set shortcut:  bash /usr/local/bin/touchpad_toggle
 
 
 #!/bin/bash
