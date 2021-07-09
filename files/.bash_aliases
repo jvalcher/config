@@ -8,15 +8,21 @@ export PATH=$PATH:/home/$USER/.local/bin
 export PATH=$PATH:/home/$USER/bin
 
 
-# ll -> vertical file list, no info
-function llr () {
+# reset ll set in .bashrc -> vertical file list, no info
+llr () {
 
-    if [ $# -eq 0 ]
-    then
-        printf "\n$(ls -1 --color=always| sed 's/^/    /')\n\n"
-
+    # if no files in directory, return prompt
+    if [ -z "$(ls $1)" ]; then
+        printf ""
+    # otherwise
     else
-        printf "\n$(ls -1 --color=always $1 | sed 's/^/    /')\n\n"
+        # no dir argument
+        if [ $# -eq 0 ]; then
+            printf "\n$(ls -1 --color=always| sed 's/^/    /')\n\n"
+        # with dir argument
+        else
+            printf "\n$(ls -1 --color=always $1 | sed 's/^/    /')\n\n"
+        fi
     fi
 }
 alias ll="llr"
@@ -43,12 +49,14 @@ alias winSel="xprop _NET_WM_PID | sed 's/_NET_WM_PID(CARDINAL) = //' | ps 'cat'"
 # copy pwd to clipboard
 alias pclip="pwd | xclip -sel clip"
 
-# outputs .c filename as program name without .c
-function gco () {
+# compiles file.c as file, runs it, prints file name
+gco () {
     FILE="$1"
     OUTPUT_FILE="${FILE%.*}"
     gcc -o $OUTPUT_FILE $FILE
-    printf "\n    Output file:  $OUTPUT_FILE\n\n"
+    printf "\n    \e[1;4;32mOutput:\e[0m\n\n"
+    ./"$OUTPUT_FILE"
+    printf "\n    \e[1;4;32mFile name:\e[0m  $OUTPUT_FILE\n\n"
 }
 
 # Change Tmux window title in terminal prompt to "<basepath>/"
