@@ -27,6 +27,29 @@ llr () {
 }
 alias ll="llr"
 
+# remap la alias to list just hidden files
+lla () {
+
+    # if no files in directory, return prompt
+    if [ -z "$(ls -a $1)" ]; then
+        printf ""
+    # otherwise
+    else
+        # no dir argument
+        if [ $# -eq 0 ]; then
+            printf "\n$(ls -1 -d --color=always .!(|.) | sed 's/^/    /')\n\n"
+        # with dir argument
+        else
+            # Remove trailing slash if it exists
+            DIR_PATH="${1%/}"
+            #printf "\n$(ls -1 -d --color=always $DIR_PATH/.!(|.) | sed 's/^/    /')\n\n"
+            printf "\n$(cd $1; ls -1 -d --color=always .!(|.) | sed 's/^/    /')\n\n"
+        fi
+    fi
+}
+alias la="lla"
+
+
 
 # git graph
 alias graph="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
