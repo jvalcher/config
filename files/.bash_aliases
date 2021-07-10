@@ -41,8 +41,6 @@ lla () {
         # with dir argument
         else
             # Remove trailing slash if it exists
-            DIR_PATH="${1%/}"
-            #printf "\n$(ls -1 -d --color=always $DIR_PATH/.!(|.) | sed 's/^/    /')\n\n"
             printf "\n$(cd $1; ls -1 -d --color=always .!(|.) | sed 's/^/    /')\n\n"
         fi
     fi
