@@ -81,9 +81,11 @@ gco () {
     FILE="$1"
     OUTPUT_FILE="${FILE%.*}"
     gcc -o $OUTPUT_FILE $FILE
-    printf "\n    \e[1;4;32mOutput:\e[0m\n\n"
+    printf "\n\e[1;4;32mOutput:\e[0m\n"
+    printf "_ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n\n"
     ./"$OUTPUT_FILE"
-    printf "\n    \e[1;4;32mFile name:\e[0m  $OUTPUT_FILE\n\n"
+    printf "\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n\n"
+    printf "\e[1;4;32mExecutable:\e[0m  $OUTPUT_FILE\n\n"
 }
 
 # Change Tmux window title in terminal prompt to "<basepath>/"
@@ -145,3 +147,28 @@ countdown()
   done
   echo
 )
+
+## ls, returns only hidden files
+## no formatting, less enabled
+#lsa () {
+#
+#    # Exit codes with/without argument are 0 if no hidden files present
+#    EXIT=$(ls -1d .!(|.) |& grep -q "No such file"; echo $?)
+#    EXIT_ARG=$(cd $1; ls -1d .!(|.) |& grep -q "No such file"; echo $?)
+#
+#    # If no argument
+#    if [ $# -eq 0 ]; then
+#        if [ $EXIT -eq 0 ]; then
+#            printf ""
+#        else
+#            ls -1dp .!(|.)
+#        fi
+#    # If argument
+#    else
+#        if [ $EXIT_ARG -eq 0 ]; then
+#            printf ""
+#        else
+#            (cd $1; ls -1dp .!(|.))
+#        fi
+#    fi
+#}
