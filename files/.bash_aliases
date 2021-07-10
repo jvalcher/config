@@ -27,26 +27,32 @@ llr () {
 }
 alias ll="llr"
 
-# remap la alias to list just hidden files
+
+# remap "la" alias to list just hidden files
 lla () {
 
-    # if no files in directory, return prompt
-    if [ -z "$(ls -a $1)" ]; then
-        printf ""
-    # otherwise
-    else
-        # no dir argument
-        if [ $# -eq 0 ]; then
-            printf "\n$(ls -1 -d --color=always .!(|.) | sed 's/^/    /')\n\n"
-        # with dir argument
+    # Exit codes with/without argument are 0 if 
+    # no hidden files present
+    STATE=$(ls -1d .!(|.) |& grep -q "No such file"; echo $?)
+    STATE_ARGS=$(cd $1; ls -1d .!(|.) |& grep -q "No such file"; echo $?)
+
+    # If no argument
+    if [ $# -eq 0 ]; then
+        if [ $STATE -eq 0 ]; then
+            printf ""
         else
-            # Remove trailing slash if it exists
-            printf "\n$(cd $1; ls -1 -d --color=always .!(|.) | sed 's/^/    /')\n\n"
+            printf "\n$(ls -1d --color=always .!(|.) | sed 's/^/    /')\n\n"
+        fi
+    # If argument
+    else
+        if [ $STATE_ARGS -eq 0 ]; then
+            printf ""
+        else
+            printf "\n$(cd $1; ls -1d --color=always .!(|.) | sed 's/^/    /')\n\n"
         fi
     fi
 }
 alias la="lla"
-
 
 
 # git graph
