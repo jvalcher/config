@@ -18,10 +18,10 @@ llr () {
     else
         # no dir argument
         if [ $# -eq 0 ]; then
-            printf "\n$(ls -1 --color=always| sed 's/^/    /')\n\n"
+            printf "\n$(ls -1 -p --color=always | sed 's/^/    /')\n\n"
         # with dir argument
         else
-            printf "\n$(ls -1 --color=always $1 | sed 's/^/    /')\n\n"
+            printf "\n$(ls -1 -p --color=always $1 | sed 's/^/    /')\n\n"
         fi
     fi
 }
@@ -41,14 +41,14 @@ lla () {
         if [ $STATE -eq 0 ]; then
             printf ""
         else
-            printf "\n$(ls -1d --color=always .!(|.) | sed 's/^/    /')\n\n"
+            printf "\n$(ls -1dp --color=always .!(|.) | sed 's/^/    /')\n\n"
         fi
     # If argument
     else
         if [ $STATE_ARGS -eq 0 ]; then
             printf ""
         else
-            printf "\n$(cd $1; ls -1d --color=always .!(|.) | sed 's/^/    /')\n\n"
+            printf "\n$(cd $1; ls -1dp --color=always .!(|.) | sed 's/^/    /')\n\n"
         fi
     fi
 }
