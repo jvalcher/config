@@ -81,11 +81,11 @@ gco () {
     FILE="$1"
     OUTPUT_FILE="${FILE%.*}"
     gcc -o $OUTPUT_FILE $FILE
-    printf "\n\e[1;4;32mOutput:\e[0m\n"
-    printf "_ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n\n"
+    printf "\n\e[1;32mOutput:\e[0m\n"
+    printf "\e[1;32m_ _ _ _ _ _ _ _ _ _ _ _ _ _ _\e[0m\n\n"
     ./"$OUTPUT_FILE"
-    printf "\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n\n"
-    printf "\e[1;4;32mExecutable:\e[0m  $OUTPUT_FILE\n\n"
+    printf "\n\e[1;32m_ _ _ _ _ _ _ _ _ _ _ _ _ _ _\e[0m\n\n"
+    printf "\e[1;32mExecutable:\e[0m  $OUTPUT_FILE\n\n"
 }
 
 # Change Tmux window title in terminal prompt to "<basepath>/"
