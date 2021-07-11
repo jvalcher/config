@@ -125,9 +125,9 @@ if [ $TMUX_STATUS -eq 0 ]; then
 
         return "$VIM_STATUS"
     }
-
+    
     # Set window title when tmux starts
-    basepathTitle
+    # basepathTitle
 
 fi
 
