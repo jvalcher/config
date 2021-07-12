@@ -3,10 +3,33 @@
 # prompt
 PS1="\[\033[1;33m\]\W/ $ \[\033[0m\]"
 
-# add ~/.local/bin to path
+# add bins to path
 export PATH=$PATH:/home/$USER/.local/bin
 export PATH=$PATH:/home/$USER/bin
 
+# git graph
+alias graph="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
+
+# easytether
+alias easy="sudo easytether-usb"
+
+# search for string in pwd files
+alias strS="grep -rnw . -e "
+
+# python
+alias py="python3 "
+
+# pip
+alias pip3="pip"
+
+# activate cursor selection for windows to get PID
+alias winSel="xprop _NET_WM_PID | sed 's/_NET_WM_PID(CARDINAL) = //' | ps 'cat'"
+
+# copy pwd to clipboard
+alias pclip="pwd | xclip -sel clip"
+
+# kill all tmux sessions 
+alias tkill="tmux kill-server"
 
 # reset ll set in .bashrc -> vertical file list, no info
 llr () {
@@ -54,30 +77,6 @@ lla () {
 }
 alias la="lla"
 
-
-# git graph
-alias graph="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
-
-# easytether
-alias easy="sudo easytether-usb"
-
-# search for string in pwd files
-alias strS="grep -rnw . -e "
-
-# python
-alias py="python3 "
-
-# pip
-alias pip3="pip"
-
-# activate cursor selection for windows to get PID
-alias winSel="xprop _NET_WM_PID | sed 's/_NET_WM_PID(CARDINAL) = //' | ps 'cat'"
-
-# copy pwd to clipboard
-alias pclip="pwd | xclip -sel clip"
-
-# attach to 0 tmux session
-alias tatt="tmux attach -t 0"
 
 # compiles file.c as file, runs it, prints file name
 gco () {
@@ -167,8 +166,8 @@ learn () {
     PRACTICE_SOURCE="Documents/C/CmodernApproach.pdf"
     PRACTICE_RESOURCES="https://github.com/williamgherman/c-solutions"
     #PRACTICE_URL="https://read.amazon.com/?asin=B00NYBRH30&language=en-US"
-    okular $PRACTICE_SOURCE &
-    google-chrome $PRACTICE_RESOURCES &
+    okular $PRACTICE_SOURCE & 2>/dev/null
+    google-chrome $PRACTICE_RESOURCES & 2>/dev/null
     #google-chrome $PRACTICE_URL &
 
     # tmux session

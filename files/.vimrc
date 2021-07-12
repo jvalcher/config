@@ -159,11 +159,20 @@ set confirm
 " increase history limit
 set history=1000
 
-" NERDTree toggle, <F2>
-map <F2> :NERDTreeToggle<CR>
-
 " copy to system clipboard
 set clipboard=unnamedplus
+
+" Search with no highlights
+set nohlsearch
+
+" remove random characters
+set t_RV=
+set t_u7=
+
+
+
+" NERDTree toggle, <F2>
+map <F2> :NERDTreeToggle<CR>
 
 " Reselect visual mode selection for indenting
 vnoremap < <gv
@@ -171,9 +180,6 @@ vnoremap > >gv
 
 " Preserve copied data when replacing with visual mode
 xnoremap <expr> p '"_d"'.v:register.'p'
-
-" Search with no highlights
-set nohlsearch
 
 " Navigate up/down long lines with g+...
 nnoremap j gj
@@ -186,10 +192,6 @@ if exists('$TMUX')
     autocmd VimLeave * call system("tmux setw automatic-rename")
 endif
 
-" remove random characters
-set t_RV=
-set t_u7=
-
 " remap emmet trigger (ctrl+z)
 " html:5 + <c+z+,>
 let g:user_emmet_leader_key='<C-Z>'
@@ -199,8 +201,8 @@ let g:user_emmet_leader_key='<C-Z>'
 "nnoremap <F3> :SyntasticCheck<CR>
 
 " remap scrolling (ctrl+ d,f)
-noremap <C-F> <C-E>
-noremap <C-D> <C-Y>
+noremap <Down> <C-E>
+noremap <Up> <C-Y>
 
 " escape delay
 set timeout timeoutlen=50
