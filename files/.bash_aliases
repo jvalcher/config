@@ -83,11 +83,14 @@ gco () {
     FILE="$1"
     OUTPUT_FILE="${FILE%.*}"
     gcc -o $OUTPUT_FILE $FILE
-    printf "\n\e[1;32mOutput:\e[0m\n"
-    printf "\e[1;32m_ _ _ _ _ _ _ _ _ _ _ _ _ _ _\e[0m\n\n"
+    #printf "\n\e[1;32mOutput:\e[0m\n"
+    #printf "\e[1;32m_ _ _ _ _ _ _ _ _ _ _ _ _ _ _\e[0m\n\n"
+    printf "\n"
     ./"$OUTPUT_FILE"
-    printf "\n\e[1;32m_ _ _ _ _ _ _ _ _ _ _ _ _ _ _\e[0m\n\n"
-    printf "\e[1;32mExecutable:\e[0m  $OUTPUT_FILE\n\n"
+    printf "\n"
+    #printf "\n\e[1;32m_ _ _ _ _ _ _ _ _ _ _ _ _ _ _\e[0m\n"
+    #printf "\e[1;32mEnd output\n\n"
+    #printf "\e[1;32mExecutable:\e[0m  $OUTPUT_FILE\n\n"
 }
 
 # compiles, runs, deletes output file after running
@@ -95,10 +98,9 @@ gcd () {
     FILE="$1"
     OUTPUT_FILE="${FILE%.*}"
     gcc -o $OUTPUT_FILE $FILE
-    printf "\n\e[1;32mOutput:\e[0m\n"
-    printf "\e[1;32m_ _ _ _ _ _ _ _ _ _ _ _ _ _ _\e[0m\n\n"
+    printf "\n"
     ./"$OUTPUT_FILE"
-    printf "\n\e[1;32m_ _ _ _ _ _ _ _ _ _ _ _ _ _ _\e[0m\n\n"
+    printf "\n"
     rm $OUTPUT_FILE
 }
 
@@ -165,9 +167,14 @@ learn () {
     # Source material
     PRACTICE_SOURCE="Documents/C/CmodernApproach.pdf"
     PRACTICE_RESOURCES="https://github.com/williamgherman/c-solutions"
-    #PRACTICE_URL="https://read.amazon.com/?asin=B00NYBRH30&language=en-US"
-    okular $PRACTICE_SOURCE & 2>/dev/null
-    google-chrome $PRACTICE_RESOURCES & 2>/dev/null
+    PRACTICE_URL="https://read.amazon.com/?asin=B00NYBRH30&language=en-US"
+
+    OKULAR_STATE=$(pgrep okular >/dev/null 2>&1; echo $?)
+    printf "$OKULAR_STATE\n"
+    if [ $OKULAR_STATE -ne 0 ]; then
+        okular $PRACTICE_SOURCE 2>/dev/null &
+    fi
+    #google-chrome $PRACTICE_RESOURCES & 2>/dev/null
     #google-chrome $PRACTICE_URL &
 
     # tmux session
