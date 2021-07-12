@@ -76,6 +76,9 @@ alias winSel="xprop _NET_WM_PID | sed 's/_NET_WM_PID(CARDINAL) = //' | ps 'cat'"
 # copy pwd to clipboard
 alias pclip="pwd | xclip -sel clip"
 
+# attach to 0 tmux session
+alias tatt="tmux attach -t 0"
+
 # compiles file.c as file, runs it, prints file name
 gco () {
     FILE="$1"
@@ -87,6 +90,19 @@ gco () {
     printf "\n\e[1;32m_ _ _ _ _ _ _ _ _ _ _ _ _ _ _\e[0m\n\n"
     printf "\e[1;32mExecutable:\e[0m  $OUTPUT_FILE\n\n"
 }
+
+# compiles, runs, deletes output file after running
+gcd () {
+    FILE="$1"
+    OUTPUT_FILE="${FILE%.*}"
+    gcc -o $OUTPUT_FILE $FILE
+    printf "\n\e[1;32mOutput:\e[0m\n"
+    printf "\e[1;32m_ _ _ _ _ _ _ _ _ _ _ _ _ _ _\e[0m\n\n"
+    ./"$OUTPUT_FILE"
+    printf "\n\e[1;32m_ _ _ _ _ _ _ _ _ _ _ _ _ _ _\e[0m\n\n"
+    rm $OUTPUT_FILE
+}
+
 
 # Change Tmux window title in terminal prompt to "<basepath>/"
 # If Tmux running...
@@ -108,9 +124,7 @@ if [ $TMUX_STATUS -eq 0 ]; then
 
         builtin cd "$@"
         CD_STATUS=$?
-
         basepathTitle
-
         return "$CD_STATUS"
     }
 
@@ -120,14 +134,12 @@ if [ $TMUX_STATUS -eq 0 ]; then
         
         /usr/bin/vim "$@"
         VIM_STATUS=$?
-        
         basepathTitle
-
         return "$VIM_STATUS"
     }
     
     # Set window title when tmux starts
-    # basepathTitle
+    basepathTitle
 
 fi
 
@@ -148,27 +160,40 @@ countdown()
   echo
 )
 
-## ls, returns only hidden files
-## no formatting, less enabled
-#lsa () {
-#
-#    # Exit codes with/without argument are 0 if no hidden files present
-#    EXIT=$(ls -1d .!(|.) |& grep -q "No such file"; echo $?)
-#    EXIT_ARG=$(cd $1; ls -1d .!(|.) |& grep -q "No such file"; echo $?)
-#
-#    # If no argument
-#    if [ $# -eq 0 ]; then
-#        if [ $EXIT -eq 0 ]; then
-#            printf ""
-#        else
-#            ls -1dp .!(|.)
-#        fi
-#    # If argument
-#    else
-#        if [ $EXIT_ARG -eq 0 ]; then
-#            printf ""
-#        else
-#            (cd $1; ls -1dp .!(|.))
-#        fi
-#    fi
-#}
+# learning tmux session
+learn () {
+
+    PRACTICE_DIR="~/Git/practice/c/2008_c_modern_appr"
+    TEST_FILE="$PRACTICE_DIR/test.c"
+    SESSION="learnc"
+
+    tmux kill-session -t $SESSION
+    tmux new-session -d -s $SESSION
+    tmux split-window -h -t $SESSION:1.1
+    tmux split-window -v -t $SESSION:1.2
+    tmux send-keys -t $SESSION:1.1 "cd $PRACTICE_DIR" Enter
+    tmux send-keys -t $SESSION:1.1 "vim notes" Enter
+    tmux send-keys -t $SESSION:1.1 "GG" Enter
+    tmux send-keys -t $SESSION:1.2 "cd $PRACTICE_DIR" Enter
+    tmux send-keys -t $SESSION:1.2 "vim $TEST_FILE" Enter
+    tmux send-keys -t $SESSION:1.3 "cd $PRACTICE_DIR" Enter
+    tmux send-keys -t $SESSION:1.3 "ll" Enter
+    tmux attach-session -t $SESSION
+}
+
+openSession () {
+
+    WORK_DIR="~/projects"
+    SESSION="work"
+
+    tmux kill-session -t $SESSION
+    tmux new-session -d -s $SESSION
+    tmux split-window -h -t $SESSION:1.1
+    tmux split-window -v -t $SESSION:1.2
+    tmux send-keys -t $SESSION:1.1 "cd $WORK_DIR && vim notes" Enter
+    tmux send-keys -t $SESSION:1.1 "GG" Enter
+    tmux send-keys -t $SESSION:1.3 "cd $WORK_DIR && ll" Enter
+    tmux attach-session -t $SESSION
+}
+
+

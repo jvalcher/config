@@ -34,6 +34,9 @@ Plugin 'nginx.vim'
 " onedark colorscheme
 Plugin 'joshdick/onedark.vim'
 
+" restore sessions in tmux
+Plugin 'tpope/vim-obsession'
+
 " YouCompleteMe autocomplete
 "Plugin 'ycm-core/YouCompleteMe'
 
