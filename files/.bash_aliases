@@ -165,9 +165,11 @@ learn () {
 
     # Source material
     PRACTICE_SOURCE="Documents/C/CmodernApproach.pdf"
+    PRACTICE_RESOURCES="https://github.com/williamgherman/c-solutions"
     #PRACTICE_URL="https://read.amazon.com/?asin=B00NYBRH30&language=en-US"
     okular $PRACTICE_SOURCE &
-    #google-chrome $PRACTICE_URL
+    google-chrome $PRACTICE_RESOURCES &
+    #google-chrome $PRACTICE_URL &
 
     # tmux session
     PRACTICE_DIR="~/Git/practice/c/2008_c_modern_appr"
