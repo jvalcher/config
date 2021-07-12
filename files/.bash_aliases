@@ -160,13 +160,19 @@ countdown()
   echo
 )
 
-# learning tmux session
+# Open learning environment
 learn () {
 
+    # Source material
+    PRACTICE_SOURCE="Documents/C/CmodernApproach.pdf"
+    #PRACTICE_URL="https://read.amazon.com/?asin=B00NYBRH30&language=en-US"
+    okular $PRACTICE_SOURCE &
+    #google-chrome $PRACTICE_URL
+
+    # tmux session
     PRACTICE_DIR="~/Git/practice/c/2008_c_modern_appr"
     TEST_FILE="$PRACTICE_DIR/test.c"
     SESSION="learnc"
-
     tmux kill-session -t $SESSION
     tmux new-session -d -s $SESSION
     tmux split-window -h -t $SESSION:1.1
@@ -174,6 +180,6 @@ learn () {
     tmux send-keys -t $SESSION:1.1 "cd $PRACTICE_DIR && vim notes" Enter
     tmux send-keys -t $SESSION:1.1 "G" Enter
     tmux send-keys -t $SESSION:1.2 "cd $PRACTICE_DIR && vim $TEST_FILE" Enter
-    tmux send-keys -t $SESSION:1.3 "cd $PRACTICE_DIR" Enter
+    tmux send-keys -t $SESSION:1.3 "cd $PRACTICE_DIR && clear && ll" Enter
     tmux attach-session -t $SESSION
 }
