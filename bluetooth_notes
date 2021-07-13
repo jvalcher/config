@@ -1,0 +1,4 @@
+
+# Bose BT headphones not connecting
+sudo modprobe btusb
+sudo systemctl start bluetooth.service

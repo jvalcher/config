@@ -194,7 +194,7 @@ endif
 
 " remap emmet trigger (ctrl+z)
 " html:5 + <c+z+,>
-let g:user_emmet_leader_key='<C-Z>'
+let g:user_emmet_leader_key='<C-t>'
 
 " vim-syntastic passive mode, F3 to check, F4 to reset
 "let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }

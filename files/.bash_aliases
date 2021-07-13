@@ -30,6 +30,9 @@ alias pclip="pwd | xclip -sel clip"
 # kill all tmux sessions 
 alias tkill="tmux kill-server"
 
+# play singing_bowl sound 
+alias bowl="aplay ~/Music/singing_bowl.wav"
+
 # reset ll set in .bashrc -> vertical file list, no info
 llr () {
 
@@ -161,12 +164,12 @@ countdown()
 )
 
 # Open learning environment
-learn () {
+learnc () {
 
     # Source material
     PRACTICE_SOURCE="Documents/C/CmodernApproach.pdf"
     PRACTICE_RESOURCES="https://github.com/williamgherman/c-solutions"
-    PRACTICE_URL="https://read.amazon.com/?asin=B00NYBRH30&language=en-US"
+    PRACTICE_URL="https://read.amazon.com/?asin=B00ANW18T2&language=en-US"
 
     OKULAR_STATE=$(pgrep okular >/dev/null 2>&1; echo $?)
     printf "$OKULAR_STATE\n"
@@ -190,3 +193,34 @@ learn () {
     tmux send-keys -t $SESSION:1.3 "cd $PRACTICE_DIR && clear && ll" Enter
     tmux attach-session -t $SESSION
 }
+learnweb () {
+
+    # Source material
+    #EBOOK_URL="https://read.amazon.com/?asin=B00ANW18T2&language=en-US"
+    #WEB_SITE="/home/jvalcher/Git/practice/web_design/learning_web_design/index.html"
+    # tmux session
+    PRACTICE_DIR="/home/jvalcher/Git/practice/web_design/learning_web_design"
+    INDEX_FILE="$PRACTICE_DIR/index.html"
+    SESSION="learnweb"
+
+    #OKULAR_STATE=$(pgrep okular >/dev/null 2>&1; echo $?)
+    #printf "$OKULAR_STATE\n"
+    #if [ $OKULAR_STATE -ne 0 ]; then
+    #    okular $PRACTICE_SOURCE 2>/dev/null &
+    #fi
+    #google-chrome $PRACTICE_RESOURCES & 2>/dev/null
+    #google-chrome $PRACTICE_URL &
+    #google-chrome --new-window $WEB_SITE &
+
+    # tmux session
+    tmux kill-session -t $SESSION
+    tmux new-session -d -s $SESSION
+    tmux split-window -h -t $SESSION:1.1
+    tmux split-window -v -p 40 -t $SESSION:1.2
+    tmux send-keys -t $SESSION:1.1 "cd $PRACTICE_DIR && vim notes" Enter
+    tmux send-keys -t $SESSION:1.1 "G" Enter
+    tmux send-keys -t $SESSION:1.2 "cd $PRACTICE_DIR && vim $INDEX_FILE" Enter
+    tmux send-keys -t $SESSION:1.3 "cd $PRACTICE_DIR && clear && ll" Enter
+    tmux attach-session -t $SESSION
+}
+
