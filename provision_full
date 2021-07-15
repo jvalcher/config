@@ -127,7 +127,7 @@ fi
 #############
 
 printf "\n\n"
-printf "Copying configuration files...\n" 
+printf "Copying configuration files and scripts...\n" 
 echo "________________"
 
 sudo cp files/jvalcher /etc/sudoers.d/jvalcher
@@ -184,6 +184,9 @@ else
     vim +PluginInstall +qall
     echo "Complete"
 fi
+
+sudo cp -r files/bin /home/$USER/
+printf "~/bin \n"
 
 
 ###########
