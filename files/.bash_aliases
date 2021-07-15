@@ -79,9 +79,12 @@ lla () {
 }
 alias la="lla"
 
-# git status sizes
+# git status and file sizes
 gitstat () {
-    git status --porcelain | awk '{print $2}' | xargs ls -hs | sort -h
+    printf "\n"
+    git status 
+    printf "\n"
+    git status-size
     printf "\n"
 }
 
