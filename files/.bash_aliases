@@ -79,6 +79,11 @@ lla () {
 }
 alias la="lla"
 
+# git status sizes
+gitstat () {
+    git status --porcelain | awk '{print $2}' | xargs ls -hs | sort -h
+    printf "\n"
+}
 
 # compiles file.c as file, runs it, prints file name
 gco () {

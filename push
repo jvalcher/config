@@ -29,6 +29,9 @@ cp /home/$USER/.tmux.conf files/
 # Scripts
 cp -r /home/$USER/Scripts files/
 
+# ~/bin
+cp -r /home/$USER/bin files/
+
 # singing bowl sound
 cp /home/$USER/Music/singing_bowl.wav files/
 
