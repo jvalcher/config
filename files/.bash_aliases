@@ -106,13 +106,11 @@ gcd () {
     rm $OUTPUT_FILE
 }
 
-
 # Change Tmux window title in terminal prompt to "<basepath>/"
 # If Tmux running...
 tmux ls > /dev/null 2>&1
 TMUX_STATUS=$?
 if [ $TMUX_STATUS -eq 0 ]; then
-
     # Create function to get pwd, trim to "basepath/", 
     # and rename window
     basepathTitle () {
@@ -120,32 +118,26 @@ if [ $TMUX_STATUS -eq 0 ]; then
         BASEPATH_TITLE=" ${getval##*/}/ "
         tmux rename-window "$BASEPATH_TITLE"
     }
-
     # Change cd functionality to rename window title to
     # pwd after every directory change
     cd () {
-
         builtin cd "$@"
         CD_STATUS=$?
         basepathTitle
         return "$CD_STATUS"
     }
-
     # Change vim functionality to change title 
     # back to basepath on close
+    # Start, save title controlled in .vimrc
     vim () {
-        
         /usr/bin/vim "$@"
         VIM_STATUS=$?
         basepathTitle
         return "$VIM_STATUS"
     }
-    
     # Set window title when tmux starts
     basepathTitle
-
 fi
-
 
 # countdown timer   (ex: countdown 00:10:00)
 countdown()
@@ -193,34 +185,9 @@ learnc () {
     tmux send-keys -t $SESSION:1.3 "cd $PRACTICE_DIR && clear && ll" Enter
     tmux attach-session -t $SESSION
 }
-learnweb () {
 
-    # Source material
-    #EBOOK_URL="https://read.amazon.com/?asin=B00ANW18T2&language=en-US"
-    #WEB_SITE="/home/jvalcher/Git/practice/web_design/learning_web_design/index.html"
-    # tmux session
-    PRACTICE_DIR="/home/jvalcher/Git/practice/web_design/learning_web_design"
-    INDEX_FILE="$PRACTICE_DIR/index.html"
-    SESSION="learnweb"
-
-    #OKULAR_STATE=$(pgrep okular >/dev/null 2>&1; echo $?)
-    #printf "$OKULAR_STATE\n"
-    #if [ $OKULAR_STATE -ne 0 ]; then
-    #    okular $PRACTICE_SOURCE 2>/dev/null &
-    #fi
-    #google-chrome $PRACTICE_RESOURCES & 2>/dev/null
-    #google-chrome $PRACTICE_URL &
-    #google-chrome --new-window $WEB_SITE &
-
-    # tmux session
-    tmux kill-session -t $SESSION
-    tmux new-session -d -s $SESSION
-    tmux split-window -h -t $SESSION:1.1
-    tmux split-window -v -p 40 -t $SESSION:1.2
-    tmux send-keys -t $SESSION:1.1 "cd $PRACTICE_DIR && vim notes" Enter
-    tmux send-keys -t $SESSION:1.1 "G" Enter
-    tmux send-keys -t $SESSION:1.2 "cd $PRACTICE_DIR && vim $INDEX_FILE" Enter
-    tmux send-keys -t $SESSION:1.3 "cd $PRACTICE_DIR && clear && ll" Enter
-    tmux attach-session -t $SESSION
+# laundry wash timer
+laundry () {
+    countdown 01:00:00
+    bowl
 }
-
