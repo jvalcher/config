@@ -1,0 +1,15 @@
+#!/bin/bash
+
+declare -a WORKOUTS=("Jumping Jacks" "Push Ups" "Squats" "Down Stretch" "Burpees" "Lunges" "Butterfly Stretch" "Supermans" "Climbers" "Neck Exercises" "Squats and Calf Raises" "Pull Ups")
+
+for workout in "${WORKOUTS[@]}"; do
+    printf "\n"
+    toilet -f smblock $workout
+    printf "\n"
+    sleep 60
+    aplay ~/Music/singing_bowl.wav &
+done
+
+printf "\n\n\n"
+toilet -f smblock -F metal "Finished!"
+printf "\n\n\n"
