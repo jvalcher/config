@@ -1,4 +1,11 @@
 
+# start tmux
+echo $TMUX | grep -q "/tmp"
+STATE=$?
+if [ $STATE -ne 0 ]; then
+    tmux
+fi
+
 # prompt
 PS1="\[\033[1;33m\]\W/ $ \[\033[0m\]"
 
@@ -163,35 +170,20 @@ countdown()
   echo
 )
 
-# Open learning environment
-learnc () {
-
-    # Source material
-    PRACTICE_SOURCE="Documents/C/CmodernApproach.pdf"
-    PRACTICE_RESOURCES="https://github.com/williamgherman/c-solutions"
-    PRACTICE_URL="https://read.amazon.com/?asin=B00ANW18T2&language=en-US"
-
-    OKULAR_STATE=$(pgrep okular >/dev/null 2>&1; echo $?)
-    printf "$OKULAR_STATE\n"
-    if [ $OKULAR_STATE -ne 0 ]; then
-        okular $PRACTICE_SOURCE 2>/dev/null &
-    fi
-    #google-chrome $PRACTICE_RESOURCES & 2>/dev/null
-    #google-chrome $PRACTICE_URL &
-
-    # tmux session
-    PRACTICE_DIR="~/Git/practice/c/2008_c_modern_appr"
-    TEST_FILE="$PRACTICE_DIR/test.c"
-    SESSION="learnc"
-    tmux kill-session -t $SESSION
-    tmux new-session -d -s $SESSION
-    tmux split-window -h -t $SESSION:1.1
-    tmux split-window -v -p 40 -t $SESSION:1.2
-    tmux send-keys -t $SESSION:1.1 "cd $PRACTICE_DIR && vim notes" Enter
-    tmux send-keys -t $SESSION:1.1 "G" Enter
-    tmux send-keys -t $SESSION:1.2 "cd $PRACTICE_DIR && vim $TEST_FILE" Enter
-    tmux send-keys -t $SESSION:1.3 "cd $PRACTICE_DIR && clear && ll" Enter
-    tmux attach-session -t $SESSION
+# Open notes file in current practice directory
+learn () {
+    PRACTICE_DIR="/home/$USER/Git/practice/c/c_modern_approach_2e"
+    NOTES_FILE="notes.c"
+    #TEST_FILE="$PRACTICE_DIR/test.c"
+    #SESSION="learnc"
+    #tmux kill-session -t $SESSION
+    #tmux new-session -d -s $SESSION
+    #tmux split-window -h -t $SESSION:1.1
+    #tmux split-window -v -p 40 -t $SESSION:1.2
+    cd $PRACTICE_DIR && vim "+ normal G $" "+ normal zz" $NOTES_FILE
+    #tmux send-keys -t $SESSION:1.2 "cd $PRACTICE_DIR && vim $TEST_FILE" Enter
+    #tmux send-keys -t $SESSION:1.3 "cd $PRACTICE_DIR && clear && ll" Enter
+    #tmux attach-session -t $SESSION
 }
 
 # laundry wash timer

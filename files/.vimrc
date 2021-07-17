@@ -169,7 +169,19 @@ set nohlsearch
 set t_RV=
 set t_u7=
 
+" remap scrolling (ctrl+ d,f)
+noremap <Down> <C-E>
+noremap <Up> <C-Y>
 
+" escape delay
+set timeout timeoutlen=50
+
+" line number color
+"highlight CursorLineNr ctermfg=35 ctermbg=0 guifg=#11721B guibg=#08280B
+
+" remap emmet trigger (ctrl+z)
+" html:5 + <c+z+,>
+let g:user_emmet_leader_key='<C-t>'
 
 " NERDTree toggle, <F2>
 map <F2> :NERDTreeToggle<CR>
@@ -185,27 +197,39 @@ xnoremap <expr> p '"_d"'.v:register.'p'
 nnoremap j gj
 nnoremap k gk
 
-" set tmux title on window save
+
+" compile and run current C source file in tmux
+" window must have only one pane
+" compile (F5), close compile window (F6)
+function! Compile()
+    call system("tmux split-window -h -p 40")
+    call system("tmux send-keys -t .2 'gcd " . expand("%:t") . "' Enter")
+    call system("tmux select-pane -t .1")
+endfunction
+function Exit_compile()
+    call system("tmux send-keys -t .2 C-c")
+    call system("tmux send-keys -t .2 C-d")
+endfunction
+noremap <F5> :call Compile() <CR>
+noremap <F6> :call Exit_compile() <CR>
+
+
+" set tmux title on entering, saving, leaving
 if exists('$TMUX')
     autocmd VimEnter,BufWrite * call system("tmux rename-window ' " . expand("%:t") . " '")
-    "let tmuxtitle = system("tmux display-message -p '#W'")
     autocmd VimLeave * call system("tmux setw automatic-rename")
 endif
 
-" remap emmet trigger (ctrl+z)
-" html:5 + <c+z+,>
-let g:user_emmet_leader_key='<C-t>'
 
-" vim-syntastic passive mode, F3 to check, F4 to reset
-"let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
-"nnoremap <F3> :SyntasticCheck<CR>
+" vim-syntastic shortcuts
+" set to passive mode 
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
+" check for errors (F3), return to normal mode (F4)
+" <C-w> window mode, <S-h> move to far left
+" :redraw! == clear status line
+nnoremap <F3> :SyntasticCheck <CR> :Errors <CR> <C-w><S-h> :redraw! <CR>
+nnoremap <F4> :SyntasticToggleMode <CR> :SyntasticToggleMode <CR> :redraw! <CR>
+" next/previous error (Ctrl + n,p)
+nnoremap <C-n> :lnext <CR> :redraw! <CR>
+nnoremap <C-p> :lprev <CR> :redraw! <CR>
 
-" remap scrolling (ctrl+ d,f)
-noremap <Down> <C-E>
-noremap <Up> <C-Y>
-
-" escape delay
-set timeout timeoutlen=50
-
-" line number color
-"highlight CursorLineNr ctermfg=35 ctermbg=0 guifg=#11721B guibg=#08280B
