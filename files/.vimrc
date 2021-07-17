@@ -126,13 +126,6 @@ syntax on
 
 " set colorscheme
 silent! colorscheme onedark
-"colorscheme apprentice
-"colorscheme pink-moon
-"colorscheme tender
-"colorscheme sitruuna
-"colorscheme twilight256
-"colorscheme jellybeans
-"color happy_hacking
 
 " always show cursor position
 set ruler
@@ -185,6 +178,11 @@ let g:user_emmet_leader_key='<C-t>'
 
 " NERDTree toggle, <F2>
 map <F2> :NERDTreeToggle<CR>
+" navigate panes (ctrl+w + h,j,k,l)
+nnoremap <C-W><J> <C-W><C-J>
+nnoremap <C-W><K> <C-W><C-K>
+nnoremap <C-W><L> <C-W><C-L>
+nnoremap <C-W><H> <C-W><C-H>
 
 " Reselect visual mode selection for indenting
 vnoremap < <gv
@@ -203,7 +201,7 @@ nnoremap k gk
 " compile (F5), close compile window (F6)
 function! Compile()
     call system("tmux split-window -h -p 40")
-    call system("tmux send-keys -t .2 'gcd " . expand("%:t") . "' Enter")
+    call system("tmux send-keys -t .2 'gcd " . expand("%") . "' Enter")
     call system("tmux select-pane -t .1")
 endfunction
 function Exit_compile()

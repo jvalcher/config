@@ -174,12 +174,13 @@ countdown()
 learn () {
     PRACTICE_DIR="/home/$USER/Git/practice/c/c_modern_approach_2e"
     NOTES_FILE="notes.c"
-    tmux new-window -d -t 10
-    tmux send-keys -t 10 "cd $PRACTICE_DIR" Enter
-    tmux send-keys -t 10 "vim $NOTES_FILE" Enter
-    tmux send-keys -t 10 "G" Enter
-    tmux send-keys -t 10 "zz" Enter
-    tmux select-window -t 10
+    cd $PRACTICE_DIR && vim '+ normal Gzz' notes.c
+    #tmux new-window -d -t 10
+    #tmux send-keys -t 10 "cd $PRACTICE_DIR" Enter
+    #tmux send-keys -t 10 "vim $NOTES_FILE" Enter
+    #tmux send-keys -t 10 "G" Enter
+    #tmux send-keys -t 10 "zz" Enter
+    #tmux select-window -t 10
     #SESSION="learnc"
     #tmux kill-session -t $SESSION
     #tmux new-session -d -s $SESSION
