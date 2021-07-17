@@ -225,9 +225,8 @@ endif
 " set to passive mode 
 let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
 " check for errors (F3), return to normal mode (F4)
-" <C-w> window mode, <S-h> move to far left
 " :redraw! == clear status line
-nnoremap <F3> :SyntasticCheck <CR> :Errors <CR> <C-w><S-h> :redraw! <CR>
+nnoremap <F3> :SyntasticCheck <CR> :Errors <CR> :redraw! <CR>
 nnoremap <F4> :SyntasticToggleMode <CR> :SyntasticToggleMode <CR> :redraw! <CR>
 " next/previous error (Ctrl + n,p)
 nnoremap <C-n> :lnext <CR> :redraw! <CR>
