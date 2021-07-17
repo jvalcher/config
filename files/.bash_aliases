@@ -174,7 +174,7 @@ countdown()
 learn () {
     PRACTICE_DIR="/home/$USER/Git/practice/c/c_modern_approach_2e"
     NOTES_FILE="notes.c"
-    TEST_FILE="$PRACTICE_DIR/test.c"
+    TEST_FILE="test.c"
     #SESSION="learnc"
     #tmux kill-session -t $SESSION
     #tmux new-session -d -s $SESSION
@@ -188,6 +188,8 @@ learn () {
     tmux new-window -d -t 11
     tmux send-keys -t 11 "cd $PRACTICE_DIR" Enter
     tmux send-keys -t 11 "vim $TEST_FILE" Enter
+    tmux rename-window -t 11 " $TEST_FILE "
+    tmux rename-window -t 10 " $NOTES_FILE "
     tmux select-window -t 10
     #tmux send-keys -t $SESSION:1.3 "cd $PRACTICE_DIR && clear && ll" Enter
     #tmux attach-session -t $SESSION
