@@ -1,4 +1,6 @@
 
+# F11 == toggle fullscreen mode
+
 # start tmux
 echo $TMUX | grep -q "/tmp"
 STATE=$?

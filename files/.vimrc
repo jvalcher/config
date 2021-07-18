@@ -176,15 +176,22 @@ set timeout timeoutlen=50
 " html:5 + <c+z+,>
 let g:user_emmet_leader_key='<C-t>'
 
-" NERDTree toggle, <F2>
+" NERDTree settings
+    " I == toggle h(I)dden file view
+    " C == make selection (C)urrent working directory
+    " U == go (U)p directory
+" NERDTree toggle, (F2)
 map <F2> :NERDTreeToggle<CR>
+" make pwd the parent directory
+let g:NERDTreeChDirMode=3
+
 " navigate panes (ctrl+w + h,j,k,l)
 nnoremap <C-W><J> <C-W><C-J>
 nnoremap <C-W><K> <C-W><C-K>
 nnoremap <C-W><L> <C-W><C-L>
 nnoremap <C-W><H> <C-W><C-H>
 
-" Reselect visual mode selection for indenting
+" Reselect visual block for multiple indents
 vnoremap < <gv
 vnoremap > >gv
 
