@@ -22,7 +22,9 @@ alias graph="git log --graph --abbrev-commit --decorate --format=format:'%C(bold
 alias easy="sudo easytether-usb"
 
 # activate/refresh asusBox hotspot
-alias hotspot="nmcli connection down Hotspot 2>/dev/null; nmcli connection up Hotspot"
+alias hotup="nmcli connection down Hotspot 2>/dev/null; nmcli connection up Hotspot"
+# take down hotspot
+alias hotdown="nmcli connection down Hotspot"
 
 # search for string in pwd files
 alias strS="grep -rnw . -e "

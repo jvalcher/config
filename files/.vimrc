@@ -166,6 +166,9 @@ set t_u7=
 noremap <Down> <C-E>
 noremap <Up> <C-Y>
 
+" remap G to G+zz
+noremap G Gzz
+
 " escape delay
 set timeout timeoutlen=50
 
