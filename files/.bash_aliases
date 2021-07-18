@@ -18,8 +18,11 @@ export PATH=$PATH:/home/$USER/bin
 # git graph
 alias graph="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
 
-# easytether
+# connect to easytether via usb
 alias easy="sudo easytether-usb"
+
+# activate/refresh asusBox hotspot
+alias hotspot="nmcli connection down Hotspot 2>/dev/null; nmcli connection up Hotspot"
 
 # search for string in pwd files
 alias strS="grep -rnw . -e "
