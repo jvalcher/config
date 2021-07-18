@@ -112,11 +112,21 @@ set ignorecase
 " enable search highlighting
 set hlsearch
 
+" jump to last position when opening file
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+    \| exe "normal! g'\"" | endif
+endif
+
 " incremental search that shows partial matches
 set incsearch
 
 " auto switch search to case-sensitive when search query contains an uppercase letter
 set smartcase
+
+" enable autoread to reload files (load language theme for new source files)
+set autoread
+au FocusGained,BufEnter * :redraw!
 
 " avoid wrapping line in middle of word
 set linebreak

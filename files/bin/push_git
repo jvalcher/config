@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# push all ~/Git repos
+
+( cd ~/Git ; ./push )
