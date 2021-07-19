@@ -221,7 +221,7 @@ nnoremap k gk
 " compile (F5), close compile window (F6)
 function! Compile()
     call system("tmux split-window -h -p 40")
-    call system("tmux send-keys -t .2 'gcd " . expand("%") . "' Enter")
+    call system("tmux send-keys -t .2 'gco " . expand("%") . "' Enter")
     call system("tmux select-pane -t .1")
 endfunction
 function Exit_compile()
