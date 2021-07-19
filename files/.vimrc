@@ -26,7 +26,7 @@ Plugin 'vim-syntastic/syntastic'
 Plugin 'scrooloose/nerdtree'
 
 " Emmet-vim
-Plugin 'mattn/emmet-vim'
+"Plugin 'mattn/emmet-vim'
 
 " Nginx syntax
 Plugin 'nginx.vim'
@@ -106,6 +106,9 @@ set softtabstop=4 expandtab
 " set tabs to 2 for htm, html, yml files
 autocmd BufRead,BufNewFile *.htm,*.html,*.yml,*.yaml,*.json setlocal tabstop=2 shiftwidth=2 softtabstop=2
 
+" HTML boilerplate ( :Html )
+command Html 0r ~/.vim/skeletons/main.html
+
 " ignore case when searching
 set ignorecase
 
@@ -176,18 +179,11 @@ set t_u7=
 noremap <Down> <C-E>
 noremap <Up> <C-Y>
 
-" remap G to G+zz
+" go to last line + center screen to cursor
 noremap G Gzz
 
-" escape delay
+" less escape delay
 set timeout timeoutlen=50
-
-" line number color
-"highlight CursorLineNr ctermfg=35 ctermbg=0 guifg=#11721B guibg=#08280B
-
-" remap emmet trigger (ctrl+z)
-" html:5 + <c+z+,>
-let g:user_emmet_leader_key='<C-t>'
 
 " NERDTree settings
     " I == toggle h(I)dden file view
@@ -198,7 +194,7 @@ map <F2> :NERDTreeToggle<CR>
 " make pwd the parent directory
 let g:NERDTreeChDirMode=3
 
-" navigate panes (ctrl+w + h,j,k,l)
+" navigate vim panes (ctrl+w + h,j,k,l)
 nnoremap <C-W><J> <C-W><C-J>
 nnoremap <C-W><K> <C-W><C-K>
 nnoremap <C-W><L> <C-W><C-L>
@@ -216,10 +212,9 @@ nnoremap j gj
 nnoremap k gk
 
 
-" compile and run current C source file in tmux
-" window must have only one pane
-" compile (F5), close compile window (F6)
-function! Compile()
+" compile and run current C source file in new tmux pane
+" compile, run (F5), close compile window (F6)
+function Compile()
     call system("tmux split-window -h -p 40")
     call system("tmux send-keys -t .2 'gco " . expand("%") . "' Enter")
     call system("tmux select-pane -t .1")
@@ -231,6 +226,19 @@ endfunction
 noremap <F5> :call Compile() <CR>
 noremap <F6> :call Exit_compile() <CR>
 
+" open current html file in new Chrome tab (F7)
+function Open_chrome()
+    call system("google-chrome " . expand("%"))
+    call system("xdotool search --onlyvisible --class Terminal windowfocus")
+endfunction
+noremap <F7> :call Open_chrome() <CR>
+
+" refresh visible web page (F8)
+function Reload_chrome()
+    call system("xdotool search --onlyvisible --class Chrome windowfocus key ctrl+r")
+    call system("xdotool search --onlyvisible --class Terminal windowfocus")
+endfunction
+noremap <F8> :call Reload_chrome() <CR>
 
 " set tmux title on entering, saving, leaving
 if exists('$TMUX')
@@ -239,7 +247,8 @@ if exists('$TMUX')
 endif
 
 
-" vim-syntastic shortcuts
+" vim-syntastic error checking shortcuts
+" check for errors (F3), close error list (F4)
 " set to passive mode 
 let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
 " check for errors (F3), return to normal mode (F4)

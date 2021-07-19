@@ -26,8 +26,11 @@ alias hotup="nmcli connection down Hotspot 2>/dev/null; nmcli connection up Hots
 # take down hotspot
 alias hotdown="nmcli connection down Hotspot"
 
-# search for string in pwd files
+# search for string recursively in pwd
 alias strS="grep -rnw . -e "
+
+# search for file recursively in pwd
+alias fileS="find . -name "
 
 # python
 alias py="python3 "
