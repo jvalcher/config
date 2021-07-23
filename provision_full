@@ -189,7 +189,11 @@ fi
 printf "\n\n"
 printf "Copying Vim skeletons...\n" 
 echo "________________"
-mv files/skeletons /home/$USER/.vim/skeletons
+if [ -e $VIM_DIR/skeletons ]; then
+    rsync -a --delete files/skeletons/ /home/$USER/.vim/skeletons/
+else 
+    copy -r files/skeletons $VIM_DIR/skeletons
+fi
 
 sudo cp -r files/bin /home/$USER/
 printf "~/bin \n"
