@@ -109,6 +109,9 @@ autocmd BufRead,BufNewFile *.htm,*.html,*.yml,*.yaml,*.json setlocal tabstop=2 s
 " HTML boilerplate ( :Html )
 command Html 0r ~/.vim/skeletons/main.html
 
+" C boilerplate ( :Cboil )
+command Cboil 0r ~/.vim/skeletons/base.c
+
 " ignore case when searching
 set ignorecase
 
@@ -216,7 +219,7 @@ nnoremap k gk
 " compile, run (F5), close compile window (F6)
 function Compile()
     call system("tmux split-window -h -p 40")
-    call system("tmux send-keys -t .2 'gco " . expand("%") . "' Enter")
+    call system("tmux send-keys -t .2 'gcd " . expand("%") . "' Enter")
     call system("tmux select-pane -t .1")
 endfunction
 function Exit_compile()
@@ -227,18 +230,18 @@ noremap <F5> :call Compile() <CR>
 noremap <F6> :call Exit_compile() <CR>
 
 " open current html file in new Chrome tab (F7)
-function Open_chrome()
-    call system("google-chrome " . expand("%"))
+function Open_firefox()
+    call system("firefox ' " . expand("%") . " ' &")
     call system("xdotool search --onlyvisible --class Terminal windowfocus")
 endfunction
-noremap <F7> :call Open_chrome() <CR>
+noremap <F7> :call Open_firefox() <CR>
 
 " refresh visible web page (F8)
-function Reload_chrome()
-    call system("xdotool search --onlyvisible --class Chrome windowfocus key ctrl+r")
+function Reload_firefox()
+    call system("xdotool search --onlyvisible 'Mozilla Firefox' windowfocus key Ctrl+Shift+r")
     call system("xdotool search --onlyvisible --class Terminal windowfocus")
 endfunction
-noremap <F8> :call Reload_chrome() <CR>
+noremap <F8> :call Reload_firefox() <CR>
 
 " set tmux title on entering, saving, leaving
 if exists('$TMUX')

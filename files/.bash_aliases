@@ -26,6 +26,9 @@ alias hotup="nmcli connection down Hotspot 2>/dev/null; nmcli connection up Hots
 # take down hotspot
 alias hotdown="nmcli connection down Hotspot"
 
+# chrome alias
+alias chrome="google-chrome"
+
 # search for string recursively in pwd
 alias strS="grep -rnw . -e "
 
@@ -129,6 +132,11 @@ gcd () {
     ./"$OUTPUT_FILE"
     printf "\n"
     rm $OUTPUT_FILE
+}
+
+# clear all compiled C files in pwd (i.e. files not ending in '.c')
+clearC () {
+    find . -type f ! -name "*.c" -delete
 }
 
 # Change Tmux window title in terminal prompt to "<basepath>/"

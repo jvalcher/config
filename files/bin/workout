@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # workouts array
-declare -a WORKOUTS=("Jumping Jacks" "Torso stretches (20s)" "Squats" "Down Stretch" "Crunches" "Lunges" "Butterfly Stretch" "Supermans" "Side Kicks" "Neck Exercises" "Squats and Calf Raises" "Triceps and Biceps (30s)")
+declare -a WORKOUTS=("Jumping Jacks" "Torso stretches (20s)" "Squats" "Down Stretch" "Crunches" "Lunges" "Butterfly Stretch" "Supermans" "Side Kicks" "Neck Exercises" "Calf Raises and Climbers (30s)" "Triceps and Biceps (30s)")
 
 # zoom in
 xdotool key Ctrl+plus
@@ -13,15 +13,14 @@ xdotool key Ctrl+plus
 
 printf "\n\n\n\n\n\n\n"
     
+# turn off tmux status bar and cursor
+clear
+tmux set status off
+tput civis
+
+
 # 5 seconds to get ready
 printf "\e[1;33mGet ready!\e[0m\n\n"
-secs=5
-while [ $secs -gt 0 ]
-do
-    echo -ne "$secs\033[0K\r"
-    sleep 1
-    secs=$(( secs -1 ))
-done
 
 # start workouts
 for workout in "${WORKOUTS[@]}"; do
@@ -56,6 +55,10 @@ done
 printf "\n"
 echo "Finished!"
 printf "\n"
+
+# turn on tmux status bar and cursor
+tmux set status on
+tput cnorm
 
 # Zoom back out
 xdotool key Ctrl+minus
