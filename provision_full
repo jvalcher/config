@@ -177,7 +177,7 @@ printf "singing_bowl.wav\n"
 printf "\n\n"
 printf "Installing Vim Vundle plugins...\n" 
 echo "________________"
-VIM_DIR="/home/$USER/.vim/bundle/Vundle.vim"
+VIM_DIR="/home/$USER/.vim"
 if [ -e $VIM_DIR/bundle/Vundle.vim ]; then
     printf "Alread installed\n"
 else
@@ -185,6 +185,11 @@ else
     vim +PluginInstall +qall
     echo "Complete"
 fi
+
+printf "\n\n"
+printf "Copying Vim skeletons...\n" 
+echo "________________"
+mv files/skeletons /home/$USER/.vim/skeletons
 
 sudo cp -r files/bin /home/$USER/
 printf "~/bin \n"

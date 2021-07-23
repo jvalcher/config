@@ -8,6 +8,9 @@ cp /home/$USER/.bash_aliases files/
 # vim
 cp /home/$USER/.vimrc files/
 
+# vim skeletons
+cp -r /hom/$USER/.vim/skeletons files/
+
 # sudoers.d
 sudo cp /etc/sudoers.d/jvalcher files/
 
