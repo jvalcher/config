@@ -149,7 +149,8 @@ if [ $TMUX_STATUS -eq 0 ]; then
     basepathTitle () {
         getval=$(pwd)
         BASEPATH_TITLE=" ${getval##*/}/ "
-        tmux rename-window "$BASEPATH_TITLE"
+        tmux rename-window "${BASEPATH_TITLE:0:12}"
+        #tmux rename-window "$BASEPATH_TITLE"
     }
     # Change cd functionality to rename window title to
     # pwd after every directory change
@@ -163,7 +164,10 @@ if [ $TMUX_STATUS -eq 0 ]; then
     # back to basepath on close
     # Start, save title controlled in .vimrc
     vim () {
-        /usr/bin/vim "$@"
+        
+        FILE_NAME=$@
+        tmux rename-window "${FILE_NAME:0:12}"
+        /usr/bin/vim "$FILE_NAME"
         VIM_STATUS=$?
         basepathTitle
         return "$VIM_STATUS"

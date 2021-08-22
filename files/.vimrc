@@ -244,10 +244,10 @@ endfunction
 noremap <F8> :call Reload_firefox() <CR>
 
 " set tmux title on entering, saving, leaving
-if exists('$TMUX')
-    autocmd VimEnter,BufWrite * call system("tmux rename-window ' " . expand("%:t") . " '")
-    autocmd VimLeave * call system("tmux setw automatic-rename")
-endif
+"if exists('$TMUX')
+"    autocmd VimEnter,BufWrite * call system("tmux rename-window ' " . expand("%:t") . " '")
+"    autocmd VimLeave * call system("tmux setw automatic-rename")
+"endif
 
 
 " vim-syntastic error checking shortcuts
