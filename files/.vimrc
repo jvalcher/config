@@ -1,67 +1,42 @@
 
-""""""""""""""""""""""""""""""""""""""""""
-"VUNDLE
-""""""""
+""""""""""""
+" vim-plug
+""""""""""""
 
-set nocompatible              " required
-filetype off                  " required
-
-" set the runtime path to include Vundle and initialize 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" alternatively, pass a path where Vundle should install plugins
-" call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-
-" add all your plugins here (note older versions of Vundle
-" used Bundle instead of Plugin)
-
-" check syntax on each save
-Plugin 'vim-syntastic/syntastic'
-
-" NERDTree
-Plugin 'scrooloose/nerdtree'
-
-" Emmet-vim
-"Plugin 'mattn/emmet-vim'
-
-" Nginx syntax
-Plugin 'nginx.vim'
+" Specify a directory for plugins
+" - For Neovim: stdpath('data') . '/plugged'
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.vim/plugged')
 
 " onedark colorscheme
-Plugin 'joshdick/onedark.vim'
+Plug 'joshdick/onedark.vim'
 
-" restore sessions in tmux
-Plugin 'tpope/vim-obsession'
+" check syntax on each save
+Plug 'vim-syntastic/syntastic'
 
-" YouCompleteMe autocomplete
-"Plugin 'ycm-core/YouCompleteMe'
+" NERDTree
+Plug 'scrooloose/nerdtree'
 
-" glench/vim-jinja2-syntax
-"Plugin 'glench/vim-jinja2-syntax'
+" Emmet-vim
+Plug 'mattn/emmet-vim'
 
 
 " INSTALL PLUGINS with:   
     "  :source %
-    "  :PluginInstall
-" DELETE PLUGINS
-    " delete Plugin line above
-    " :PluginUpdate
-" :PluginList
-" :PluginSearch foo
-" :PluginClean
+    "  :PlugInstall
+" OTHER
+    "  :PlugUpdate  [name]
+    "  :PlugClean
+    "  :PlugUpgrade
+    "  :PlugStatus
+    "  :PlugDiff
+    "  :PlugSnapshot[!] [output_path]
+
+" Initialize plugin system
+call plug#end()
+""""""""""""""""""
 
 
-" All of your Plugins must be added before the following line
-
-call vundle#end()            " required
-filetype plugin indent on    " required
-
-
-"""""""""""""""""""""""""""""""""
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
