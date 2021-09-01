@@ -1,16 +1,16 @@
 
 # Bose BT headphones not connecting
 
+*** modprobe  ***
+sudo rmmod btusb
+sudo modprobe btusb
+sudo systemctl start bluetooth.service
+
 # misc info
 lsmod | grep blue
 rfkill list
 sudo dmesg | grep blue
 sudo bluetoothd -d -n
-
-# modprobe
-sudo rmmod btusb
-sudo modprobe btusb
-sudo systemctl start bluetooth.service
 
 # monitor
 btmon
