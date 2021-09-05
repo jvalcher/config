@@ -1,6 +1,6 @@
 
 ###########
-# Provision Ubuntu 20.04
+# Provision Ubuntu 21.04
 ###########
 
 
@@ -16,7 +16,7 @@ sudo apt update
 sudo apt upgrade -y
 
 sudo apt-get install -y \
-    neovim \
+    vim-gtk3 \
     tmux \
     google-chrome-stable \
     gnome-tweaks \
@@ -138,8 +138,8 @@ sudo cp files/touchpad_toggle /usr/local/bin/
 sudo chown $USER /usr/local/bin/touchpad_toggle
 printf "touchpad_toggle\n"
 
-cp files/config /home/$USER/.config/terminator/config
-printf "config \t\t(terminator)\n"
+#cp files/config /home/$USER/.config/terminator/config
+#printf "config \t\t(terminator)\n"
 
 cp files/.vimrc /home/$USER/.vimrc
 echo ".vimrc"
@@ -179,9 +179,9 @@ printf "\n\n"
 printf "Installing Vim-Plug plugins...\n" 
 echo "________________"
 if [ -e $VIM_DIR/plugged ]; then
-    vim +PlugClean
-    vim +PlugInstall
-    vim +PlugUpgrade
+    vim +PlugClean +qall
+    vim +PlugInstall +qall
+    vim +PlugUpgrade +qall
 else
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
