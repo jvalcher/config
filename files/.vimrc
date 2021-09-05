@@ -242,8 +242,8 @@ map <C-s> :setlocal spell! spelllang=en_us<CR>
 map <C-a> [s
 map <C-d> ]s
 " set global, local dictionary files
-" zg  ->  add to global file
-" 2zg ->  add to local file
-" zug  ->  remove from global
+    " zg  ->  add to global file
+    " 2zg ->  add to local file
+    " zug  ->  remove from global
 setlocal spellfile+=~/.vim/spell/en.utf-8.add
 setlocal spellfile+=.oneoff.utf-8.add
