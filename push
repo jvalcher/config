@@ -18,10 +18,10 @@ cp -r /home/$USER/.vim/spell files/
 sudo cp /etc/sudoers.d/jvalcher files/
 
 # VSCode
-cp /home/$USER/.config/Code/User/settings.json files/
-cp /home/$USER/.config/Code/User/config files/ 
-code --list-extensions >/home/$USER/.config/Code/User/extensions 
-cp /home/$USER/.config/Code/User/extensions files/ 
+#cp /home/$USER/.config/Code/User/settings.json files/
+#cp /home/$USER/.config/Code/User/config files/ 
+#code --list-extensions >/home/$USER/.config/Code/User/extensions 
+#cp /home/$USER/.config/Code/User/extensions files/ 
 
 # gtk.css
 cp /home/$USER/.config/gtk-3.0/gtk.css files/ 
