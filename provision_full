@@ -218,8 +218,8 @@ printf "\n\n"
 printf "Setting wallpaper...\n"
 echo "________________"
 
-WALLPAPER="codeRain.jpg"
-LOGIN="darkWave.jpeg"
+WALLPAPER="forest1.jpg"
+LOGIN="forest.jpeg"
 PICTURES_DIR="/home/$USER/Pictures"
 
 cp wallpapers/* $PICTURES_DIR 
