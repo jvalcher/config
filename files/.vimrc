@@ -245,5 +245,6 @@ map <C-d> ]s
     " zg  ->  add to global file
     " 2zg ->  add to local file
     " zug  ->  remove from global
+    " 2zug  ->  remove from local
 setlocal spellfile+=~/.vim/spell/en.utf-8.add
 setlocal spellfile+=.oneoff.utf-8.add
