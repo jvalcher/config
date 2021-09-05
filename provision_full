@@ -174,16 +174,18 @@ echo ".tmux/"
 cp files/singing_bowl.wav /home/$USER/Music/
 printf "singing_bowl.wav\n"
 
-printf "\n\n"
-printf "Installing Vim Vundle plugins...\n" 
-echo "________________"
 VIM_DIR="/home/$USER/.vim"
-if [ -e $VIM_DIR/bundle/Vundle.vim ]; then
-    printf "Alread installed\n"
+printf "\n\n"
+printf "Installing Vim-Plug plugins...\n" 
+echo "________________"
+if [ -e $VIM_DIR/plugged ]; then
+    vim +PlugClean
+    vim +PlugInstall
+    vim +PlugUpgrade
 else
-    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-    vim +PluginInstall +qall
-    echo "Complete"
+    curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    vim +PlugInstall
 fi
 
 printf "\n\n"
@@ -193,6 +195,15 @@ if [ -e $VIM_DIR/skeletons ]; then
     rsync -a --delete files/skeletons/ /home/$USER/.vim/skeletons/
 else 
     copy -r files/skeletons $VIM_DIR/skeletons
+fi
+
+printf "\n\n"
+printf "Copying Vim spelling additions...\n" 
+echo "________________"
+if [ -e $VIM_DIR/spell ]; then
+    rsync -a --delete files/spell/ /home/$USER/.vim/spell/
+else 
+    copy -r files/spell $VIM_DIR/spell
 fi
 
 sudo cp -r files/bin /home/$USER/

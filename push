@@ -11,6 +11,9 @@ cp /home/$USER/.vimrc files/
 # vim skeletons
 cp -r /home/$USER/.vim/skeletons files/
 
+# vim spelling additions
+cp -r /home/$USER/.vim/spell files/
+
 # sudoers.d
 sudo cp /etc/sudoers.d/jvalcher files/
 
