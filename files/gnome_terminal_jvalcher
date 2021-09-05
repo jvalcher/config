@@ -11,7 +11,7 @@ list=['b1dcc9dd-5262-4d8d-a863-c897e6d979b9', '0d23f1b5-66df-4df6-960d-375dbc6e0
 [legacy/profiles:/:0d23f1b5-66df-4df6-960d-375dbc6e0590]
 audible-bell=false
 background-color='rgb(46,52,54)'
-background-transparency-percent=8
+background-transparency-percent=5
 custom-command=''
 default-size-columns=132
 default-size-rows=43

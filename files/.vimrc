@@ -123,6 +123,7 @@ syntax on
 
 " set colorscheme
 silent! colorscheme onedark
+hi Normal guibg=NONE ctermbg=NONE
 
 " always show cursor position
 set ruler
