@@ -207,7 +207,6 @@ else
 fi
 
 sudo cp -r files/bin /home/$USER/
-printf "~/bin \n"
 
 
 ###########
