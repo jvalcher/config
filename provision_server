@@ -1,0 +1,78 @@
+
+###########
+# Provision Ubuntu 20.04
+###########
+
+
+#!/bin/bash
+
+###########
+# Install software
+###########
+
+printf "\n\nInstalling Apt software...\n"
+echo "________________"
+sudo apt update
+sudo apt upgrade -y 
+
+sudo apt-get install -y \
+    vim-gtk \
+    tmux \
+    curl \
+    xauth \
+    xclip \
+    lsb-release \
+    aptitude
+
+sudo apt autoremove -y
+
+#############
+# Copy configuration files
+#############
+
+printf "\n\n"
+printf "Copying configuration files...\n" 
+echo "________________"
+
+sudo cp files/jvalcher /etc/sudoers.d/jvalcher
+printf "jvalcher \t\t(sudoers.d)\n"
+
+cp files/.bash_aliases /home/$USER/.bash_aliases
+. /home/$USER/.bashrc 
+echo ".bash_aliases"
+
+cp -r files/Scripts /home/$USER/ 
+printf "~/Scripts...\n"
+
+cp files/.vimrc /home/$USER/.vimrc 
+echo ".vimrc"
+
+cp -r files/.vim/skeletons /home/$USER/.vim/
+echo "vim skeletons"
+
+dconf reset -f /org/gnome/terminal/
+dconf load /org/gnome/terminal/ < files/gnome_terminal_jvalcher
+echo "gnome-terminal"
+
+cp files/.tmux.conf /home/$USER/.tmux.conf 
+echo ".tmux.conf"
+cp -r files/.tmux /home/$USER/ 
+echo ".tmux/"
+
+printf "\n\n"
+printf "Installing Vim-Plug plugins...\n" 
+echo "________________"
+echo "Complete"
+
+
+##########
+# Exit message
+##########
+
+printf "\n\n\n"
+echo "________________"
+printf "Provisioning complete\n"
+echo "________________"
+printf "\n\n"
+
+
