@@ -224,13 +224,6 @@ function Reload_firefox()
 endfunction
 noremap <F8> :call Reload_firefox() <CR>
 
-" set tmux title on entering, saving, leaving
-"if exists('$TMUX')
-"    autocmd VimEnter,BufWrite * call system("tmux rename-window ' " . expand("%:t") . " '")
-"    autocmd VimLeave * call system("tmux setw automatic-rename")
-"endif
-
-
 " vim-syntastic error checking shortcuts
 " check for errors (F3), close error list (F4)
 " set to passive mode 
@@ -243,3 +236,5 @@ nnoremap <F4> :SyntasticToggleMode <CR> :SyntasticToggleMode <CR> :redraw! <CR>
 nnoremap <C-n> :lnext <CR> :redraw! <CR>
 nnoremap <C-p> :lprev <CR> :redraw! <CR>
 
+" toggle spellchecker (ctrl + s)
+:map <C-s> :setlocal spell! spelllang=en_us<CR>

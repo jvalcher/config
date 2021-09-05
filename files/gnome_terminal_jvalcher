@@ -1,5 +1,5 @@
 [legacy]
-default-show-menubar=false
+default-show-menubar=true
 headerbar=@mb false
 menu-accelerator-enabled=false
 schema-version=uint32 3
