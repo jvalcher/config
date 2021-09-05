@@ -214,20 +214,20 @@ printf "~/bin \n"
 # Set wallpaper
 ###########
 
-printf "\n\n"
-printf "Setting wallpaper...\n"
-echo "________________"
-
-WALLPAPER="forest1.jpg"
-LOGIN="forest.jpeg"
-PICTURES_DIR="/home/$USER/Pictures"
-
-cp wallpapers/* $PICTURES_DIR 
-source scripts/dbus.sh unity 
-sudo gsettings set org.gnome.desktop.background picture-uri file:///$PICTURES_DIR/$WALLPAPER
-echo "$PICTURES_DIR/$WALLPAPER"
-# Change login screen
-sudo scripts/change-gdm-background $PICTURES_DIR/$LOGIN
+#printf "\n\n"
+#printf "Setting wallpaper...\n"
+#echo "________________"
+#
+#WALLPAPER="forest1.jpg"
+#LOGIN="forest.jpeg"
+#PICTURES_DIR="/home/$USER/Pictures"
+#
+#cp wallpapers/* $PICTURES_DIR 
+#source scripts/dbus.sh unity 
+#sudo gsettings set org.gnome.desktop.background picture-uri file:///$PICTURES_DIR/$WALLPAPER
+#echo "$PICTURES_DIR/$WALLPAPER"
+## Change login screen
+#sudo scripts/change-gdm-background $PICTURES_DIR/$LOGIN
 
 
 ###########
