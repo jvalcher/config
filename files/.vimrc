@@ -236,5 +236,8 @@ nnoremap <F4> :SyntasticToggleMode <CR> :SyntasticToggleMode <CR> :redraw! <CR>
 nnoremap <C-n> :lnext <CR> :redraw! <CR>
 nnoremap <C-p> :lprev <CR> :redraw! <CR>
 
-" toggle spellchecker (ctrl + s)
-:map <C-s> :setlocal spell! spelllang=en_us<CR>
+" toggle spellchecker, previous, next (ctrl + s, a, d)
+map <C-s> :setlocal spell! spelllang=en_us<CR>
+map <C-a> [s
+map <C-d> ]s
+
