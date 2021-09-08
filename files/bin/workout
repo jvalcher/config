@@ -1,70 +1,59 @@
 #!/bin/bash
 
-# workouts array
-declare -a WORKOUTS=("Jumping Jacks" "Torso stretches (20s)" "Squats" "Down Stretch" "Crunches" "Lunges" "Butterfly Stretch" "Supermans" "Side Kicks" "Neck Exercises" "Calf Raises and Climbers (30s)" "Triceps and Biceps (30s)")
-
-# zoom in
-xdotool key Ctrl+plus
-xdotool key Ctrl+plus
-xdotool key Ctrl+plus
-xdotool key Ctrl+plus
-xdotool key Ctrl+plus
-xdotool key Ctrl+plus
-
-printf "\n\n\n\n\n\n\n"
     
 # turn off tmux status bar and cursor
 clear
 tmux set status off
 tput civis
 
-
-# 5 seconds to get ready
-printf "\e[1;33mGet ready!\e[0m\n\n"
-
-# start workouts
-for workout in "${WORKOUTS[@]}"; do
-
-    # exercise name
-    printf "\e[1;32m$workout\e[0m\n\n"
-
-    # starting in: ...
-    secs=5
-    while [ $secs -gt 0 ]
-    do
-        echo -ne "Starting in: $secs\033[0K\r"
-        sleep 1
-        secs=$(( secs -1 ))
-    done
-
-    # exercise countdown
-    secs=60
+# timer function
+function workout_timer() {
+    secs=$1
     while [ $secs -gt 0 ]
     do
         echo -ne "$secs\033[0K\r"
         sleep 1
         secs=$(( secs -1 ))
     done
+    aplay ~/Music/singing_bowl.wav > /dev/null 2>&1 &
+}
 
-    # exercise finished sound
-    aplay ~/Music/singing_bowl.wav >/dev/null 2>&1 &
+# print current, next exercise
+function print_exercise() {
+    EXERCISE=$1;
+    NEXT=$2;
+    printf "\e[1;33m$EXERCISE\e[0m\n\n"
+    printf "\e[1;32mnext: $NEXT\e[0m\n\n"
+}
 
-done
-
-# workout finished message
-printf "\n"
-echo "Finished!"
-printf "\n"
+# exercises
+printf "\n\n\e[1;31mGet ready!\e[0m\n\n"
+workout_timer 5
+print_exercise "Jumping Jacks" "Right Torso Stretch"
+workout_timer 60
+print_exercise "Right Torso Stretch" "Left Torso Stretch"
+workout_timer 30
+print_exercise "Left Torso Stretch" "Squats"
+workout_timer 30
+print_exercise "Squats" "Down Stretch"
+workout_timer 60
+print_exercise "Down Stretch" "Crunches/Knee Raises"
+workout_timer 60
+print_exercise "Crunches/Knee Raises" "Butterfly Stretch"
+workout_timer 60
+print_exercise "Butterfly Stretch" "Supermans"
+workout_timer 60
+print_exercise "Supermans" "Right Side Kicks"
+workout_timer 60
+print_exercise "Right Side Kicks" "Left Side Kicks"
+workout_timer 30
+print_exercise "Left Side Kicks" "Neck Exercises"
+workout_timer 30
+print_exercise "Neck Exercises" "Triceps and Biceps"
+workout_timer 60
+printf "\e[1;33mTriceps and Biceps...\e[0m\n\n"
 
 # turn on tmux status bar and cursor
 tmux set status on
 tput cnorm
-
-# Zoom back out
-xdotool key Ctrl+minus
-xdotool key Ctrl+minus
-xdotool key Ctrl+minus
-xdotool key Ctrl+minus
-xdotool key Ctrl+minus
-xdotool key Ctrl+minus
 
