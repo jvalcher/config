@@ -21,6 +21,9 @@ alias graph="git log --graph --abbrev-commit --decorate --format=format:'%C(bold
 # connect to easytether via usb
 alias easy="sudo easytether-usb"
 
+# reset networkd if easytether won't connect
+alias reeasy="sudo systemctl restart systemd-networkd"
+
 # activate/refresh asusBox hotspot
 alias hotup="nmcli connection down Hotspot 2>/dev/null; nmcli connection up Hotspot"
 # take down hotspot
