@@ -37,7 +37,8 @@ sudo apt-get install -y \
     python3-dev \
     mono-complete \
     aptitude \
-    toilet
+    toilet \
+    grub-customizer
 sudo apt install -y virtualbox virtualbox-ext-pack
 
 
