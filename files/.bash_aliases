@@ -137,6 +137,22 @@ gcd () {
     rm $OUTPUT_FILE
 }
 
+# compiles file.cpp as file, runs it, deletes compiled file
+c () {
+    FILE="$1"
+    OUTPUT_FILE="${FILE%.*}"
+    g++ -o $OUTPUT_FILE $FILE
+    #printf "\n\e[1;32mOutput:\e[0m\n"
+    #printf "\e[1;32m_ _ _ _ _ _ _ _ _ _ _ _ _ _ _\e[0m\n\n"
+    printf "\n"
+    ./"$OUTPUT_FILE"
+    printf "\n"
+    rm "$OUTPUT_FILE"
+    #printf "\n\e[1;32m_ _ _ _ _ _ _ _ _ _ _ _ _ _ _\e[0m\n"
+    #printf "\e[1;32mEnd output\n\n"
+    #printf "\e[1;32mExecutable:\e[0m  $OUTPUT_FILE\n\n"
+}
+
 # clear all compiled C files in pwd (i.e. files not ending in '.c')
 clearC () {
     find . -type f ! -name "*.c" -delete
