@@ -137,7 +137,7 @@ gcd () {
     rm $OUTPUT_FILE
 }
 
-# compiles file.cpp as file, runs it, deletes compiled file
+# compile file.cpp as file, run it, delete compiled file
 c () {
     FILE="$1"
     OUTPUT_FILE="${FILE%.*}"
@@ -146,12 +146,24 @@ c () {
         rm "$OUTPUT_FILE"
         exit 2
     }
+
     g++ -o $OUTPUT_FILE $FILE
     trap "trap_ctrlc" 2
+
     printf "\n"
     ./"$OUTPUT_FILE"
     printf "\n"
     rm "$OUTPUT_FILE"
+}
+
+# compile file.cpp as file, run it
+cop () {
+    FILE="$1"
+    OUTPUT_FILE="${FILE%.*}"
+    g++ -o $OUTPUT_FILE $FILE
+    printf "\n"
+    ./"$OUTPUT_FILE"
+    printf "\n"
 }
 
 # clear all compiled C files in pwd (i.e. files not ending in '.c')
