@@ -197,11 +197,26 @@ nnoremap j gj
 nnoremap k gk
 
 
-" compile and run current C source file in new tmux pane
+"" compile and run current C source file in new tmux pane
+"" compile, run (F5), close compile window (F6)
+"function Compile()
+"    call system("tmux split-window -h -p 40")
+"    call system("tmux send-keys -t .2 'gcd " . expand("%") . "' Enter")
+"    call system("tmux select-pane -t .1")
+"endfunction
+"function Exit_compile()
+"    call system("tmux send-keys -t .2 C-c")
+"    call system("tmux send-keys -t .2 C-d")
+"endfunction
+"noremap <F5> :call Compile() <CR>
+"noremap <F6> :call Exit_compile() <CR>
+
+" compile and run current C++ source file in new tmux pane
+" delete compiled file
 " compile, run (F5), close compile window (F6)
 function Compile()
     call system("tmux split-window -h -p 40")
-    call system("tmux send-keys -t .2 'gcd " . expand("%") . "' Enter")
+    call system("tmux send-keys -t .2 'c " . expand("%") . "' Enter")
     call system("tmux select-pane -t .1")
 endfunction
 function Exit_compile()
