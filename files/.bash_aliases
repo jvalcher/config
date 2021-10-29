@@ -141,16 +141,17 @@ gcd () {
 c () {
     FILE="$1"
     OUTPUT_FILE="${FILE%.*}"
+
+    function trap_ctrlc () {
+        rm "$OUTPUT_FILE"
+        exit 2
+    }
     g++ -o $OUTPUT_FILE $FILE
-    #printf "\n\e[1;32mOutput:\e[0m\n"
-    #printf "\e[1;32m_ _ _ _ _ _ _ _ _ _ _ _ _ _ _\e[0m\n\n"
+    trap "trap_ctrlc" 2
     printf "\n"
     ./"$OUTPUT_FILE"
     printf "\n"
     rm "$OUTPUT_FILE"
-    #printf "\n\e[1;32m_ _ _ _ _ _ _ _ _ _ _ _ _ _ _\e[0m\n"
-    #printf "\e[1;32mEnd output\n\n"
-    #printf "\e[1;32mExecutable:\e[0m  $OUTPUT_FILE\n\n"
 }
 
 # clear all compiled C files in pwd (i.e. files not ending in '.c')
