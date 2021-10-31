@@ -147,13 +147,14 @@ c () {
         exit 2
     }
 
-    g++ -o $OUTPUT_FILE $FILE
+    printf "\n-------------\n$FILE -> $OUTPUT_FILE\n-------------\n"
+    g++ -Wall -o $OUTPUT_FILE $FILE
     trap "trap_ctrlc" 2
 
     printf "\n"
-    ./"$OUTPUT_FILE"
+    ./"$OUTPUT_FILE" 2>/dev/null
     printf "\n"
-    rm "$OUTPUT_FILE"
+    rm "$OUTPUT_FILE" 2>/dev/null
 }
 
 # compile file.cpp as file, run it
