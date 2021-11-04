@@ -181,8 +181,8 @@ if [ $TMUX_STATUS -eq 0 ]; then
     # and rename window
     basepathTitle () {
         getval=$(pwd)
-        BASEPATH_TITLE="${getval##*/}/"
-        tmux rename-window " ${BASEPATH_TITLE:0:12} "
+        BASEPATH_TITLE="${getval##*/}"
+        tmux rename-window " ${BASEPATH_TITLE:0:12}/ "
         #tmux rename-window "$BASEPATH_TITLE"
     }
     # Change cd functionality to rename window title to
