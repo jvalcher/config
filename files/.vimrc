@@ -160,11 +160,11 @@ set nohlsearch
 set t_RV=
 set t_u7=
 
-" remap scrolling (ctrl+ d,f)
+" remap scrolling (up, down)
 noremap <Down> <C-E>
 noremap <Up> <C-Y>
 
-" go to last line + center screen to cursor
+" go to last line with G and center screen to cursor
 noremap G Gzz
 
 " less escape delay
@@ -196,49 +196,10 @@ xnoremap <expr> p '"_d"'.v:register.'p'
 nnoremap j gj
 nnoremap k gk
 
-
-"" compile and run current C source file in new tmux pane
-"" compile, run (F5), close compile window (F6)
-"function Compile()
-"    call system("tmux split-window -h -p 40")
-"    call system("tmux send-keys -t .2 'gcd " . expand("%") . "' Enter")
-"    call system("tmux select-pane -t .1")
-"endfunction
-"function Exit_compile()
-"    call system("tmux send-keys -t .2 C-c")
-"    call system("tmux send-keys -t .2 C-d")
-"endfunction
-"noremap <F5> :call Compile() <CR>
-"noremap <F6> :call Exit_compile() <CR>
-
-" compile and run current C++ source file in new tmux pane
-" delete compiled file
-" compile, run (F5), close compile window (F6)
-function Compile()
-    call system("tmux split-window -h -p 40")
-    call system("tmux send-keys -t .2 'c " . expand("%") . "' Enter")
-    call system("tmux select-pane -t .1")
-endfunction
-function Exit_compile()
-    call system("tmux send-keys -t .2 C-c")
-    call system("tmux send-keys -t .2 C-d")
-endfunction
-noremap <F5> :call Compile() <CR>
-noremap <F6> :call Exit_compile() <CR>
-
-" open current html file in new Chrome tab (F7)
-function Open_firefox()
-    call system("firefox ' " . expand("%") . " ' &")
-    call system("xdotool search --onlyvisible --class Terminal windowfocus")
-endfunction
-noremap <F7> :call Open_firefox() <CR>
-
-" refresh visible web page (F8)
-function Reload_firefox()
-    call system("xdotool search --onlyvisible 'Mozilla Firefox' windowfocus key Ctrl+Shift+r")
-    call system("xdotool search --onlyvisible --class Terminal windowfocus")
-endfunction
-noremap <F8> :call Reload_firefox() <CR>
+" Rename tmux tab on save
+if exists('$TMUX')
+    autocmd VimEnter,BufWrite * call system("tmux rename-window ' " . expand("%:t") . " '")
+endif
 
 " vim-syntastic error checking shortcuts
 " check for errors (F3), close error list (F4)
@@ -263,3 +224,34 @@ map <C-d> ]s
     " 2zug  ->  remove from local
 setlocal spellfile+=~/.vim/spell/en.utf-8.add
 setlocal spellfile+=.oneoff.utf-8.add
+
+
+"" compile and run current C source file in new tmux pane
+"" compile, run (F5), close compile window (F6)
+"function Compile()
+"    call system("tmux split-window -h -p 40")
+"    call system("tmux send-keys -t .2 'gcd " . expand("%") . "' Enter")
+"    call system("tmux select-pane -t .1")
+"endfunction
+"function Exit_compile()
+"    call system("tmux send-keys -t .2 C-c")
+"    call system("tmux send-keys -t .2 C-d")
+"endfunction
+"noremap <F5> :call Compile() <CR>
+"noremap <F6> :call Exit_compile() <CR>
+
+"" compile and run current C++ source file in new tmux pane
+"" delete compiled file
+"" compile, run (F5), close compile window (F6)
+"function Compile()
+"    call system("tmux split-window -h -p 40")
+"    call system("tmux send-keys -t .2 'c " . expand("%") . "' Enter")
+"    call system("tmux select-pane -t .1")
+"endfunction
+"function Exit_compile()
+"    call system("tmux send-keys -t .2 C-c")
+"    call system("tmux send-keys -t .2 C-d")
+"endfunction
+"noremap <F5> :call Compile() <CR>
+"noremap <F6> :call Exit_compile() <CR>
+
