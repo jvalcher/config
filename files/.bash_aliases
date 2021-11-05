@@ -172,7 +172,7 @@ clearC () {
     find . -type f ! -name "*.c" -delete
 }
 
-# Change Tmux window title in terminal prompt to "<basepath>/"
+# Change Tmux window titles
 # If Tmux running...
 tmux ls > /dev/null 2>&1
 TMUX_STATUS=$?
