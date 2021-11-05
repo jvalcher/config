@@ -202,6 +202,7 @@ if [ $TMUX_STATUS -eq 0 ]; then
         tmux rename-window " ${FILE_NAME:0:12} "
         /usr/bin/vim "$FILE_NAME"
         VIM_STATUS=$?
+        basepathTitle
         return "$VIM_STATUS"
     }
     # Set window title when tmux starts

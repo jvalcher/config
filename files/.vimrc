@@ -196,9 +196,9 @@ xnoremap <expr> p '"_d"'.v:register.'p'
 nnoremap j gj
 nnoremap k gk
 
-" Rename tmux tab on save
+" Rename tmux window on save
 if exists('$TMUX')
-    autocmd VimEnter,BufWrite * call system("tmux rename-window ' " . expand("%:t") . " '")
+    autocmd BufWrite * call system("tmux rename-window ' " . expand("%:t") . " '")
 endif
 
 " vim-syntastic error checking shortcuts
