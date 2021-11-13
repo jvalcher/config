@@ -19,10 +19,10 @@ export PATH=$PATH:/home/$USER/bin
 alias graph="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
 
 # connect to easytether via usb
-alias easy="sudo easytether-usb"
+alias easy="sudo systemctl restart systemd-networkd; sudo easytether-usb"
 
 # reset networkd if easytether won't connect
-alias reeasy="sudo systemctl restart systemd-networkd"
+#alias reeasy="sudo systemctl restart systemd-networkd"
 
 # activate/refresh asusBox hotspot
 alias hotup="nmcli connection down Hotspot 2>/dev/null; nmcli connection up Hotspot"
