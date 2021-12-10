@@ -66,16 +66,16 @@ else
     docker run hello-world
 fi
 
-printf "\n\nInstalling docker-compose...\n"
-echo "________________"
-DC="/usr/local/bin/docker-compose"
-if [ -e $DC ]; then
-    printf "Already installed\n"
-else
-    sudo curl -L "https://github.com/docker/compose/releases/download/1.29.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-    sudo chmod +x /usr/local/bin/docker-compose
-    docker-compose --version
-fi
+#printf "\n\nInstalling docker-compose...\n"
+#echo "________________"
+#DC="/usr/local/bin/docker-compose"
+#if [ -e $DC ]; then
+#    printf "Already installed\n"
+#else
+#    sudo curl -L "https://github.com/docker/compose/releases/download/1.29.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+#    sudo chmod +x /usr/local/bin/docker-compose
+#    docker-compose --version
+#fi
 
 
 printf "\n\nInstalling Ansible...\n"
@@ -110,18 +110,18 @@ sudo snap install shotcut --classic
 # Install easytether
 #############
 
-printf "\n\n"
-printf "Installing EasyTether...\n" 
-echo "________________"
-ET="/usr/bin/easytether-usb"
-if [ -e $ET ]; then
-    printf "Already installed\n"
-else
-    sudo dpkg -i scripts/easytether_0.8.9_amd64_ubuntu_20-04.deb &&
-    sudo systemctl restart systemd-networkd
-    # .bash_aliases 
-    easy
-fi
+#printf "\n\n"
+#printf "Installing EasyTether...\n" 
+#echo "________________"
+#ET="/usr/bin/easytether-usb"
+#if [ -e $ET ]; then
+#    printf "Already installed\n"
+#else
+#    sudo dpkg -i scripts/easytether_0.8.9_amd64_ubuntu_20-04.deb &&
+#    sudo systemctl restart systemd-networkd
+#    # .bash_aliases 
+#    easy
+#fi
 
 
 #############
@@ -160,12 +160,12 @@ printf "~/Scripts...\n"
 #echo "________________"
 #cat files/extensions | xargs -L 1 code --install-extension
 
-cp files/gtk.css /home/$USER/.config/gtk-3.0/gtk.css
-echo "gtk.css"
+#cp files/gtk.css /home/$USER/.config/gtk-3.0/gtk.css
+#echo "gtk.css"
 
-dconf reset -f /org/gnome/terminal/
-dconf load /org/gnome/terminal/ < files/gnome_terminal_jvalcher
-echo "gnome-terminal"
+#dconf reset -f /org/gnome/terminal/
+#dconf load /org/gnome/terminal/ < files/gnome_terminal_jvalcher
+#echo "gnome-terminal"
 
 cp files/.tmux.conf /home/$USER/.tmux.conf
 echo ".tmux.conf"
