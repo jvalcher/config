@@ -80,7 +80,7 @@ fi
 
 printf "\n\nInstalling Ansible...\n"
 echo "________________"
-ANSIBLE_STATUS=$(dpkg -s ansible | echo $?)
+ANSIBLE_STATUS=$(dpkg -s ansible 2>/dev/null | echo $?)
 if [ $ANSIBLE_STATUS -eq 0 ]; then
     printf "Already installed\n"
 else
@@ -160,17 +160,17 @@ printf "~/Scripts...\n"
 #echo "________________"
 #cat files/extensions | xargs -L 1 code --install-extension
 
-#cp files/gtk.css /home/$USER/.config/gtk-3.0/gtk.css
-#echo "gtk.css"
+cp files/gtk.css /home/$USER/.config/gtk-3.0/gtk.css
+echo "gtk.css"
 
 #dconf reset -f /org/gnome/terminal/
 #dconf load /org/gnome/terminal/ < files/gnome_terminal_jvalcher
 #echo "gnome-terminal"
 
-cp files/.tmux.conf /home/$USER/.tmux.conf
+cp files/.tmux.conf /home/$USER/
 echo ".tmux.conf"
-cp -r files/.tmux /home/$USER/ 
-echo ".tmux/"
+#cp -r files/.tmux /home/$USER/ 
+#echo ".tmux/"
 
 cp files/singing_bowl.wav /home/$USER/Music/
 printf "singing_bowl.wav\n"
@@ -195,19 +195,19 @@ echo "________________"
 if [ -e $VIM_DIR/skeletons ]; then
     rsync -a --delete files/skeletons/ /home/$USER/.vim/skeletons/
 else 
-    copy -r files/skeletons $VIM_DIR/skeletons
+    cp -r files/skeletons $VIM_DIR/skeletons
 fi
 
-printf "\n\n"
-printf "Copying Vim spelling additions...\n" 
-echo "________________"
-if [ -e $VIM_DIR/spell ]; then
-    rsync -a --delete files/spell/ /home/$USER/.vim/spell/
-else 
-    copy -r files/spell $VIM_DIR/spell
-fi
-
-sudo cp -r files/bin /home/$USER/
+#printf "\n\n"
+#printf "Copying Vim spelling additions...\n" 
+#echo "________________"
+#if [ -e $VIM_DIR/spell ]; then
+#    rsync -a --delete files/spell/ /home/$USER/.vim/spell/
+#else 
+#    cp -r files/spell $VIM_DIR/spell
+#fi
+#
+#sudo cp -r files/bin /home/$USER/
 
 
 ###########
