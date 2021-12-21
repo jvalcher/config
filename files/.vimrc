@@ -108,9 +108,6 @@ endif
 " incremental search that shows partial matches
 set incsearch
 
-" put node in path (nvm install)
-let g:coc_node_path = '/home/jvalcher/.nvm/versions/node/v17.2.0/bin/node'
-
 " auto switch search to case-sensitive when search query contains an uppercase letter
 set smartcase
 
