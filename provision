@@ -38,7 +38,8 @@ sudo apt-get install -y \
     mono-complete \
     aptitude \
     toilet \
-    grub-customizer
+    grub-customizer \
+    vim-addon-manager
 sudo apt install -y virtualbox virtualbox-ext-pack
 
 
@@ -188,6 +189,36 @@ else
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     vim +PlugInstall
 fi
+
+# install vim-markdown
+MD_DIR="/home/$USER/Downloads/vim-markdown"
+printf "\n\n"
+printf "Installing vim-markdown...\n" 
+echo "________________"
+if [ ! -e $MD_DIR ]; then
+    echo "Already installed"
+else
+    (cd ~/Downloads; \
+    git clone https://github.com/plasticboy/vim-markdown.git \
+    cd vim-markdown; \
+    sudo make install; \
+    vim-addon-manager install markdown)
+fi 
+
+# install vim-markdown
+MD_DIR="/home/$USER/Downloads/vim-markdown"
+printf "\n\n"
+printf "Installing vim-markdown...\n" 
+echo "________________"
+if [ -e $MD_DIR ]; then
+    echo "Already installed"
+else
+    (cd ~/Downloads; \
+    git clone https://github.com/plasticboy/vim-markdown.git; \
+    cd vim-markdown; \
+    sudo make install; \
+    vim-addon-manager install markdown)
+fi 
 
 printf "\n\n"
 printf "Copying Vim skeletons...\n" 
