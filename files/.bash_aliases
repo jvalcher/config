@@ -54,7 +54,7 @@ alias pclip="pwd | xclip -sel clip"
 alias tkill="tmux kill-server"
 
 # play singing_bowl sound 
-alias bowl="aplay ~/Music/singing_bowl.wav"
+alias bowl="(aplay -q ~/Music/singing_bowl.wav > /dev/null 2>&1 &)"
 
 # reset ll set in .bashrc -> vertical file list, no info
 llr () {
@@ -223,6 +223,7 @@ countdown()
     wait
   done
   echo
+  bowl
 )
 
 ## Open notes file in current practice directory

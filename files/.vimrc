@@ -26,7 +26,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "  :CocInstall coc-css
 "  :CocInstall coc-tsserver
 
-
 " INSTALL PLUGINS with:   
     "  :source %
     "  :PlugInstall
@@ -230,6 +229,15 @@ map <C-d> ]s
 setlocal spellfile+=~/.vim/spell/en.utf-8.add
 setlocal spellfile+=.oneoff.utf-8.add
 
+" enable vim-markdown concealing
+set conceallevel=2
+
+" disable math conceal in vim-markdown
+let g:tex_conceal = ""
+let g:vim_markdown_math = 1
+
+" turn off vim-markdown folding
+let g:vim_markdown_folding_disabled = 1
 
 "" compile and run current C source file in new tmux pane
 "" compile, run (F5), close compile window (F6)
