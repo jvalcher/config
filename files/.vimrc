@@ -239,6 +239,7 @@ let g:vim_markdown_math = 1
 " turn off vim-markdown folding
 let g:vim_markdown_folding_disabled = 1
 
+
 "" compile and run current C source file in new tmux pane
 "" compile, run (F5), close compile window (F6)
 "function Compile()
