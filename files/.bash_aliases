@@ -56,6 +56,9 @@ alias tkill="tmux kill-server"
 # play singing_bowl sound 
 alias bowl="(aplay -q ~/Music/singing_bowl.wav > /dev/null 2>&1 &)"
 
+# add autocomplete for markdown files when using google-chrome
+complete -f -X '!*.md' google-chrome
+
 # reset ll set in .bashrc -> vertical file list, no info
 llr () {
 
