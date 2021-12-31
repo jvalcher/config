@@ -62,6 +62,9 @@ complete -f -X '!*.md' google-chrome
 # turn highlight pasted text off
 bind 'set enable-bracketed-paste off'
 
+# system suspend
+alias suspend="systemctl suspend"
+
 # reset ll set in .bashrc -> vertical file list, no info
 llr () {
 

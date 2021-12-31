@@ -37,9 +37,9 @@ sudo apt-get install -y \
     python3-dev \
     mono-complete \
     aptitude \
-    toilet \
     grub-customizer \
-    vim-addon-manager
+    vim-addon-manager \
+    powermanagement-interface
 sudo apt install -y virtualbox virtualbox-ext-pack
 
 
