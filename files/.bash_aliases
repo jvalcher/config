@@ -59,6 +59,9 @@ alias bowl="(aplay -q ~/Music/singing_bowl.wav > /dev/null 2>&1 &)"
 # add autocomplete for markdown files when using google-chrome
 complete -f -X '!*.md' google-chrome
 
+# turn highlight pasted text off
+bind 'set enable-bracketed-paste off'
+
 # reset ll set in .bashrc -> vertical file list, no info
 llr () {
 

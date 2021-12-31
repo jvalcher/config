@@ -26,6 +26,9 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "  :CocInstall coc-css
 "  :CocInstall coc-tsserver
 
+" vim-visual-multi
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+
 " INSTALL PLUGINS with:   
     "  :source %
     "  :PlugInstall
