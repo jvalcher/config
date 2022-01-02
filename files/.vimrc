@@ -167,9 +167,9 @@ noremap <Down> <C-E>
 noremap <Up> <C-Y>
 
 " keep cursor in center of screen
-set so=999
+"set so=999
 " turn off cursor in center of screen
-"set so=0
+set so=0
 
 " go to last line with G and center screen to cursor
 noremap G Gzz
@@ -243,19 +243,19 @@ let g:vim_markdown_math = 1
 let g:vim_markdown_folding_disabled = 1
 
 
-"" compile and run current C source file in new tmux pane
-"" compile, run (F5), close compile window (F6)
-"function Compile()
-"    call system("tmux split-window -h -p 40")
-"    call system("tmux send-keys -t .2 'gcd " . expand("%") . "' Enter")
-"    call system("tmux select-pane -t .1")
-"endfunction
-"function Exit_compile()
-"    call system("tmux send-keys -t .2 C-c")
-"    call system("tmux send-keys -t .2 C-d")
-"endfunction
-"noremap <F5> :call Compile() <CR>
-"noremap <F6> :call Exit_compile() <CR>
+" compile and run current C source file in new tmux pane
+" compile, run (F5), close compile window (F6)
+function Compile()
+    call system("tmux split-window -h -p 40")
+    call system("tmux send-keys -t .2 'gcd " . expand("%") . "' Enter")
+    call system("tmux select-pane -t .1")
+endfunction
+function Exit_compile()
+    call system("tmux send-keys -t .2 C-c")
+    call system("tmux send-keys -t .2 C-d")
+endfunction
+noremap <F5> :call Compile() <CR>
+noremap <F6> :call Exit_compile() <CR>
 
 "" compile and run current C++ source file in new tmux pane
 "" delete compiled file

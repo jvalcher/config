@@ -139,11 +139,14 @@ gco () {
 gcd () {
     FILE="$1"
     OUTPUT_FILE="${FILE%.*}"
+    printf "\n"
     gcc -o $OUTPUT_FILE $FILE
-    printf "\n"
-    ./"$OUTPUT_FILE"
-    printf "\n"
-    rm $OUTPUT_FILE
+    if [ -f "$OUTPUT_FILE" ]; then
+        printf "\n"
+        ./"$OUTPUT_FILE"
+        printf "\n"
+        rm $OUTPUT_FILE
+    fi
 }
 
 # compile file.cpp as file, run it, delete compiled file
