@@ -32,12 +32,6 @@ alias hotdown="nmcli connection down Hotspot"
 # chrome alias
 alias chrome="google-chrome"
 
-# search for string recursively in pwd
-alias strS="grep -rnw . -e "
-
-# search for file recursively in pwd
-alias fileS="find . -name "
-
 # python
 alias py="python3 "
 
@@ -64,6 +58,14 @@ bind 'set enable-bracketed-paste off'
 
 # system suspend
 alias suspend="systemctl suspend"
+
+# search for string recursively in pwd
+alias strS="grep -rnw . -e "
+
+# search for file recursively in pwd
+function fileS {
+    sudo find . -type f -iname $1 2>/dev/null
+}
 
 # reset ll set in .bashrc -> vertical file list, no info
 llr () {
