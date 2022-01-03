@@ -242,6 +242,12 @@ let g:vim_markdown_math = 1
 " turn off vim-markdown folding
 let g:vim_markdown_folding_disabled = 1
 
+" set persistent undo, target directory
+set undofile
+if !isdirectory(expand("$HOME/.vim/undodir"))
+    call mkdir(expand("$HOME/.vim/undodir"), "p")
+endif
+set undodir=$HOME/.vim/undodir
 
 " compile and run current C source file in new tmux pane
 " compile, run (F5), close compile window (F6)
