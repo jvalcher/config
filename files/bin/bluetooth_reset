@@ -1,0 +1,8 @@
+#!/bin/bash
+
+sudo systemctl stop bluetooth.service
+sudo rmmod btusb
+sudo modprobe btusb
+sudo systemctl start bluetooth.service
+gnome-control-center
+

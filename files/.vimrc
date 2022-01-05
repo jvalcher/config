@@ -167,9 +167,8 @@ noremap <Down> <C-E>
 noremap <Up> <C-Y>
 
 " keep cursor in center of screen
-"set so=999
-" turn off cursor in center of screen
-set so=0
+set so=999
+" turn off cursor in center of screen with 'set so=0'
 
 " go to last line with G and center screen to cursor
 noremap G Gzz
