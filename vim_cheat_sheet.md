@@ -1,4 +1,3 @@
-
 # Vim Cheat Sheet
 ------------
 `w / e`     *forward* to **word** *start/end*
@@ -9,7 +8,7 @@
 `<#> G`     **line** *number*
 `m / '`     *mark / go to* **position**
 -------------
-`s, S`      *replace*
+`s, S`      *delete* and *replace*
 `<sh> d`    *delete* from **cursor forward**
 `cc`        *delete* **text**, *keep* **line**
 -------------
@@ -27,6 +26,5 @@ From *current* to *last* **line**
 `:.,$/foo/bar/g`
 **Case insensitive**, *confirmation*
 `:%s/foo/bar/gci`
-
-
-
+-------------
+- *Resize windows* with **Alt + F8**
