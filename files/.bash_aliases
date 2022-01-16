@@ -60,11 +60,16 @@ bind 'set enable-bracketed-paste off'
 alias suspend="systemctl suspend"
 
 # search for string recursively in pwd
-alias strS="grep -rnw . -e "
+alias strS="sudo grep -rnw . -e "
 
 # search for file recursively in pwd
 function fileS {
-    sudo find . -type f -iname $1 2>/dev/null
+    sudo find . -type f -iname $1
+}
+
+# search for directories recursively in pwd
+function dirS {
+    sudo find . -type d -iname $1
 }
 
 # reset ll set in .bashrc -> vertical file list, no info

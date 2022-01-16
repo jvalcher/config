@@ -21,7 +21,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'mattn/emmet-vim'
 
 " Use release branch (recommend)
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "  :CocInstall coc-html
 "  :CocInstall coc-css
 "  :CocInstall coc-tsserver
