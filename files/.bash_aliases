@@ -265,9 +265,9 @@ countdown()
 #    tmux attach-session -t $SESSION
 #}
 
+# okular foot pedal scroll variable
+# used for .vimrc F7, F8 shortcuts
+okul=$(xdotool search --onlyvisible --class okular | head -1)
 
-# laundry wash timer
-laundry () {
-    countdown 01:00:00
-    bowl
-}
+
+

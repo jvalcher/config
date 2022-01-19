@@ -2,7 +2,7 @@
 audible-bell=false
 background-color='rgb(46,52,54)'
 background-transparency-percent=8
-font='Ubuntu Mono 18'
+font='Ubuntu Mono 22'
 foreground-color='rgb(211,215,207)'
 use-system-font=false
 use-theme-colors=false

@@ -262,6 +262,16 @@ endfunction
 noremap <F5> :call Compile() <CR>
 noremap <F6> :call Exit_compile() <CR>
 
+" scroll okular with foot pedal
+function Okul_up()
+    call system("xdotool search --class okular key --window %@ Up")
+endfunction
+function Okul_down()
+    call system("xdotool search --class okular key --window %@ Down")
+endfunction
+noremap <F7> :call Okul_up() <CR>
+noremap <F8> :call Okul_down() <CR>
+
 "" compile and run current C++ source file in new tmux pane
 "" delete compiled file
 "" compile, run (F5), close compile window (F6)
