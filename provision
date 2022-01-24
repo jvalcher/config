@@ -40,6 +40,7 @@ sudo apt-get install -y \
     grub-customizer \
     vim-addon-manager \
     okular \
+    blueman \
     powermanagement-interface
 sudo apt install -y virtualbox virtualbox-ext-pack
 
