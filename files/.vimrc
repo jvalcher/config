@@ -1,4 +1,9 @@
 
+" Reload configuration file
+    " in .vimrc  ->  :source %
+    " in a file  ->  :source ~/.vimrc
+
+    
 """"""""""""
 " vim-plug
 """"""""""""
@@ -126,6 +131,7 @@ syntax on
 " set colorscheme
 silent! colorscheme onedark
 hi Normal guibg=NONE ctermbg=NONE
+highlight LineNr ctermfg=24
 
 " always show cursor position
 set ruler
