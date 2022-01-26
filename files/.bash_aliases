@@ -229,7 +229,7 @@ if [ $TMUX_STATUS -eq 0 ]; then
 fi
 
 # countdown timer   (ex: countdown 00:10:00)
-countdown()
+ctd()
 (
   IFS=:
   set -- $*

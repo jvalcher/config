@@ -98,7 +98,7 @@ autocmd BufRead,BufNewFile *.htm,*.html,*.yml,*.yaml,*.json setlocal tabstop=2 s
 command Html 0r ~/.vim/skeletons/main.html
 
 " C boilerplate ( :Cboil )
-command Cboil 0r ~/.vim/skeletons/base.c
+command C 0r ~/.vim/skeletons/base.c
 
 " ignore case when searching
 set ignorecase
