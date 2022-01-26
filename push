@@ -1,6 +1,6 @@
 
-
 #!/bin/bash
+
 
 # bash_aliases
 cp /home/$USER/.bash_aliases files/
@@ -9,7 +9,7 @@ cp /home/$USER/.bash_aliases files/
 cp /home/$USER/.vimrc files/
 
 # vim skeletons
-#cp -r /home/$USER/.vim/skeletons files/
+cp -r /home/$USER/.vim/skeletons files/
 
 # vim spelling additions
 #cp -r /home/$USER/.vim/spell files/
