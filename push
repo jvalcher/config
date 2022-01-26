@@ -44,6 +44,7 @@ cp /home/$USER/Music/singing_bowl.wav files/
 # push to github
 git add . 
 git commit -m "update"
+git diff --stat --cached origin/main
 git push origin
 
 
