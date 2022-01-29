@@ -168,6 +168,8 @@ c () {
 
     # printf "\n-------------\n$FILE -> $OUTPUT_FILE\n-------------\n"
     g++ -Wall -o $OUTPUT_FILE $FILE
+
+    # (2 -> SIGINT)
     trap "trap_ctrlc" 2
 
     printf "\n"

@@ -14,6 +14,13 @@ function workout_timer() {
     while [ $secs -gt 0 ]
     do
 
+        # return cursor on ctrl-c (2 -> SIGINT)
+        function trap_ctrlc () {
+            tput cnorm 
+            exit 2
+        }
+        trap "trap_ctrlc" 2
+
         # print second
         echo -ne "$secs\033[0K\r"
 
