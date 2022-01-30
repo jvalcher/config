@@ -243,11 +243,19 @@ endif
 
 " turn off automatic YouCompleteMe cursor hover info
 let g:ycm_auto_hover = ''
+
 " toggle language hover info with F3
 map <F3> <plug>(YCMHover)
 
 " toggle YouCompleteMe on and off
-
+function Toggle_ycm()
+    if g:ycm_auto_trigger == 0
+        let g:ycm_auto_trigger = 1
+    elseif g:ycm_auto_trigger == 1
+        let g:ycm_auto_trigger = 0
+    endif
+endfunction
+map <F4> :call Toggle_ycm() <CR>
 
 "" vim-syntastic error checking shortcuts
 "" check for errors (F3), close error list (F4)
