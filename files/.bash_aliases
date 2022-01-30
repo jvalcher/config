@@ -241,7 +241,7 @@ if [ $TMUX_STATUS -eq 0 ]; then
         
         FILE_NAME=$@
         tmux rename-window " ${FILE_NAME:0:12} "
-        /usr/bin/vim "$FILE_NAME"
+        /usr/bin/vim.nox "$FILE_NAME"
         VIM_STATUS=$?
         basepathTitle
         return "$VIM_STATUS"
