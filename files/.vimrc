@@ -1,7 +1,7 @@
 
 " Reload configuration file
-    " in .vimrc  ->  :source %
-    " in a file  ->  :source ~/.vimrc
+    " in .vimrc         ->  :source %
+    " in another file   ->  :source ~/.vimrc
 
     
 """"""""""""
@@ -73,9 +73,6 @@ endif
 """"""""""""""""""""""""""""""""""
 " Miscellaneous settings
 
-" show line numbers
-set number
-
 " new lines inherit indentation of previous lines
 set autoindent
 
@@ -91,23 +88,10 @@ set tabstop=4
 " convert tabs to spaces, backspace removes tab
 set softtabstop=4 expandtab
 
-" set tabs to 2 for htm, html, yml files
-autocmd BufRead,BufNewFile *.htm,*.html,*.yml,*.yaml,*.json setlocal tabstop=2 shiftwidth=2 softtabstop=2
-
-" HTML boilerplate ( :Html )
-command Html 0r ~/.vim/skeletons/main.html
-
-" C boilerplate ( :C )
-command C 0r ~/.vim/skeletons/base.c
-
-" C++ boilerplate ( :Cpp )
-command Cpp 0r ~/.vim/skeletons/base.cpp
-
-" ignore case when searching
-set ignorecase
-
-" enable search highlighting
-set hlsearch
+"" enable search highlighting
+"set hlsearch
+" Search with no highlights
+set nohlsearch
 
 " jump to last position when opening file
 if has("autocmd")
@@ -117,6 +101,9 @@ endif
 
 " incremental search that shows partial matches
 set incsearch
+
+" ignore case when searching
+set ignorecase
 
 " auto switch search to case-sensitive when search query contains an uppercase letter
 set smartcase
@@ -131,7 +118,10 @@ set linebreak
 " enable syntax highlighting
 syntax on
 
-" set colorscheme
+" show line numbers
+set number
+
+" set color scheme
 silent! colorscheme onedark
 hi Normal guibg=NONE ctermbg=NONE
 highlight LineNr ctermfg=24
@@ -164,14 +154,11 @@ set history=1000
 " copy to system clipboard
 set clipboard=unnamedplus
 
-" Search with no highlights
-set nohlsearch
-
 " remove random characters
 set t_RV=
 set t_u7=
 
-" remap scrolling (up, down)
+" remap scrolling (up, down arrow)
 noremap <Down> <C-E>
 noremap <Up> <C-Y>
 
@@ -243,9 +230,9 @@ setlocal spellfile+=.oneoff.utf-8.add
 " enable vim-markdown concealing
 set conceallevel=2
 
-" disable math conceal in vim-markdown
-let g:tex_conceal = ""
-let g:vim_markdown_math = 1
+"" disable math conceal in vim-markdown
+"let g:tex_conceal = ""
+"let g:vim_markdown_math = 1
 
 " turn off vim-markdown folding
 let g:vim_markdown_folding_disabled = 1
@@ -257,20 +244,6 @@ if !isdirectory(expand("$HOME/.vim/undodir"))
 endif
 set undodir=$HOME/.vim/undodir
 
-"" compile and run current C source file in new tmux pane
-"" compile, run (F5), close compile window (F6)
-"function Compile()
-"    call system("tmux split-window -h -p 40")
-"    call system("tmux send-keys -t .2 'gcd " . expand("%") . "' Enter")
-"    call system("tmux select-pane -t .1")
-"endfunction
-"function Exit_compile()
-"    call system("tmux send-keys -t .2 C-c")
-"    call system("tmux send-keys -t .2 C-d")
-"endfunction
-"noremap <F5> :call Compile() <CR>
-"noremap <F6> :call Exit_compile() <CR>
-
 " scroll okular with foot pedal
 "function Okul_up()
 "    call system("xdotool search --class okular key --window %@ Up")
@@ -278,21 +251,52 @@ set undodir=$HOME/.vim/undodir
 "function Okul_down()
 "    call system("xdotool search --class okular key --window %@ Down")
 "endfunction
-"noremap <F7> :call Okul_up() <CR>
-"noremap <F8> :call Okul_down() <CR>
+
+" set tabs to 2 for htm, html, yml files
+autocmd BufRead,BufNewFile *.htm,*.html,*.yml,*.yaml,*.json setlocal tabstop=2 shiftwidth=2 softtabstop=2
+
+" HTML boilerplate ( :Html )
+command Html 0r ~/.vim/skeletons/main.html
+
+" C boilerplate ( :C )
+command C 0r ~/.vim/skeletons/base.c
+
+" C++ boilerplate ( :Cpp )
+command Cpp 0r ~/.vim/skeletons/base.cpp
+
+" compile and run current C source file in new tmux pane
+" delete compiled file
+" compile, run (F5), close compile window (F8)
+function C_compile()
+    call system("tmux split-window -h -p 40")
+    call system("tmux send-keys -t .2 'gcd " . expand("%") . "' Enter")
+    call system("tmux select-pane -t .1")
+endfunction
+noremap <F5> :call C_compile() <CR>
 
 " compile and run current C++ source file in new tmux pane
 " delete compiled file
 " compile, run (F5), close compile window (F6)
-function Compile()
+function Cpp_compile()
     call system("tmux split-window -h -p 40")
     call system("tmux send-keys -t .2 'c " . expand("%") . "' Enter")
     call system("tmux select-pane -t .1")
 endfunction
+noremap <F6> :call Cpp_compile() <CR>
+
+" compile and run current Python source file in new tmux pane
+" delete compiled file
+" compile, run (F7), close compile window (F8)
+function Py_compile()
+    call system("tmux split-window -h -p 40")
+    call system("tmux send-keys -t .2 'pyd " . expand("%") . "' Enter")
+    call system("tmux select-pane -t .1")
+endfunction
+noremap <F7> :call Py_compile() <CR>
+
+" exit tmux compile pane
 function Exit_compile()
     call system("tmux send-keys -t .2 C-c")
     call system("tmux send-keys -t .2 C-d")
 endfunction
-noremap <F5> :call Compile() <CR>
-noremap <F6> :call Exit_compile() <CR>
-
+noremap <F8> :call Exit_compile() <CR>

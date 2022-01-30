@@ -193,6 +193,26 @@ clearC () {
     find . -type f ! -name "*.c" -delete
 }
 
+pyd () {
+    FILE="$1"
+    OUTPUT_FILE="${FILE%.*}"
+
+    function trap_ctrlc () {
+        rm "$OUTPUT_FILE"
+        exit 2
+    }
+
+    # printf "\n-------------\n$FILE -> $OUTPUT_FILE\n-------------\n"
+
+    # (2 -> SIGINT)
+    trap "trap_ctrlc" 2
+
+    printf "\n"
+    py $FILE
+    printf "\n"
+    rm "$OUTPUT_FILE" 2>/dev/null
+}
+
 # Change Tmux window titles
 # If Tmux running...
 tmux ls > /dev/null 2>&1
