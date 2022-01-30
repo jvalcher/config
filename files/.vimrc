@@ -241,17 +241,22 @@ if exists('$TMUX')
     autocmd BufWrite * call system("tmux rename-window ' " . expand("%:t") . " '")
 endif
 
-" vim-syntastic error checking shortcuts
-" check for errors (F3), close error list (F4)
-" set to passive mode 
-let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
-" check for errors (F3), return to normal mode (F4)
-" :redraw! == clear status line
-nnoremap <F3> :SyntasticCheck <CR> :Errors <CR> :redraw! <CR>
-nnoremap <F4> :SyntasticToggleMode <CR> :SyntasticToggleMode <CR> :redraw! <CR>
-" next/previous error (Ctrl + n,p)
-nnoremap <C-n> :lnext <CR> :redraw! <CR>
-nnoremap <C-p> :lprev <CR> :redraw! <CR>
+" turn off automatic YouCompleteMe cursor hover info
+let g:ycm_auto_hover = ''
+" toggle language hover info with F3
+nmap <F3> <plug>(YCMHover)
+
+"" vim-syntastic error checking shortcuts
+"" check for errors (F3), close error list (F4)
+"" set to passive mode 
+"let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
+"" check for errors (F3), return to normal mode (F4)
+"" :redraw! == clear status line
+"nnoremap <F3> :SyntasticCheck <CR> :Errors <CR> :redraw! <CR>
+"nnoremap <F4> :SyntasticToggleMode <CR> :SyntasticToggleMode <CR> :redraw! <CR>
+"" next/previous error (Ctrl + n,p)
+"nnoremap <C-n> :lnext <CR> :redraw! <CR>
+"nnoremap <C-p> :lprev <CR> :redraw! <CR>
 
 " toggle spellchecker, previous, next (ctrl + s, a, d)
 map <C-s> :setlocal spell! spelllang=en_us<CR>
