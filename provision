@@ -163,13 +163,13 @@ MD_DIR="/home/$USER/Downloads/vim-markdown"
 printf "\n\n"
 printf "Installing vim-markdown...\n" 
 echo "________________"
-if [ ! -e $MD_DIR ]; then
+if [ -e $MD_DIR ]; then
     echo "Already installed"
 else
-    (cd ~/Downloads; \
-    git clone https://github.com/plasticboy/vim-markdown.git \
-    cd vim-markdown; \
-    sudo make install; \
+    (cd ~/Downloads; 
+    git clone https://github.com/plasticboy/vim-markdown.git 
+    cd vim-markdown; 
+    sudo make install; 
     vim-addon-manager install markdown)
 fi 
 
@@ -208,7 +208,7 @@ fi
 gsettings set org.gnome.desktop.background picture-uri file:///home/$USER/Pictures/wallpapers/$WALLPAPER.jpg
 echo "Changed wallpaper to $WALLPAPER"
 # Change login screen
-sudo scripts/change-gdm-background $PICTURES_DIR/$LOGIN
+sudo scripts/ubuntu-gdm-set-background --image $PICTURES_DIR/$LOGIN
 echo "Changed login wallpaper to $LOGIN"
 
 
