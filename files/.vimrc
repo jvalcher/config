@@ -56,7 +56,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'joshdick/onedark.vim'
 
 " check syntax on each save
-Plug 'vim-syntastic/syntastic'
+"Plug 'vim-syntastic/syntastic'
 
 " NERDTree
 Plug 'scrooloose/nerdtree'
@@ -210,14 +210,14 @@ noremap G Gzz
 " less escape delay
 set timeout timeoutlen=50
 
-" NERDTree settings
-    " I == toggle h(I)dden file view
-    " C == make selection (C)urrent working directory
-    " U == go (U)p directory
-" NERDTree toggle, (F2)
-map <F2> :NERDTreeToggle<CR>
-" make pwd the parent directory
-let g:NERDTreeChDirMode=3
+"" NERDTree settings
+"    " I == toggle h(I)dden file view
+"    " C == make selection (C)urrent working directory
+"    " U == go (U)p directory
+"" NERDTree toggle, (F2)
+"map <F2> :NERDTreeToggle<CR>
+"" make pwd the parent directory
+"let g:NERDTreeChDirMode=3
 
 " navigate vim panes (ctrl+w + h,j,k,l)
 nnoremap <C-W><J> <C-W><C-J>
@@ -243,11 +243,11 @@ endif
 
 " turn off automatic YouCompleteMe cursor hover info
 let g:ycm_auto_hover = ''
-
 " toggle language hover info with F3
 map <F3> <plug>(YCMHover)
 
-" toggle YouCompleteMe on and off
+" toggle YouCompleteMe on and off with F4
+let g:ycm_auto_trigger = 0
 function Toggle_ycm()
     if g:ycm_auto_trigger == 0
         let g:ycm_auto_trigger = 1
@@ -256,6 +256,9 @@ function Toggle_ycm()
     endif
 endfunction
 map <F4> :call Toggle_ycm() <CR>
+
+" toggle syntax checker in YouCompletMe
+let g:ycm_show_diagnostics_ui = 0
 
 "" vim-syntastic error checking shortcuts
 "" check for errors (F3), close error list (F4)
@@ -269,6 +272,7 @@ map <F4> :call Toggle_ycm() <CR>
 "nnoremap <C-n> :lnext <CR> :redraw! <CR>
 "nnoremap <C-p> :lprev <CR> :redraw! <CR>
 
+" toggle spellchecker, previous, next (ctrl + s, a, d)
 " toggle spellchecker, previous, next (ctrl + s, a, d)
 map <C-s> :setlocal spell! spelllang=en_us<CR>
 map <C-a> [s
