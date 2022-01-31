@@ -1,5 +1,4 @@
 #!/bin/bash
 
-git add .
-git commit -m "update"
+git diff --stat --cached origin/main
 git push

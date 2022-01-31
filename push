@@ -38,13 +38,15 @@ cp -r /home/$USER/Scripts files/
 # ~/bin
 cp -r /home/$USER/bin files/
 
+# wallpapers
+rsync -a --delete /home/$USER/Pictures/wallpapers wallpapers
+
 # singing bowl sound
 cp /home/$USER/Music/singing_bowl.wav files/
 
 # push to github
 git add . 
 git commit -m "update"
-git diff --stat --cached origin/main
-git push origin
+gitPush
 
 
