@@ -205,7 +205,8 @@ else
     cp wallpapers/* $PICTURES/DIRA
 fi
 # Change wallpaper
-gsettings set org.gnome.desktop.background picture-uri file:///home/$USER/Pictures/wallpapers/$WALLPAPER.jpg
+#source scripts/dbus.sh
+gsettings set org.gnome.desktop.background picture-uri "file:///home/$USER/Pictures/wallpapers/$WALLPAPER"
 echo "Changed wallpaper to $WALLPAPER"
 # Change login screen
 sudo scripts/ubuntu-gdm-set-background --image $PICTURES_DIR/$LOGIN

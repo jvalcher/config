@@ -1,0 +1,6 @@
+
+#!/bin/bash
+
+WALLPAPER="codeRain.jpg"
+gsettings set org.gnome.desktop.background picture-uri "file:///home/$USER/Pictures/wallpapers/$WALLPAPER"
+
