@@ -237,8 +237,10 @@ nnoremap j gj
 nnoremap k gk
 
 " Rename tmux window on save
+" :help filename-modifiers
 if exists('$TMUX')
-    autocmd BufWrite * call system("tmux rename-window ' " . expand("%:t") . " '")
+    autocmd BufEnter,FocusGained,BufWrite * call system("tmux rename-window ' " . expand("%:t") . " '")
+    "autocmd VimLeave * call system("tmux rename-window ' " . expand("%:h") . "/ '")
 endif
 
 " turn off automatic YouCompleteMe cursor hover info

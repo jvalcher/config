@@ -240,13 +240,12 @@ if [ $TMUX_STATUS -eq 0 ]; then
     vim () {
         
         FILE_NAME=$@
-        tmux rename-window " ${FILE_NAME:0:12} "
+        #tmux rename-window " ${FILE_NAME:0:12} "
         /usr/bin/vim.gtk3 "$FILE_NAME"
         VIM_STATUS=$?
         basepathTitle
         return "$VIM_STATUS"
     }
-    # vim-gtk3
     # Set window title when tmux starts
     basepathTitle
 fi
