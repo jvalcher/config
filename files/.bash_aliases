@@ -213,41 +213,46 @@ pyd () {
     rm "$OUTPUT_FILE" 2>/dev/null
 }
 
-# Change Tmux window titles
-# If Tmux running...
+# change cd and vim functionality to automatically rename tmux windows and panes
+CHAR_LIMIT=15
+MY_VIM="/usr/bin/vim.gtk3"
+
 tmux ls > /dev/null 2>&1
 TMUX_STATUS=$?
 if [ $TMUX_STATUS -eq 0 ]; then
-    # Create function to get pwd, trim to "basepath/", 
-    # and rename window
-    basepathTitle () {
+
+    basedirRename () {
+
         getval=$(pwd)
-        BASEPATH_TITLE="${getval##*/}"
-        tmux rename-window " ${BASEPATH_TITLE:0:12}/ "
-        #tmux rename-window "$BASEPATH_TITLE"
+        BASEPATH_FULL="${getval##*/}"
+        BASEPATH="${BASEPATH_FULL:0:$CHAR_LIMIT}/"
+
+        tmux rename-window " $BASEPATH "
+        tmux select-pane -T " $BASEPATH "
     }
-    # Change cd functionality to rename window title to
-    # pwd after every directory change
+
     cd () {
         builtin cd "$@"
         CD_STATUS=$?
-        basepathTitle
+        basedirRename
         return "$CD_STATUS"
     }
-    # Change vim functionality to change title 
-    # back to basepath on close
-    # Start, save title controlled in .vimrc
+
     vim () {
-        
-        FILE_NAME=$@
-        #tmux rename-window " ${FILE_NAME:0:12} "
-        /usr/bin/vim.gtk3 "$FILE_NAME"
-        VIM_STATUS=$?
-        basepathTitle
+
+        FILENAME_FULL="$@"
+        FILENAME="${FILENAME_FULL:0:$CHAR_LIMIT}"
+        tmux rename-window " $FILENAME "
+        tmux select-pane -T " $FILENAME "
+
+        $MY_VIM $@
+        VIM_STATUS="$?"
+
+        basedirRename
         return "$VIM_STATUS"
     }
-    # Set window title when tmux starts
-    basepathTitle
+
+    basedirRename
 fi
 
 # countdown timer   (ex: countdown 00:10:00)

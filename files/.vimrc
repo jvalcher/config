@@ -210,15 +210,6 @@ noremap G Gzz
 " less escape delay
 set timeout timeoutlen=50
 
-"" NERDTree settings
-"    " I == toggle h(I)dden file view
-"    " C == make selection (C)urrent working directory
-"    " U == go (U)p directory
-"" NERDTree toggle, (F2)
-"map <F2> :NERDTreeToggle<CR>
-"" make pwd the parent directory
-"let g:NERDTreeChDirMode=3
-
 " navigate vim panes (ctrl+w + h,j,k,l)
 nnoremap <C-W><J> <C-W><C-J>
 nnoremap <C-W><K> <C-W><C-K>
@@ -235,13 +226,6 @@ xnoremap <expr> p '"_d"'.v:register.'p'
 " Navigate up/down long lines with g+...
 nnoremap j gj
 nnoremap k gk
-
-" Rename tmux window on save
-" :help filename-modifiers
-if exists('$TMUX')
-    autocmd BufEnter,FocusGained,BufWrite * call system("tmux rename-window ' " . expand("%:t") . " '")
-    "autocmd VimLeave * call system("tmux rename-window ' " . expand("%:h") . "/ '")
-endif
 
 " turn off automatic YouCompleteMe cursor hover info
 let g:ycm_auto_hover = ''
@@ -262,18 +246,6 @@ map <F4> :call Toggle_ycm() <CR>
 " toggle syntax checker in YouCompletMe
 let g:ycm_show_diagnostics_ui = 0
 
-"" vim-syntastic error checking shortcuts
-"" check for errors (F3), close error list (F4)
-"" set to passive mode 
-"let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
-"" check for errors (F3), return to normal mode (F4)
-"" :redraw! == clear status line
-"nnoremap <F3> :SyntasticCheck <CR> :Errors <CR> :redraw! <CR>
-"nnoremap <F4> :SyntasticToggleMode <CR> :SyntasticToggleMode <CR> :redraw! <CR>
-"" next/previous error (Ctrl + n,p)
-"nnoremap <C-n> :lnext <CR> :redraw! <CR>
-"nnoremap <C-p> :lprev <CR> :redraw! <CR>
-
 " toggle spellchecker, previous, next (ctrl + s, a, d)
 " toggle spellchecker, previous, next (ctrl + s, a, d)
 map <C-s> :setlocal spell! spelllang=en_us<CR>
@@ -290,10 +262,6 @@ setlocal spellfile+=.oneoff.utf-8.add
 " enable vim-markdown concealing
 set conceallevel=2
 
-"" disable math conceal in vim-markdown
-"let g:tex_conceal = ""
-"let g:vim_markdown_math = 1
-
 " turn off vim-markdown folding
 let g:vim_markdown_folding_disabled = 1
 
@@ -303,14 +271,6 @@ if !isdirectory(expand("$HOME/.vim/undodir"))
     call mkdir(expand("$HOME/.vim/undodir"), "p")
 endif
 set undodir=$HOME/.vim/undodir
-
-" scroll okular with foot pedal
-"function Okul_up()
-"    call system("xdotool search --class okular key --window %@ Up")
-"endfunction
-"function Okul_down()
-"    call system("xdotool search --class okular key --window %@ Down")
-"endfunction
 
 " set tabs to 2 for htm, html, yml files
 autocmd BufRead,BufNewFile *.htm,*.html,*.yml,*.yaml,*.json setlocal tabstop=2 shiftwidth=2 softtabstop=2
@@ -329,8 +289,10 @@ command Cpp 0r ~/.vim/skeletons/base.cpp
 " compile, run (F5), close compile window (F8)
 function C_compile()
     call system("tmux split-window -h -p 40")
-    call system("tmux send-keys -t .2 'gcd " . expand("%") . "' Enter")
-    call system("tmux select-pane -t .1")
+    call system("tmux send-keys -t .1 'gcd " . expand("%:t") . "' Enter")
+    call system("tmux rename-window -t .1 ' " . expand("%:t") . " '")
+    call system("tmux select-pane -t .1 -T ' " . expand("%:t") . " '")
+    call system("tmux select-pane -t .0")
 endfunction
 noremap <F5> :call C_compile() <CR>
 
@@ -339,8 +301,10 @@ noremap <F5> :call C_compile() <CR>
 " compile, run (F5), close compile window (F6)
 function Cpp_compile()
     call system("tmux split-window -h -p 40")
-    call system("tmux send-keys -t .2 'c " . expand("%") . "' Enter")
-    call system("tmux select-pane -t .1")
+    call system("tmux send-keys -t .1 'c " . expand("%:t") . "' Enter")
+    call system("tmux rename-window -t .1 ' " . expand("%:t") . " '")
+    call system("tmux select-pane -t .1 -T ' " . expand("%:t") . " '")
+    call system("tmux select-pane -t .0")
 endfunction
 noremap <F6> :call Cpp_compile() <CR>
 
@@ -349,14 +313,59 @@ noremap <F6> :call Cpp_compile() <CR>
 " compile, run (F7), close compile window (F8)
 function Py_compile()
     call system("tmux split-window -h -p 40")
-    call system("tmux send-keys -t .2 'pyd " . expand("%") . "' Enter")
-    call system("tmux select-pane -t .1")
+    call system("tmux send-keys -t .1 'pyd " . expand("%:t") . "' Enter")
+    call system("tmux rename-window -t .1 ' " . expand("%:t") . " '")
+    call system("tmux select-pane -t .1 -T ' " . expand("%:t") . " '")
+    call system("tmux select-pane -t .0")
 endfunction
 noremap <F7> :call Py_compile() <CR>
 
 " exit tmux compile pane
 function Exit_compile()
-    call system("tmux send-keys -t .2 C-c")
-    call system("tmux send-keys -t .2 C-d")
+    call system("tmux send-keys -t .1 C-c")
+    call system("tmux send-keys -t .1 C-d")
 endfunction
 noremap <F8> :call Exit_compile() <CR>
+
+" Rename tmux window on save
+" :help filename-modifiers
+"if exists('$TMUX')
+"    autocmd BufEnter,FocusGained,BufWrite * call system("tmux rename-window ' " . expand("%:t") . " '")
+"    autocmd BufEnter,FocusGained,BufWrite * call system("tmux select-pane -T ' " . expand("%:t") . " '")
+"    autocmd VimLeave * call system("tmux rename-window ' " . $BASEPATH . "/ '")
+"    autocmd VimLeave * call system("tmux select-pane -T ' " . $BASEPATH . "/ '")
+"endif
+
+" scroll okular with foot pedal
+"function Okul_up()
+"    call system("xdotool search --class okular key --window %@ Up")
+"endfunction
+"function Okul_down()
+"    call system("xdotool search --class okular key --window %@ Down")
+"endfunction
+
+"" disable math conceal in vim-markdown
+"let g:tex_conceal = ""
+"let g:vim_markdown_math = 1
+
+"" vim-syntastic error checking shortcuts
+"" check for errors (F3), close error list (F4)
+"" set to passive mode 
+"let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
+"" check for errors (F3), return to normal mode (F4)
+"" :redraw! == clear status line
+"nnoremap <F3> :SyntasticCheck <CR> :Errors <CR> :redraw! <CR>
+"nnoremap <F4> :SyntasticToggleMode <CR> :SyntasticToggleMode <CR> :redraw! <CR>
+"" next/previous error (Ctrl + n,p)
+"nnoremap <C-n> :lnext <CR> :redraw! <CR>
+"nnoremap <C-p> :lprev <CR> :redraw! <CR>
+
+"" NERDTree settings
+"    " I == toggle h(I)dden file view
+"    " C == make selection (C)urrent working directory
+"    " U == go (U)p directory
+"" NERDTree toggle, (F2)
+"map <F2> :NERDTreeToggle<CR>
+"" make pwd the parent directory
+"let g:NERDTreeChDirMode=3
+

@@ -7,4 +7,4 @@ foreground-color='rgb(211,215,207)'
 use-system-font=false
 use-theme-colors=false
 use-theme-transparency=false
-use-transparent-background=true
+use-transparent-background=false
