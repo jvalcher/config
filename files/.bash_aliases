@@ -9,7 +9,7 @@ if [ $STATE -ne 0 ]; then
 fi
 
 # prompt
-PS1="\[\033[1;33m\]\W/ $ \[\033[0m\]"
+PS1="\[\033[1;38;5;25m\]\W/ $ \[\033[0m\]"
 
 # add bins to path
 export PATH=$PATH:/home/$USER/.local/bin
