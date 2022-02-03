@@ -62,6 +62,9 @@ alias suspend="systemctl suspend"
 # search for string recursively in pwd
 alias strS="sudo grep -rnw . -e "
 
+# return actual instead of soft link address
+alias pwd="pwd -P"
+
 # search for file recursively in pwd
 function fileS {
     sudo find . -type f -iname $1
@@ -260,10 +263,11 @@ if [ $TMUX_STATUS -eq 0 ]; then
         if [ -z "$1" ]
         then
             vim -c "NERDTreeToggle"
+            VIM_STATUS="$?"
+        else
+            $MY_VIM $@
+            VIM_STATUS="$?"
         fi
-
-        $MY_VIM $@
-        VIM_STATUS="$?"
 
         basedirRename
         return "$VIM_STATUS"
