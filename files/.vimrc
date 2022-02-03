@@ -275,6 +275,9 @@ set undodir=$HOME/.vim/undodir
 " set tabs to 2 for htm, html, yml files
 autocmd BufRead,BufNewFile *.htm,*.html,*.yml,*.yaml,*.json setlocal tabstop=2 shiftwidth=2 softtabstop=2
 
+" use interactive shell -> access to .bash_alias functions
+set shellcmdflag=-ic
+
 " HTML boilerplate ( :Html )
 command Html 0r ~/.vim/skeletons/main.html
 
@@ -289,10 +292,12 @@ command Cpp 0r ~/.vim/skeletons/base.cpp
 " compile, run (F5), close compile window (F8)
 function C_compile()
     call system("tmux split-window -h -p 40")
+    call system("tmux send-keys -t .1 'basedirRename' Enter")
+    call system("tmux send-keys -t .1 clear Enter")
     call system("tmux send-keys -t .1 'gcd " . expand("%:t") . "' Enter")
-    call system("tmux rename-window -t .1 ' " . expand("%:t") . " '")
-    call system("tmux select-pane -t .1 -T ' " . expand("%:t") . " '")
     call system("tmux select-pane -t .0")
+    :silent exec "!fileRename %"
+    :redraw!
 endfunction
 noremap <F5> :call C_compile() <CR>
 
@@ -301,10 +306,12 @@ noremap <F5> :call C_compile() <CR>
 " compile, run (F5), close compile window (F6)
 function Cpp_compile()
     call system("tmux split-window -h -p 40")
+    call system("tmux send-keys -t .1 'basedirRename' Enter")
+    call system("tmux send-keys -t .1 clear Enter")
     call system("tmux send-keys -t .1 'c " . expand("%:t") . "' Enter")
-    call system("tmux rename-window -t .1 ' " . expand("%:t") . " '")
-    call system("tmux select-pane -t .1 -T ' " . expand("%:t") . " '")
     call system("tmux select-pane -t .0")
+    :silent exec "!fileRename %"
+    :redraw!
 endfunction
 noremap <F6> :call Cpp_compile() <CR>
 
@@ -313,10 +320,12 @@ noremap <F6> :call Cpp_compile() <CR>
 " compile, run (F7), close compile window (F8)
 function Py_compile()
     call system("tmux split-window -h -p 40")
+    call system("tmux send-keys -t .1 'basedirRename' Enter")
+    call system("tmux send-keys -t .1 clear Enter")
     call system("tmux send-keys -t .1 'pyd " . expand("%:t") . "' Enter")
-    call system("tmux rename-window -t .1 ' " . expand("%:t") . " '")
-    call system("tmux select-pane -t .1 -T ' " . expand("%:t") . " '")
     call system("tmux select-pane -t .0")
+    :silent exec "!fileRename %"
+    :redraw!
 endfunction
 noremap <F7> :call Py_compile() <CR>
 
@@ -324,6 +333,8 @@ noremap <F7> :call Py_compile() <CR>
 function Exit_compile()
     call system("tmux send-keys -t .1 C-c")
     call system("tmux send-keys -t .1 C-d")
+    :silent exec "!fileRename %"
+    :redraw!
 endfunction
 noremap <F8> :call Exit_compile() <CR>
 

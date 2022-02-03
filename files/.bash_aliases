@@ -230,6 +230,14 @@ if [ $TMUX_STATUS -eq 0 ]; then
         tmux rename-window " $BASEPATH "
         tmux select-pane -T " $BASEPATH "
     }
+    fileRename () {
+
+        FILENAME_FULL="$@"
+        FILENAME="${FILENAME_FULL:0:$CHAR_LIMIT}"
+        tmux rename-window " $FILENAME "
+        tmux select-pane -T " $FILENAME "
+    }
+
 
     cd () {
         builtin cd "$@"
@@ -239,11 +247,6 @@ if [ $TMUX_STATUS -eq 0 ]; then
     }
 
     vim () {
-
-        FILENAME_FULL="$@"
-        FILENAME="${FILENAME_FULL:0:$CHAR_LIMIT}"
-        tmux rename-window " $FILENAME "
-        tmux select-pane -T " $FILENAME "
 
         $MY_VIM $@
         VIM_STATUS="$?"
