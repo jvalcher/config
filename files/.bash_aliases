@@ -248,6 +248,8 @@ if [ $TMUX_STATUS -eq 0 ]; then
 
     vim () {
 
+        fileRename $@
+
         $MY_VIM $@
         VIM_STATUS="$?"
 
