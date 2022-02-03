@@ -289,7 +289,7 @@ command Cpp 0r ~/.vim/skeletons/base.cpp
 
 " compile and run current C source file in new tmux pane
 " delete compiled file
-" compile, run (F5), close compile window (F8)
+" compile, run (F5)
 function C_compile()
     call system("tmux split-window -h -p 40")
     call system("tmux send-keys -t .1 'basedirRename' Enter")
@@ -303,7 +303,7 @@ noremap <F5> :call C_compile() <CR>
 
 " compile and run current C++ source file in new tmux pane
 " delete compiled file
-" compile, run (F5), close compile window (F6)
+" compile, run (F6)
 function Cpp_compile()
     call system("tmux split-window -h -p 40")
     call system("tmux send-keys -t .1 'basedirRename' Enter")
@@ -317,7 +317,7 @@ noremap <F6> :call Cpp_compile() <CR>
 
 " compile and run current Python source file in new tmux pane
 " delete compiled file
-" compile, run (F7), close compile window (F8)
+" compile, run (F7)
 function Py_compile()
     call system("tmux split-window -h -p 40")
     call system("tmux send-keys -t .1 'basedirRename' Enter")
@@ -329,7 +329,7 @@ function Py_compile()
 endfunction
 noremap <F7> :call Py_compile() <CR>
 
-" exit tmux compile pane
+" exit tmux compile pane (F8)
 function Exit_compile()
     call system("tmux send-keys -t .1 C-c")
     call system("tmux send-keys -t .1 C-d")

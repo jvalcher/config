@@ -223,7 +223,7 @@ vimt () {
 }
 
 # change cd and vim functionality to automatically rename tmux windows and panes
-CHAR_LIMIT=15
+CHAR_LIMIT=20
 MY_VIM="/usr/bin/vim.gtk3"
 
 tmux ls > /dev/null 2>&1
@@ -252,6 +252,7 @@ if [ $TMUX_STATUS -eq 0 ]; then
         builtin cd "$@"
         CD_STATUS=$?
         basedirRename
+        ll
         return "$CD_STATUS"
     }
 

@@ -40,6 +40,8 @@ sudo apt-get install -y \
     aptitude \
     grub-customizer \
     vim-addon-manager \
+    tree \
+    imagemagick \
     okular \
     bluez \
     blueman \
