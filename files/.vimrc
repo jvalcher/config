@@ -338,6 +338,15 @@ function Exit_compile()
 endfunction
 noremap <F8> :call Exit_compile() <CR>
 
+" NERDTree settings
+    " I == toggle h(I)dden file view
+    " C == make selection (C)urrent working directory
+    " U == go (U)p directory
+" NERDTree toggle, (F2)
+map <F2> :NERDTreeToggle<CR>
+" make pwd the parent directory
+let g:NERDTreeChDirMode=3
+
 " Rename tmux window on save
 " :help filename-modifiers
 "if exists('$TMUX')
@@ -370,13 +379,4 @@ noremap <F8> :call Exit_compile() <CR>
 "" next/previous error (Ctrl + n,p)
 "nnoremap <C-n> :lnext <CR> :redraw! <CR>
 "nnoremap <C-p> :lprev <CR> :redraw! <CR>
-
-"" NERDTree settings
-"    " I == toggle h(I)dden file view
-"    " C == make selection (C)urrent working directory
-"    " U == go (U)p directory
-"" NERDTree toggle, (F2)
-"map <F2> :NERDTreeToggle<CR>
-"" make pwd the parent directory
-"let g:NERDTreeChDirMode=3
 

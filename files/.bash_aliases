@@ -213,6 +213,12 @@ pyd () {
     rm "$OUTPUT_FILE" 2>/dev/null
 }
 
+vimt () {
+
+    vim -c "NERDTreeToggle"
+
+}
+
 # change cd and vim functionality to automatically rename tmux windows and panes
 CHAR_LIMIT=15
 MY_VIM="/usr/bin/vim.gtk3"
@@ -249,6 +255,12 @@ if [ $TMUX_STATUS -eq 0 ]; then
     vim () {
 
         fileRename $@
+
+        # if no argument, open NERDTree
+        if [ -z "$1" ]
+        then
+            vim -c "NERDTreeToggle"
+        fi
 
         $MY_VIM $@
         VIM_STATUS="$?"
