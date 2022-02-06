@@ -278,6 +278,10 @@ autocmd BufRead,BufNewFile *.htm,*.html,*.yml,*.yaml,*.json setlocal tabstop=2 s
 " use interactive shell -> access to .bash_alias functions
 set shellcmdflag=-ic
 
+" rename window and pane on start, focus, write
+autocmd BufWrite * call system("tmux rename-window ' " . expand("%:t") . " '")
+autocmd BufWrite * call system("tmux select-pane -T ' " . expand("%:t") . " '")
+
 " HTML boilerplate ( :Html )
 command Html 0r ~/.vim/skeletons/main.html
 

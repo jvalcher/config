@@ -1,4 +1,17 @@
 
+# not connecting
+- exit Blueman
+- clear Bose history (hold switch to right for 10+ secs)
+- turn off Bose
+- restart bluetooth service
+- start Blueman
+- turn on Bose and connect
+
+
+#################
+# MISC COMMANDS #
+#################
+
 # Bose BT headphones not connecting
 
 *** modprobe  ***
