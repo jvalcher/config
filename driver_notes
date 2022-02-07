@@ -1,0 +1,6 @@
+
+ubuntu-drivers devices
+nvidia-smi
+nvidia-detector
+dkms status
+apt search nvidia-driver
