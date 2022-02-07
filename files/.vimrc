@@ -300,7 +300,8 @@ function C_compile()
     call system("tmux send-keys -t .1 clear Enter")
     call system("tmux send-keys -t .1 'gcd " . expand("%:t") . "' Enter")
     call system("tmux select-pane -t .0")
-    call system("tmux select-pane -T ' " . expand("%:t") . " '")
+    :silent exec "!fileRename %"
+    :redraw!
 endfunction
 noremap <F5> :call C_compile() <CR>
 
@@ -308,12 +309,13 @@ noremap <F5> :call C_compile() <CR>
 " delete compiled file
 " compile, run (F6)
 function Cpp_compile()
-    call system("tmux split-window -v -p 40")
+    call system("tmux split-window -h -p 40")
     call system("tmux send-keys -t .1 'basedirRename' Enter")
     call system("tmux send-keys -t .1 clear Enter")
     call system("tmux send-keys -t .1 'c " . expand("%:t") . "' Enter")
     call system("tmux select-pane -t .0")
-    call system("tmux select-pane -T ' " . expand("%:t") . " '")
+    :silent exec "!fileRename %"
+    :redraw!
 endfunction
 noremap <F6> :call Cpp_compile() <CR>
 
@@ -325,8 +327,9 @@ function Py_compile()
     call system("tmux send-keys -t .1 'basedirRename' Enter")
     call system("tmux send-keys -t .1 clear Enter")
     call system("tmux send-keys -t .1 'pyd " . expand("%:t") . "' Enter")
-    call system("tmux select-pane -t .0 -T ")
-    call system("tmux select-pane -T ' " . expand("%:t") . " '")
+    call system("tmux select-pane -t .0")
+    :silent exec "!fileRename %"
+    :redraw!
 endfunction
 noremap <F7> :call Py_compile() <CR>
 
@@ -334,7 +337,8 @@ noremap <F7> :call Py_compile() <CR>
 function Exit_compile()
     call system("tmux send-keys -t .1 C-c")
     call system("tmux send-keys -t .1 C-d")
-    call system("tmux select-pane -t .0 -T ' " . expand("%:t") . " '")
+    :silent exec "!fileRename %"
+    :redraw!
 endfunction
 noremap <F8> :call Exit_compile() <CR>
 
