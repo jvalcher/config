@@ -6,6 +6,30 @@
 - restart bluetooth service
 - start Blueman
 - turn on Bose and connect
+# or
+- power off
+- unplug
+- turn on
+
+
+# bluetooth connected, not showing in sound options
+# Tell the service to not load the module. To do this, edit /etc/pulse/default.pa and comment out these lines by putting # characters in front of them:
+.ifexists module-bluetooth-discover.so
+load-module module-bluetooth-discover
+.endif
+# Configure the module to be loaded after X11. To do this, edit /usr/bin/start-pulseaudio-x11 and add two lines:
+if [ x"$DISPLAY" != x ] ; then
+    # ...
+
+    # Add these lines:
+    /usr/bin/pactl load-module module-bluetooth-discover
+    /usr/bin/pactl load-module module-switch-on-connect
+fi
+# Restart pulseaudio and bluetooh. Either reboot your machine or use the following commands:
+pulseaudio -k
+start-pulseaudio-x11
+sudo service bluetooth restart
+
 
 
 #################
@@ -48,4 +72,5 @@ bluetoothctl
 # bluez
 bt-adapter -i
 sudo bt-device -l
+
 
