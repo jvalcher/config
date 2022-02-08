@@ -8,9 +8,6 @@ if [ $STATE -ne 0 ]; then
     tmux
 fi
 
-# go to home dir
-cd ~
-
 # prompt
 PS1="\[\033[1;38;5;25m\]\W/ $ \[\033[0m\]"
 
