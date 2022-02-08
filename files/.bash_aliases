@@ -8,6 +8,9 @@ if [ $STATE -ne 0 ]; then
     tmux
 fi
 
+# go to home dir
+cd ~
+
 # prompt
 PS1="\[\033[1;38;5;25m\]\W/ $ \[\033[0m\]"
 
@@ -309,7 +312,7 @@ ctd()
 
 # okular foot pedal scroll variable
 # used for .vimrc F7, F8 shortcuts
-okul=$(xdotool search --onlyvisible --class okular | head -1)
+#okul=$(xdotool search --onlyvisible --class okular | head -1)
 
 
 
