@@ -6,10 +6,9 @@
 
 #include <iostream>
 
-using namespace std;
 
-int main (void) {
-
+int main (void) 
+{
 
 
     return 0;

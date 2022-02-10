@@ -161,7 +161,7 @@ set number
 
 " set color scheme
 silent! colorscheme onedark
-hi Normal guibg=NONE ctermbg=NONE
+"hi Normal guibg=NONE ctermbg=NONE
 highlight LineNr ctermfg=24
 
 " always show cursor position
