@@ -186,7 +186,7 @@ echo "________________"
 if [ -e $VIM_DIR/skeletons ]; then
     rsync -a --delete files/skeletons/ /home/$USER/.vim/skeletons/
 else 
-    cp -r files/skeletons $VIM_DIR/skeletons
+    cp -r files/skeletons $VIM_DIR/
 fi
 
 
@@ -213,7 +213,7 @@ else
 fi
 # Change wallpaper
 #source scripts/dbus.sh
-gsettings set org.gnome.desktop.background picture-uri "file:///home/$USER/Pictures/wallpapers/$WALLPAPER"
+gsettings set org.gnome.desktop.background picture-uri "file:////home/$USER/Pictures/wallpapers/$WALLPAPER"
 echo "Changed wallpaper to $WALLPAPER"
 # Change login screen
 sudo scripts/ubuntu-gdm-set-background --image $PICTURES_DIR/$LOGIN > /dev/null 2>&1
