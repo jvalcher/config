@@ -1,7 +1,15 @@
 
 
+# live server config
+
 // /usr/local/bin/live-server (insert at top)
 // rename tmux window to " live-server "
 const execSync = require('child_process').execSync;
 const output = execSync('tmux rename-window " live-server "', { encoding: 'utf-8' });
+
+
+# switch from wayland to xorg
+
+echo $XDG_SESSION_TYPE
+
 

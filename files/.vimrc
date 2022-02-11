@@ -279,8 +279,7 @@ autocmd BufRead,BufNewFile *.htm,*.html,*.yml,*.yaml,*.json setlocal tabstop=2 s
 set shellcmdflag=-ic
 
 " rename window and pane on start, focus, write
-autocmd BufWrite * call system("tmux rename-window ' " . expand("%:t") . " '")
-autocmd BufWrite * call system("tmux select-pane -T ' " . expand("%:t") . " '")
+autocmd BufWrite * :silent exec "!fileRename %" | :redraw!
 
 " HTML boilerplate ( :Html )
 command Html 0r ~/.vim/skeletons/main.html
@@ -304,6 +303,20 @@ function C_compile()
     :redraw!
 endfunction
 noremap <F5> :call C_compile() <CR>
+
+" compile and debug C source file in new tmux pane
+" delete compiled file
+" compile, debug (F9)
+function C_debug()
+    call system("tmux new-window -t 10")
+    call system("tmux send-keys -t 10 clear Enter")
+    call system("tmux send-keys -t 10 'gdc " . expand("%:t") . "' Enter")
+    call system("tmux send-keys -t 10 'layout src' Enter")
+    call system("tmux select-pane -t .0")
+    :silent exec "!fileRename %"
+    :redraw!
+endfunction
+map <F9> :call C_debug() <CR>
 
 " compile and run current C++ source file in new tmux pane
 " delete compiled file

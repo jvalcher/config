@@ -145,18 +145,32 @@ gco () {
     #printf "\e[1;32mExecutable:\e[0m  $OUTPUT_FILE\n\n"
 }
 
-# compiles, runs, deletes output file after running
+# compiles with same name as source file, runs, deletes output file after running
 gcd () {
     FILE="$1"
     OUTPUT_FILE="${FILE%.*}"
     printf "\n"
     gcc -o $OUTPUT_FILE $FILE
+
+    # if file exists, run it and then remove it
     if [ -f "$OUTPUT_FILE" ]; then
         printf "\n"
         ./"$OUTPUT_FILE"
         printf "\n"
         rm $OUTPUT_FILE
     fi
+}
+
+# compile C program, runs gdb
+gdc () {
+
+    #compile file with debug et al. flags
+    FILE="$1"
+    printf "\n"
+    gcc -g $FILE
+
+    # run debugger
+    gdb a.out
 }
 
 # compile file.cpp as file, run it, delete compiled file
