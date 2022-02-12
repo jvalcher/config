@@ -259,6 +259,9 @@ map <C-d> ]s
 setlocal spellfile+=~/.vim/spell/en.utf-8.add
 setlocal spellfile+=.oneoff.utf-8.add
 
+" set file enconding
+set fileencodings=utf-8
+
 " enable vim-markdown concealing
 set conceallevel=2
 
@@ -272,14 +275,15 @@ if !isdirectory(expand("$HOME/.vim/undodir"))
 endif
 set undodir=$HOME/.vim/undodir
 
-" set tabs to 2 for htm, html, yml files
+" set tabs to 2 for htm, html, yml, yaml, json files
 autocmd BufRead,BufNewFile *.htm,*.html,*.yml,*.yaml,*.json setlocal tabstop=2 shiftwidth=2 softtabstop=2
 
 " use interactive shell -> access to .bash_alias functions
 set shellcmdflag=-ic
 
-" rename window and pane on start, focus, write
+" rename window and pane on write
 autocmd BufWrite * :silent exec "!fileRename %" | :redraw!
+autocmd VimLeave * call system("cd .")
 
 " HTML boilerplate ( :Html )
 command Html 0r ~/.vim/skeletons/main.html
