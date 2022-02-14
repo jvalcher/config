@@ -26,7 +26,6 @@ sudo apt-get install -y \
     ca-certificates \
     curl \
     gnupg \
-    lsb-release \
     pandoc \
     feh \
     libglib2.0-dev-bin \
@@ -38,7 +37,6 @@ sudo apt-get install -y \
     mupen64plus* \
     mono-complete \
     aptitude \
-    grub-customizer \
     vim-addon-manager \
     tree \
     trash-cli \
@@ -53,22 +51,21 @@ cp files/.bash_aliases /home/$USER/.bash_aliases
 . /home/$USER/.bashrc
 
 
-
-printf "\n\nInstalling Docker...\n"
-echo "________________"
-DOCK_KEY="/usr/share/keyrings/docker-archive-keyring.gpg"
-if [ -e $DOCK_KEY ]; then
-    printf "Already installed\n"
-else
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg 
-    echo \
-    "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
-    $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null 
-    sudo apt-get update 
-    sudo apt-get install -y docker-ce docker-ce-cli containerd.io
-    sudo usermod -aG docker ${USER}
-    docker run hello-world
-fi
+#printf "\n\nInstalling Docker...\n"
+#echo "________________"
+#DOCK_KEY="/usr/share/keyrings/docker-archive-keyring.gpg"
+#if [ -e $DOCK_KEY ]; then
+#    printf "Already installed\n"
+#else
+#    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg 
+#    echo \
+#    "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+#    $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null 
+#    sudo apt-get update 
+#    sudo apt-get install -y docker-ce docker-ce-cli containerd.io
+#    sudo usermod -aG docker ${USER}
+#    docker run hello-world
+#fi
 
 #printf "\n\nInstalling docker-compose...\n"
 #echo "________________"
@@ -82,16 +79,16 @@ fi
 #fi
 
 
-printf "\n\nInstalling Ansible...\n"
-echo "________________"
-ANSIBLE_STATUS=$(dpkg -s ansible 2>/dev/null | echo $?)
-if [ $ANSIBLE_STATUS -eq 0 ]; then
-    printf "Already installed\n"
-else
-    sudo apt install software-properties-common -y
-    sudo apt-add-repository -y --update ppa:ansible/ansible
-    sudo apt install ansible -y
-fi
+#printf "\n\nInstalling Ansible...\n"
+#echo "________________"
+#ANSIBLE_STATUS=$(dpkg -s ansible 2>/dev/null | echo $?)
+#if [ $ANSIBLE_STATUS -eq 0 ]; then
+#    printf "Already installed\n"
+#else
+#    sudo apt install software-properties-common -y
+#    sudo apt-add-repository -y --update ppa:ansible/ansible
+#    sudo apt install ansible -y
+#fi
 
 
 printf "\n\nRemoving unnecessary Apt files...\n"
@@ -122,12 +119,25 @@ sudo cp files/jvalcher /etc/sudoers.d/jvalcher
 printf "Gnome terminal\n"
 dconf load /org/gnome/terminal/ < files/gnome_terminal_jvalcher
 
-printf "touchpad_toggle\n"
-sudo cp files/touchpad_toggle /usr/local/bin/
-sudo chown $USER /usr/local/bin/touchpad_toggle
+echo ".tmux.conf"
+cp files/.tmux.conf /home/$USER/
 
 echo ".vimrc"
 cp files/.vimrc /home/$USER/.vimrc
+
+printf "\n\n"
+printf "Copying Vim skeletons...\n" 
+echo "________________"
+VIM_DIR="/home/$USER/.vim"
+if [ -e $VIM_DIR/skeletons ]; then
+    rsync -a --delete files/skeletons/ /home/$USER/.vim/skeletons/
+else 
+    cp -r files/skeletons $VIM_DIR/
+fi
+
+printf "touchpad_toggle\n"
+sudo cp files/touchpad_toggle /usr/local/bin/
+sudo chown $USER /usr/local/bin/touchpad_toggle
 
 printf "~/bin...\n"
 dir="~/bin"
@@ -141,21 +151,8 @@ sudo cp -r files/bin /home/$USER/
 echo "gtk.css"
 cp files/gtk.css /home/$USER/.config/gtk-3.0/gtk.css
 
-echo ".tmux.conf"
-cp files/.tmux.conf /home/$USER/
-
 printf "singing_bowl.wav\n"
 cp files/singing_bowl.wav /home/$USER/Music/
-
-printf "\n\n"
-printf "Copying Vim skeletons...\n" 
-echo "________________"
-VIM_DIR="/home/$USER/.vim"
-if [ -e $VIM_DIR/skeletons ]; then
-    rsync -a --delete files/skeletons/ /home/$USER/.vim/skeletons/
-else 
-    cp -r files/skeletons $VIM_DIR/
-fi
 
 
 ###########

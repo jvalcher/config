@@ -3,5 +3,5 @@
 # start m64py emulator
 
 #python3 ~/Downloads/m64py-0.2.5/bin/m64py
-mupen64plus --resolution 1920x1080 ~/bin/MK64.n64
+mupen64plus --resolution 1920x1080 MK64.n64
 

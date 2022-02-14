@@ -15,11 +15,14 @@ sudo apt-get install -y \
     tmux \
     xclip \
     curl \
+    lsb-release \
     cmake \
     build-essential \
     python3-dev \
     aptitude \
     tree \
+    grub-customizer
+
 
 printf "\n\nCopying, sourcing .bash_aliases...\n"
 echo "________________"
@@ -38,26 +41,14 @@ printf "\n\n"
 printf "Copying configuration files and scripts...\n"
 echo "________________"
 
-sudo cp files/jvalcher /etc/sudoers.d/jvalcher
 printf "jvalcher \t\t(sudoers.d)\n"
+sudo cp files/jvalcher /etc/sudoers.d/jvalcher
 
-cp files/.vimrc /home/$USER/.vimrc
-echo ".vimrc"
-
-cp -r files/Scripts /home/$USER/
-printf "~/Scripts...\n"
-
-sudo cp -r files/bin /home/$USER/
-printf "~/bin...\n"
-
-cp files/gtk.css /home/$USER/.config/gtk-3.0/gtk.css
-echo "gtk.css"
-
-cp files/.tmux.conf /home/$USER/
 echo ".tmux.conf"
+cp files/.tmux.conf /home/$USER/
 
-cp files/singing_bowl.wav /home/$USER/Music/
-printf "singing_bowl.wav\n"
+echo ".vimrc"
+cp files/.vimrc /home/$USER/.vimrc
 
 VIM_DIR="/home/$USER/.vim"
 printf "\n\n"
@@ -68,6 +59,9 @@ if [ -e $VIM_DIR/skeletons ]; then
 else
     cp -r files/skeletons $VIM_DIR/skeletons
 fi
+
+printf "~/bin...\n"
+sudo cp -r files/cli/bin /home/$USER/
 
 ##########
 # Exit message

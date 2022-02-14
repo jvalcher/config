@@ -1,0 +1,28 @@
+
+#!/bin/bash
+
+
+# sudoers.d
+sudo cp /etc/sudoers.d/jvalcher files/
+
+# bash_aliases
+cp /home/$USER/.bash_aliases files/
+
+# Tmux
+cp /home/$USER/.tmux.conf files/ 
+
+# vim
+cp /home/$USER/.vimrc files/
+
+# vim skeletons
+cp -r /home/$USER/.vim/skeletons files/
+
+# ~/bin
+cp -r /home/$USER/bin files/cli/
+
+# push to github
+git add . 
+git commit -m "update"
+gitPush
+
+
