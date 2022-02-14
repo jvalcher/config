@@ -15,6 +15,12 @@ PS1="\[\033[1;38;5;25m\]\W/ $ \[\033[0m\]"
 export PATH=$PATH:/home/$USER/.local/bin
 export PATH=$PATH:/home/$USER/bin
 
+# read man pages with vim
+export PATH="$PATH:$HOME/.vim/bundle/vim-superman/bin"
+
+# man to vman (vim-superman)
+alias vman="man"
+
 # connect to easytether via usb
 alias easy="sudo systemctl restart systemd-networkd; sudo easytether-usb"
 

@@ -18,6 +18,7 @@ sudo apt upgrade -y
 sudo apt-get install -y \
     vim-gtk3 \
     tmux \
+    git \
     google-chrome-stable \
     gnome-tweaks \
     snapd \
@@ -35,7 +36,6 @@ sudo apt-get install -y \
     build-essential \
     python3-dev \
     mupen64plus* \
-    mono-complete \
     aptitude \
     vim-addon-manager \
     tree \
@@ -122,19 +122,6 @@ dconf load /org/gnome/terminal/ < files/gnome_terminal_jvalcher
 echo ".tmux.conf"
 cp files/.tmux.conf /home/$USER/
 
-echo ".vimrc"
-cp files/.vimrc /home/$USER/.vimrc
-
-printf "\n\n"
-printf "Copying Vim skeletons...\n" 
-echo "________________"
-VIM_DIR="/home/$USER/.vim"
-if [ -e $VIM_DIR/skeletons ]; then
-    rsync -a --delete files/skeletons/ /home/$USER/.vim/skeletons/
-else 
-    cp -r files/skeletons $VIM_DIR/
-fi
-
 printf "touchpad_toggle\n"
 sudo cp files/touchpad_toggle /usr/local/bin/
 sudo chown $USER /usr/local/bin/touchpad_toggle
@@ -153,6 +140,42 @@ cp files/gtk.css /home/$USER/.config/gtk-3.0/gtk.css
 
 printf "singing_bowl.wav\n"
 cp files/singing_bowl.wav /home/$USER/Music/
+
+echo ".vimrc"
+cp files/.vimrc /home/$USER/.vimrc
+
+
+#####################
+# vim configuration #
+#####################
+
+printf "\n\n"
+printf "Configuring vim...\n"
+echo "________________"
+
+VIM_DIR="/home/$USER/.vim"
+
+echo "skeletons..." 
+echo "________________"
+if [ -e $VIM_DIR/skeletons ]; then
+    rsync -a --delete files/skeletons/ /home/$USER/.vim/skeletons/
+else 
+    cp -r files/skeletons $VIM_DIR/
+fi
+
+echo "vim-superman..." 
+if [ -d $VIM_DIR/bundle/vim-superman ]; then
+    git clone https://github.com/jez/vim-superman ~/.vim/bundle/vim-superman
+fi
+
+echo "vundle plugins..." 
+vim -c 'PluginInstall' -c 'qa!'
+
+echo "YouCompleteMe..." 
+(cd $VIM_DIR/bundle/YouCompleteMe && python3 install.py --clangd-completer)
+
+echo "vim-plug plugins..." 
+vim -c 'PlugInstall' -c 'qa!'
 
 
 ###########

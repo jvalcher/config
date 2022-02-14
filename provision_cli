@@ -15,7 +15,6 @@ sudo apt-get install -y \
     tmux \
     xclip \
     curl \
-    lsb-release \
     cmake \
     build-essential \
     python3-dev \
@@ -47,25 +46,49 @@ sudo cp files/jvalcher /etc/sudoers.d/jvalcher
 echo ".tmux.conf"
 cp files/.tmux.conf /home/$USER/
 
-echo ".vimrc"
-cp files/.vimrc /home/$USER/.vimrc
-
-VIM_DIR="/home/$USER/.vim"
-printf "\n\n"
-printf "Copying Vim skeletons...\n"
-echo "________________"
-if [ -e $VIM_DIR/skeletons ]; then
-    rsync -a --delete files/skeletons/ /home/$USER/.vim/skeletons/
-else
-    cp -r files/skeletons $VIM_DIR/skeletons
-fi
-
 printf "~/bin...\n"
 sudo cp -r files/cli/bin /home/$USER/
 
-##########
-# Exit message
-##########
+echo ".vimrc"
+cp files/.vimrc /home/$USER/.vimrc
+
+#####################
+# vim configuration #
+#####################
+
+printf "\n\n"
+printf "Configuring vim...\n"
+echo "________________"
+
+VIM_DIR="/home/$USER/.vim"
+
+echo "skeletons..." 
+echo "________________"
+VIM_DIR="/home/$USER/.vim"
+if [ -e $VIM_DIR/skeletons ]; then
+    rsync -a --delete files/skeletons/ /home/$USER/.vim/skeletons/
+else 
+    cp -r files/skeletons $VIM_DIR/
+fi
+
+echo "vim-superman..." 
+if [ -d $VIM_DIR/bundle/vim-superman ]; then
+    git clone https://github.com/jez/vim-superman ~/.vim/bundle/vim-superman
+fi
+
+echo "vundle plugins..." 
+vim -c 'PluginInstall' -c 'qa!'
+
+echo "YouCompleteMe..." 
+(cd $VIM_DIR/bundle/YouCompleteMe && python3 install.py --clangd-completer)
+
+echo "vim-plug plugins..." 
+vim -c 'PlugInstall' -c 'qa!'
+
+
+################
+# Exit message #
+################
 
 printf "\n\n\n"
 echo "________________"

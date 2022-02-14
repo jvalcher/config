@@ -26,6 +26,8 @@ Plugin 'VundleVim/Vundle.vim'
 " YouCompleteMe
 Plugin 'ycm-core/YouCompleteMe'
 
+" vim-superman
+Plugin 'jez/vim-superman'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -58,12 +60,6 @@ Plug 'joshdick/onedark.vim'
 
 " NERDTree
 Plug 'scrooloose/nerdtree'
-
-" Emmet-vim
-Plug 'mattn/emmet-vim'
-
-" vim-visual-multi
-Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
 " INSTALL PLUGINS with:   
     "  :source %
@@ -128,6 +124,9 @@ set softtabstop=4 expandtab
 " Search with no highlights
 set nohlsearch
 "set hlsearch
+
+" stop incremental search at EOF
+set nowrapscan
 
 " jump to last position when opening file
 if has("autocmd")
