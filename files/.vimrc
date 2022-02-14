@@ -5,9 +5,10 @@
 """""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""
 
-"""""""""
-" Vundle
-"""""""""
+
+""""""""""
+" Vundle "
+""""""""""
 
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -18,11 +19,13 @@ call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
+
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
 " YouCompleteMe
 Plugin 'ycm-core/YouCompleteMe'
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -41,10 +44,8 @@ filetype plugin indent on    " required
 
 
     
-
-
 """"""""""""
-" vim-plug
+" vim-plug "
 """"""""""""
 
 " Specify a directory for plugins
@@ -55,20 +56,11 @@ call plug#begin('~/.vim/plugged')
 " onedark colorscheme
 Plug 'joshdick/onedark.vim'
 
-" check syntax on each save
-"Plug 'vim-syntastic/syntastic'
-
 " NERDTree
 Plug 'scrooloose/nerdtree'
 
 " Emmet-vim
 Plug 'mattn/emmet-vim'
-
-" Use release branch (recommend)
-"Plug 'neoclide/coc.nvim', {'branch': 'release'}
-"  :CocInstall coc-html
-"  :CocInstall coc-css
-"  :CocInstall coc-tsserver
 
 " vim-visual-multi
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
@@ -86,12 +78,15 @@ Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
 " Initialize plugin system
 call plug#end()
+
+""""""""""""""""""
 """"""""""""""""""
 
 
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
 "(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
+
 if (empty($TMUX))
     if (has("nvim"))
         "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
@@ -106,10 +101,11 @@ if (empty($TMUX))
 endif
 
 
+
 """""""""""""""""""""""""""""""""
+" Miscellaneous settings
 """"""""""""""""""""""""""""""""""
 
-" Miscellaneous settings
 
 " new lines inherit indentation of previous lines
 set autoindent
@@ -123,13 +119,15 @@ set shiftwidth=4
 " insert tabstop number of spaces when tab is pressed
 set tabstop=4
 
+" set tabs to 2 for htm, html, yml, yaml, json files
+autocmd BufRead,BufNewFile *.htm,*.html,*.yml,*.yaml,*.json setlocal tabstop=2 shiftwidth=2 softtabstop=2
+
 " convert tabs to spaces, backspace removes tab
 set softtabstop=4 expandtab
 
-"" enable search highlighting
-"set hlsearch
 " Search with no highlights
 set nohlsearch
+"set hlsearch
 
 " jump to last position when opening file
 if has("autocmd")
@@ -161,7 +159,8 @@ set number
 
 " set color scheme
 silent! colorscheme onedark
-"hi Normal guibg=NONE ctermbg=NONE
+
+" change line number color
 highlight LineNr ctermfg=24
 
 " always show cursor position
@@ -172,15 +171,12 @@ set wildmenu
 
 " disable error beeps, flash screen instead
 set noerrorbells
-" set visualbell
 
 " enable mouse for scrolling and resizing
 set mouse=a
 
-" window title for current file
-set title
-
 " allow backspacing over indentation, line breaks, insertion start
+" to preserve source spacing when pasting multiple lines use 'set paste'
 set backspace=indent,eol,start
 
 " confirmation dialogue before closing unsaved file
@@ -192,22 +188,18 @@ set history=1000
 " copy to system clipboard
 set clipboard=unnamedplus
 
-" remove random characters
-set t_RV=
-set t_u7=
-
-" remap scrolling (up, down arrow)
+" remap scrolling to up, down arrow
 noremap <Down> <C-E>
 noremap <Up> <C-Y>
 
 " keep cursor in center of screen
 set so=999
-" turn off cursor in center of screen with 'set so=0'
+"set so=0
 
-" go to last line with G and center screen to cursor
+" center screen to cursor when going to last line with G
 noremap G Gzz
 
-" less escape delay
+" less escape key delay
 set timeout timeoutlen=50
 
 " navigate vim panes (ctrl+w + h,j,k,l)
@@ -223,12 +215,13 @@ vnoremap > >gv
 " Preserve copied data when replacing with visual mode
 xnoremap <expr> p '"_d"'.v:register.'p'
 
-" Navigate up/down long lines with g+...
+" Navigate up/down long lines with j, k
 nnoremap j gj
 nnoremap k gk
 
-" turn off automatic YouCompleteMe cursor hover info
+" turn off automatic YouCompleteMe cursor hover info in order to...
 let g:ycm_auto_hover = ''
+
 " toggle language hover info with F3
 map <F3> <plug>(YCMHover)
 
@@ -243,27 +236,11 @@ function Toggle_ycm()
 endfunction
 map <F4> :call Toggle_ycm() <CR>
 
-" toggle syntax checker in YouCompletMe
+" turn syntax checker in YouCompletMe off
 let g:ycm_show_diagnostics_ui = 0
 
-" toggle spellchecker, previous, next (ctrl + s, a, d)
-" toggle spellchecker, previous, next (ctrl + s, a, d)
-map <C-s> :setlocal spell! spelllang=en_us<CR>
-map <C-a> [s
-map <C-d> ]s
-" set global, local dictionary files
-    " zg  ->  add to global file
-    " 2zg ->  add to local file
-    " zug  ->  remove from global
-    " 2zug  ->  remove from local
-setlocal spellfile+=~/.vim/spell/en.utf-8.add
-setlocal spellfile+=.oneoff.utf-8.add
-
-" set file enconding
-"set fileencodings=utf-8
-
 " enable vim-markdown concealing
-set conceallevel=3
+set conceallevel=2
 
 " turn off vim-markdown folding
 let g:vim_markdown_folding_disabled = 1
@@ -275,13 +252,10 @@ if !isdirectory(expand("$HOME/.vim/undodir"))
 endif
 set undodir=$HOME/.vim/undodir
 
-" set tabs to 2 for htm, html, yml, yaml, json files
-autocmd BufRead,BufNewFile *.htm,*.html,*.yml,*.yaml,*.json setlocal tabstop=2 shiftwidth=2 softtabstop=2
-
 " use interactive shell -> access to .bash_alias functions
 set shellcmdflag=-ic
 
-" rename window and pane on write
+" rename tmux window and pane on save with .bash_aliases function
 autocmd BufWrite * :silent exec "!fileRename %" | :redraw!
 
 " HTML boilerplate ( :Html )
@@ -293,71 +267,6 @@ command C 0r ~/.vim/skeletons/base.c
 " C++ boilerplate ( :Cpp )
 command Cpp 0r ~/.vim/skeletons/base.cpp
 
-" compile and run current C source file in new tmux pane
-" delete compiled file
-" compile, run (F5)
-function C_compile()
-    call system("tmux split-window -h -p 40")
-    call system("tmux send-keys -t .1 'basedirRename' Enter")
-    call system("tmux send-keys -t .1 clear Enter")
-    call system("tmux send-keys -t .1 'gcd " . expand("%:t") . "' Enter")
-    call system("tmux select-pane -t .0")
-    :silent exec "!fileRename %"
-    :redraw!
-endfunction
-noremap <F5> :call C_compile() <CR>
-
-" compile and debug C source file in new tmux pane
-" delete compiled file
-" compile, debug (F9)
-function C_debug()
-    call system("tmux new-window -t 10")
-    call system("tmux send-keys -t 10 clear Enter")
-    call system("tmux send-keys -t 10 'gdc " . expand("%:t") . "' Enter")
-    call system("tmux send-keys -t 10 'layout src' Enter")
-    call system("tmux select-pane -t .0")
-    :silent exec "!fileRename %"
-    :redraw!
-endfunction
-map <F9> :call C_debug() <CR>
-
-" compile and run current C++ source file in new tmux pane
-" delete compiled file
-" compile, run (F6)
-function Cpp_compile()
-    call system("tmux split-window -h -p 40")
-    call system("tmux send-keys -t .1 'basedirRename' Enter")
-    call system("tmux send-keys -t .1 clear Enter")
-    call system("tmux send-keys -t .1 'c " . expand("%:t") . "' Enter")
-    call system("tmux select-pane -t .0")
-    :silent exec "!fileRename %"
-    :redraw!
-endfunction
-noremap <F6> :call Cpp_compile() <CR>
-
-" compile and run current Python source file in new tmux pane
-" delete compiled file
-" compile, run (F7)
-function Py_compile()
-    call system("tmux split-window -h -p 40")
-    call system("tmux send-keys -t .1 'basedirRename' Enter")
-    call system("tmux send-keys -t .1 clear Enter")
-    call system("tmux send-keys -t .1 'pyd " . expand("%:t") . "' Enter")
-    call system("tmux select-pane -t .0")
-    :silent exec "!fileRename %"
-    :redraw!
-endfunction
-noremap <F7> :call Py_compile() <CR>
-
-" exit tmux compile pane (F8)
-function Exit_compile()
-    call system("tmux send-keys -t .1 C-c")
-    call system("tmux send-keys -t .1 C-d")
-    :silent exec "!fileRename %"
-    :redraw!
-endfunction
-noremap <F8> :call Exit_compile() <CR>
-
 " NERDTree settings
     " I == toggle h(I)dden file view
     " C == make selection (C)urrent working directory
@@ -366,37 +275,4 @@ noremap <F8> :call Exit_compile() <CR>
 map <F2> :NERDTreeToggle<CR>
 " make pwd the parent directory
 let g:NERDTreeChDirMode=3
-
-" Rename tmux window on save
-" :help filename-modifiers
-"if exists('$TMUX')
-"    autocmd BufEnter,FocusGained,BufWrite * call system("tmux rename-window ' " . expand("%:t") . " '")
-"    autocmd BufEnter,FocusGained,BufWrite * call system("tmux select-pane -T ' " . expand("%:t") . " '")
-"    autocmd VimLeave * call system("tmux rename-window ' " . $BASEPATH . "/ '")
-"    autocmd VimLeave * call system("tmux select-pane -T ' " . $BASEPATH . "/ '")
-"endif
-
-" scroll okular with foot pedal
-"function Okul_up()
-"    call system("xdotool search --class okular key --window %@ Up")
-"endfunction
-"function Okul_down()
-"    call system("xdotool search --class okular key --window %@ Down")
-"endfunction
-
-"" disable math conceal in vim-markdown
-"let g:tex_conceal = ""
-let g:vim_markdown_math = 1
-
-"" vim-syntastic error checking shortcuts
-"" check for errors (F3), close error list (F4)
-"" set to passive mode 
-"let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
-"" check for errors (F3), return to normal mode (F4)
-"" :redraw! == clear status line
-"nnoremap <F3> :SyntasticCheck <CR> :Errors <CR> :redraw! <CR>
-"nnoremap <F4> :SyntasticToggleMode <CR> :SyntasticToggleMode <CR> :redraw! <CR>
-"" next/previous error (Ctrl + n,p)
-"nnoremap <C-n> :lnext <CR> :redraw! <CR>
-"nnoremap <C-p> :lprev <CR> :redraw! <CR>
 

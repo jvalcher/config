@@ -15,25 +15,11 @@ PS1="\[\033[1;38;5;25m\]\W/ $ \[\033[0m\]"
 export PATH=$PATH:/home/$USER/.local/bin
 export PATH=$PATH:/home/$USER/bin
 
-# git graph
-alias graph="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
-
 # connect to easytether via usb
 alias easy="sudo systemctl restart systemd-networkd; sudo easytether-usb"
 
-# reset networkd if easytether won't connect
-#alias reeasy="sudo systemctl restart systemd-networkd"
-
-# activate/refresh asusBox hotspot
-alias hotup="nmcli connection down Hotspot 2>/dev/null; nmcli connection up Hotspot"
-# take down hotspot
-alias hotdown="nmcli connection down Hotspot"
-
 # rm to trash
 alias rm="trash-put"
-
-# chrome alias
-alias chrome="google-chrome"
 
 # python
 alias py="python3 "
@@ -47,9 +33,6 @@ alias winSel="xprop _NET_WM_PID | sed 's/_NET_WM_PID(CARDINAL) = //' | ps 'cat'"
 # copy pwd to clipboard
 alias pclip="pwd | xclip -sel clip"
 
-# kill all tmux sessions 
-alias tkill="tmux kill-server"
-
 # play singing_bowl sound 
 alias bowl="(aplay -q ~/Music/singing_bowl.wav > /dev/null 2>&1 &)"
 
@@ -59,26 +42,22 @@ complete -f -X '!*.md' google-chrome
 # turn highlight pasted text off
 bind 'set enable-bracketed-paste off'
 
-# system suspend
-alias suspend="systemctl suspend"
-
 # return actual instead of soft link address
 alias pwd="pwd -P"
 
-# search for string recursively in pwd
-alias strS="sudo grep -rnw . -e "
+# git graph
+alias gitGraph="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
 
-# search for file recursively in pwd
-function fileS {
-    sudo find . -type f -iname $1
+# git status and file sizes
+gitStat () {
+    printf "\n"
+    git status 
+    printf "\n"
+    git status-size
+    printf "\n"
 }
 
-# search for directories recursively in pwd
-function dirS {
-    sudo find . -type d -iname $1
-}
-
-# reset ll set in .bashrc -> vertical file list, no info
+# reset ll set in .bashrc to vertical, tabbed file list, no info
 llr () {
 
     # if no files in directory, return prompt
@@ -124,115 +103,6 @@ lla () {
 }
 alias la="lla"
 
-# git status and file sizes
-gitstat () {
-    printf "\n"
-    git status 
-    printf "\n"
-    git status-size
-    printf "\n"
-}
-
-# compiles file.c as file, runs it, prints file name
-gco () {
-    FILE="$1"
-    OUTPUT_FILE="${FILE%.*}"
-    gcc -o $OUTPUT_FILE $FILE
-    #printf "\n\e[1;32mOutput:\e[0m\n"
-    #printf "\e[1;32m_ _ _ _ _ _ _ _ _ _ _ _ _ _ _\e[0m\n\n"
-    printf "\n"
-    ./"$OUTPUT_FILE"
-    printf "\n"
-    #printf "\n\e[1;32m_ _ _ _ _ _ _ _ _ _ _ _ _ _ _\e[0m\n"
-    #printf "\e[1;32mEnd output\n\n"
-    #printf "\e[1;32mExecutable:\e[0m  $OUTPUT_FILE\n\n"
-}
-
-# compiles with same name as source file, runs, deletes output file after running
-gcd () {
-    FILE="$1"
-    OUTPUT_FILE="${FILE%.*}"
-    printf "\n"
-    gcc -o $OUTPUT_FILE $FILE
-
-    # if file exists, run it and then remove it
-    if [ -f "$OUTPUT_FILE" ]; then
-        printf "\n"
-        ./"$OUTPUT_FILE"
-        printf "\n"
-        rm $OUTPUT_FILE
-    fi
-}
-
-# compile C program, runs gdb
-gdc () {
-
-    #compile file with debug et al. flags
-    FILE="$1"
-    printf "\n"
-    gcc -g $FILE
-
-    # run debugger
-    gdb a.out
-}
-
-# compile file.cpp as file, run it, delete compiled file
-c () {
-    FILE="$1"
-    OUTPUT_FILE="${FILE%.*}"
-
-    function trap_ctrlc () {
-        rm "$OUTPUT_FILE"
-        exit 2
-    }
-
-    # printf "\n-------------\n$FILE -> $OUTPUT_FILE\n-------------\n"
-    g++ -Wall -o $OUTPUT_FILE $FILE
-
-    # (2 -> SIGINT)
-    trap "trap_ctrlc" 2
-
-    printf "\n"
-    ./"$OUTPUT_FILE" 2>/dev/null
-    printf "\n"
-    rm "$OUTPUT_FILE" 2>/dev/null
-}
-
-# compile file.cpp as file, run it
-cop () {
-    FILE="$1"
-    OUTPUT_FILE="${FILE%.*}"
-    g++ -o $OUTPUT_FILE $FILE
-    printf "\n"
-    ./"$OUTPUT_FILE"
-    printf "\n"
-}
-
-# clear all compiled C files in pwd (i.e. files not ending in '.c')
-clearC () {
-    find . -type f ! -name "*.c" -delete
-}
-
-pyd () {
-    FILE="$1"
-    OUTPUT_FILE="${FILE%.*}"
-
-    function trap_ctrlc () {
-        rm "$OUTPUT_FILE"
-        exit 2
-    }
-
-    # printf "\n-------------\n$FILE -> $OUTPUT_FILE\n-------------\n"
-
-    # (2 -> SIGINT)
-    trap "trap_ctrlc" 2
-
-    printf "\n"
-    py $FILE
-    printf "\n"
-    rm "$OUTPUT_FILE" 2>/dev/null
-}
-
 # change cd and vim functionality to automatically rename tmux windows and panes
 CHAR_LIMIT=20
 MY_VIM="/usr/bin/vim.gtk3"
@@ -257,7 +127,6 @@ if [ $TMUX_STATUS -eq 0 ]; then
         tmux rename-window " $FILENAME "
         tmux select-pane -T " $FILENAME "
     }
-
 
     cd () {
         builtin cd "$@"
@@ -287,7 +156,7 @@ if [ $TMUX_STATUS -eq 0 ]; then
     basedirRename
 fi
 
-# countdown timer   (ex: countdown 00:10:00)
+# countdown timer   (ctd 00:10:00)
 ctd()
 (
   IFS=:
@@ -303,30 +172,5 @@ ctd()
   echo
   bowl
 )
-
-## Open notes file in current practice directory
-#learn () {
-#    PRACTICE_DIR="/home/$USER/Git/practice/c/c_modern_approach_2e"
-#    NOTES_FILE="notes.c"
-#    cd $PRACTICE_DIR && vim '+ normal Gzz' notes.c
-#    tmux new-window -d -t 10
-#    tmux send-keys -t 10 "cd $PRACTICE_DIR" Enter
-#    tmux send-keys -t 10 "vim $NOTES_FILE" Enter
-#    tmux send-keys -t 10 "G" Enter
-#    tmux send-keys -t 10 "zz" Enter
-#    tmux select-window -t 10
-#    SESSION="learnc"
-#    tmux kill-session -t $SESSION
-#    tmux new-session -d -s $SESSION
-#    tmux split-window -h -t $SESSION:1.1
-#    tmux split-window -v -p 40 -t $SESSION:1.2
-#    tmux send-keys -t $SESSION:1.3 "cd $PRACTICE_DIR && clear && ll" Enter
-#    tmux attach-session -t $SESSION
-#}
-
-# okular foot pedal scroll variable
-# used for .vimrc F7, F8 shortcuts
-#okul=$(xdotool search --onlyvisible --class okular | head -1)
-
 
 
