@@ -35,6 +35,7 @@ sudo apt-get install -y \
     cmake \
     build-essential \
     python3-dev \
+    mupen64plus* \
     mono-complete \
     aptitude \
     grub-customizer \
@@ -115,76 +116,46 @@ printf "\n\n"
 printf "Copying configuration files and scripts...\n" 
 echo "________________"
 
-sudo cp files/jvalcher /etc/sudoers.d/jvalcher
 printf "jvalcher \t\t(sudoers.d)\n"
+sudo cp files/jvalcher /etc/sudoers.d/jvalcher
 
-dconf load /org/gnome/terminal/ < files/gnome_terminal_jvalcher
 printf "Gnome terminal\n"
+dconf load /org/gnome/terminal/ < files/gnome_terminal_jvalcher
 
+printf "touchpad_toggle\n"
 sudo cp files/touchpad_toggle /usr/local/bin/
 sudo chown $USER /usr/local/bin/touchpad_toggle
-printf "touchpad_toggle\n"
 
-#cp files/config /home/$USER/.config/terminator/config
-#printf "config \t\t(terminator)\n"
-
-cp files/.vimrc /home/$USER/.vimrc
 echo ".vimrc"
+cp files/.vimrc /home/$USER/.vimrc
 
-cp -r files/Scripts /home/$USER/
-printf "~/Scripts...\n"
-
-sudo cp -r files/bin /home/$USER/
 printf "~/bin...\n"
+dir="~/bin"
+if [[ ! -e $dir ]]; then
+    mkdir $dir
+elif [[ ! -d $dir ]]; then
+    mkdir $dir
+fi
+sudo cp -r files/bin /home/$USER/
 
-cp files/gtk.css /home/$USER/.config/gtk-3.0/gtk.css
 echo "gtk.css"
+cp files/gtk.css /home/$USER/.config/gtk-3.0/gtk.css
 
-cp files/.tmux.conf /home/$USER/
 echo ".tmux.conf"
+cp files/.tmux.conf /home/$USER/
 
-cp files/singing_bowl.wav /home/$USER/Music/
 printf "singing_bowl.wav\n"
-
-VIM_DIR="/home/$USER/.vim"
-#printf "\n\n"
-#printf "Installing Vim-Plug plugins...\n" 
-#echo "________________"
-#if [ -e $VIM_DIR/plugged ]; then
-#    vim +PlugClean +qall
-#    vim +PlugInstall +qall
-#    vim +PlugUpgrade +qall
-#else
-#    curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-#    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-#    vim +PlugInstall
-#fi
-#
-## install vim-markdown
-#MD_DIR="/home/$USER/Downloads/vim-markdown"
-#printf "\n\n"
-#printf "Installing vim-markdown...\n" 
-#echo "________________"
-#if [ -e $MD_DIR ]; then
-#    echo "Already installed"
-#else
-#    (cd ~/Downloads; 
-#    git clone https://github.com/plasticboy/vim-markdown.git;
-#    cd vim-markdown; 
-#    sudo make install; 
-#    vim-addon-manager install markdown)
-#fi 
+cp files/singing_bowl.wav /home/$USER/Music/
 
 printf "\n\n"
 printf "Copying Vim skeletons...\n" 
 echo "________________"
+VIM_DIR="/home/$USER/.vim"
 if [ -e $VIM_DIR/skeletons ]; then
     rsync -a --delete files/skeletons/ /home/$USER/.vim/skeletons/
 else 
     cp -r files/skeletons $VIM_DIR/
 fi
-
-
 
 
 ###########
@@ -206,21 +177,22 @@ else
     mkdir $PICTURES_DIR
     cp wallpapers/* $PICTURES/DIRA
 fi
+
 # Change wallpaper
-#source scripts/dbus.sh
 gsettings set org.gnome.desktop.background picture-uri "file:////home/$USER/Pictures/wallpapers/$WALLPAPER"
 echo "Changed wallpaper to $WALLPAPER"
+
 # Change login screen
 sudo scripts/ubuntu-gdm-set-background --image $PICTURES_DIR/$LOGIN > /dev/null 2>&1
 echo "Changed login wallpaper to $LOGIN"
 
 
 ###########
-# Configure launcher
+# Configure Gnome launcher
 ###########
 
 printf "\n\n"
-printf "Configuring launcher...\n"
+printf "Configuring Gnome launcher...\n"
 echo "________________"
 printf "Bottom position, centered, transparent, size=64, unity-backlit\n"
 gsettings set org.gnome.shell.extensions.dash-to-dock extend-height false

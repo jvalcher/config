@@ -1,6 +1,0 @@
-#!/bin/bash
-
-mupen64plus \
-    --fullscreen \
-    --resolution 1920x1080 \
-    /home/$USER/Emulation/Roms/u_mk64.n64
