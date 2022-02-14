@@ -260,10 +260,10 @@ setlocal spellfile+=~/.vim/spell/en.utf-8.add
 setlocal spellfile+=.oneoff.utf-8.add
 
 " set file enconding
-set fileencodings=utf-8
+"set fileencodings=utf-8
 
 " enable vim-markdown concealing
-set conceallevel=2
+set conceallevel=3
 
 " turn off vim-markdown folding
 let g:vim_markdown_folding_disabled = 1
@@ -283,7 +283,6 @@ set shellcmdflag=-ic
 
 " rename window and pane on write
 autocmd BufWrite * :silent exec "!fileRename %" | :redraw!
-autocmd VimLeave * call system("cd .")
 
 " HTML boilerplate ( :Html )
 command Html 0r ~/.vim/skeletons/main.html
@@ -387,7 +386,7 @@ let g:NERDTreeChDirMode=3
 
 "" disable math conceal in vim-markdown
 "let g:tex_conceal = ""
-"let g:vim_markdown_math = 1
+let g:vim_markdown_math = 1
 
 "" vim-syntastic error checking shortcuts
 "" check for errors (F3), close error list (F4)
