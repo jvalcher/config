@@ -118,6 +118,9 @@ echo "________________"
 sudo cp files/jvalcher /etc/sudoers.d/jvalcher
 printf "jvalcher \t\t(sudoers.d)\n"
 
+dconf load /org/gnome/terminal/ < files/gnome_terminal_jvalcher
+printf "Gnome terminal\n"
+
 sudo cp files/touchpad_toggle /usr/local/bin/
 sudo chown $USER /usr/local/bin/touchpad_toggle
 printf "touchpad_toggle\n"
