@@ -1,0 +1,3 @@
+#!/bin/bash
+
+okular /home/$USER/bin/regex.pdf
