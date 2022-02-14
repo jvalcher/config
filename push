@@ -2,40 +2,41 @@
 #!/bin/bash
 
 
+# sudoers.d
+sudo rsync -a --delete /etc/sudoers.d/jvalcher files/
+
 # bash_aliases
-cp /home/$USER/.bash_aliases files/
+rsync -a --delete /home/$USER/.bash_aliases files/
+
+# Tmux
+rsync -a --delete /home/$USER/.tmux.conf files/ 
 
 # vim
-cp /home/$USER/.vimrc files/
+rsync -a --delete /home/$USER/.vimrc files/
 
 # vim skeletons
-cp -r /home/$USER/.vim/skeletons files/
+rsync -a --delete /home/$USER/.vim/skeletons files/
 
-# sudoers.d
-sudo cp /etc/sudoers.d/jvalcher files/
+# ~/bin
+rsync -a --delete /home/$USER/bin/ files/bin_cli/
 
 # gtk.css
-cp /home/$USER/.config/gtk-3.0/gtk.css files/ 
+rsync -a --delete /home/$USER/.config/gtk-3.0/gtk.css files/ 
 
 # gnome-terminal
 dconf dump /org/gnome/terminal/ > files/gnome_terminal_jvalcher 
 
-# Tmux
-cp /home/$USER/.tmux.conf files/ 
-
 # Scripts
-cp -r /home/$USER/Scripts files/
-
-# ~/bin
-cp -r /home/$USER/bin files/
+rsync -a --delete /home/$USER/Scripts files/
 
 # wallpapers
 rsync -a --delete /home/$USER/Pictures/wallpapers/ wallpapers/
 
-# singing bowl sound
-cp /home/$USER/Music/singing_bowl.wav files/
 
-# push to github
+##################
+# Push to github #
+##################
+
 git add . 
 git commit -m "update"
 gitPush

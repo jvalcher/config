@@ -3,22 +3,22 @@
 
 
 # sudoers.d
-sudo cp /etc/sudoers.d/jvalcher files/
+sudo rsync -a --delete /etc/sudoers.d/jvalcher files/
 
 # bash_aliases
-cp /home/$USER/.bash_aliases files/
+rsync -a --delete /home/$USER/.bash_aliases files/
 
 # Tmux
-cp /home/$USER/.tmux.conf files/ 
+rsync -a --delete /home/$USER/.tmux.conf files/ 
 
 # vim
-cp /home/$USER/.vimrc files/
+rsync -a --delete /home/$USER/.vimrc files/
 
 # vim skeletons
-cp -r /home/$USER/.vim/skeletons files/
+rsync -a --delete /home/$USER/.vim/skeletons files/
 
 # ~/bin
-cp -r /home/$USER/bin files/cli/
+rsync -a --delete /home/$USER/bin/ files/bin_cli/
 
 # push to github
 git add . 

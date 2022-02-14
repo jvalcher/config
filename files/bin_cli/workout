@@ -1,0 +1,90 @@
+#!/bin/bash
+
+
+# hit 'q' to exit
+    
+
+# zoom in, clear screen, turn off cursor
+tput civis
+clear
+
+# timer function
+function workout_timer() {
+    secs=$1
+    while [ $secs -gt 0 ]
+    do
+
+        # return cursor on ctrl-c (2 -> SIGINT)
+        function trap_ctrlc () {
+            tput cnorm 
+            exit 2
+        }
+        trap "trap_ctrlc" 2
+
+        # print second
+        echo -ne "$secs\033[0K\r"
+
+        # one-second timeout to receive single-character input 
+        read -t 1 -N 1 input
+
+        # hit 'q' to exit
+        if [[ $input = "q" ]]; then
+            tput cnorm
+            clear
+            exit 0
+        fi
+
+        # subtract second
+        secs=$(( secs -1 ))
+
+    done
+
+    # timer complete sound
+    aplay ~/Music/singing_bowl.wav > /dev/null 2>&1 &
+}
+
+# print current, next exercise
+function print_exercise() {
+    EXERCISE=$1;
+    NEXT=$2;
+    printf "\e[1;33m$EXERCISE\e[0m\n\n"
+    printf "\e[1;32mnext: $NEXT\e[0m\n\n"
+}
+
+# repeating 30-second timer
+while true; do
+
+    workout_timer 30
+
+done
+
+## exercises
+#printf "\n\n\e[1;31mGet ready!\e[0m\n\n"
+#workout_timer 5
+#print_exercise "Jumping Jacks" "Right Torso Stretch"
+#workout_timer 60
+#print_exercise "Right Torso Stretch" "Left Torso Stretch"
+#workout_timer 30
+#print_exercise "Left Torso Stretch" "Squats"
+#workout_timer 30
+#print_exercise "Squats" "Down Stretch"
+#workout_timer 60
+#print_exercise "Down Stretch" "Crunches/Knee Raises"
+#workout_timer 60
+#print_exercise "Crunches/Knee Raises" "Butterfly Stretch"
+#workout_timer 60
+#print_exercise "Butterfly Stretch" "Supermans"
+#workout_timer 60
+#print_exercise "Supermans" "Right Side Kicks"
+#workout_timer 60
+#print_exercise "Right Side Kicks" "Left Side Kicks"
+#workout_timer 30
+#print_exercise "Left Side Kicks" "Neck Exercises"
+#workout_timer 30
+#print_exercise "Neck Exercises" "Triceps and Biceps"
+#workout_timer 60
+#printf "\e[1;33mTriceps and Biceps...\e[0m\n\n"
+
+# turn on cursor, regular zoom
+tput cnorm
+

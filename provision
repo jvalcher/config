@@ -10,12 +10,14 @@
 # Install software
 ###########
 
-printf "\n\nInstalling Apt software...\n"
+printf "\n\nUpdating, upgrading APT...\n"
 echo "________________"
 sudo apt update
 sudo apt upgrade -y
 
-sudo apt-get install -y \
+printf "\n\nInstalling APT software...\n"
+echo "________________"
+sudo apt install -y \
     vim-gtk3 \
     tmux \
     git \
@@ -29,19 +31,20 @@ sudo apt-get install -y \
     gnupg \
     pandoc \
     feh \
+    peek \
     libglib2.0-dev-bin \
     gsettings-desktop-schemas \
     xdotool \
     cmake \
     build-essential \
     python3-dev \
-    mupen64plus* \
-    aptitude \
+    mupen64plus-ui-console \
     vim-addon-manager \
     tree \
     trash-cli \
     okular \
-sudo apt install -y virtualbox virtualbox-ext-pack
+    virtualbox \
+    virtualbox-ext-pack
 
 
 
@@ -49,46 +52,6 @@ printf "\n\nCopying, sourcing .bash_aliases...\n"
 echo "________________"
 cp files/.bash_aliases /home/$USER/.bash_aliases
 . /home/$USER/.bashrc
-
-
-#printf "\n\nInstalling Docker...\n"
-#echo "________________"
-#DOCK_KEY="/usr/share/keyrings/docker-archive-keyring.gpg"
-#if [ -e $DOCK_KEY ]; then
-#    printf "Already installed\n"
-#else
-#    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg 
-#    echo \
-#    "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
-#    $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null 
-#    sudo apt-get update 
-#    sudo apt-get install -y docker-ce docker-ce-cli containerd.io
-#    sudo usermod -aG docker ${USER}
-#    docker run hello-world
-#fi
-
-#printf "\n\nInstalling docker-compose...\n"
-#echo "________________"
-#DC="/usr/local/bin/docker-compose"
-#if [ -e $DC ]; then
-#    printf "Already installed\n"
-#else
-#    sudo curl -L "https://github.com/docker/compose/releases/download/1.29.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-#    sudo chmod +x /usr/local/bin/docker-compose
-#    docker-compose --version
-#fi
-
-
-#printf "\n\nInstalling Ansible...\n"
-#echo "________________"
-#ANSIBLE_STATUS=$(dpkg -s ansible 2>/dev/null | echo $?)
-#if [ $ANSIBLE_STATUS -eq 0 ]; then
-#    printf "Already installed\n"
-#else
-#    sudo apt install software-properties-common -y
-#    sudo apt-add-repository -y --update ppa:ansible/ansible
-#    sudo apt install ansible -y
-#fi
 
 
 printf "\n\nRemoving unnecessary Apt files...\n"
@@ -100,9 +63,6 @@ printf "\n\nInstalling Snap software...\n"
 echo "________________"
 sudo snap install spotify
 sudo snap install discord
-sudo snap install gimp
-sudo snap install postman
-sudo snap install shotcut --classic
 
 
 #############
@@ -113,7 +73,7 @@ printf "\n\n"
 printf "Copying configuration files and scripts...\n" 
 echo "________________"
 
-printf "jvalcher \t\t(sudoers.d)\n"
+printf "jvalcher (sudoers.d)\n"
 sudo cp files/jvalcher /etc/sudoers.d/jvalcher
 
 printf "Gnome terminal\n"
@@ -122,21 +82,17 @@ dconf load /org/gnome/terminal/ < files/gnome_terminal_jvalcher
 echo ".tmux.conf"
 cp files/.tmux.conf /home/$USER/
 
-printf "touchpad_toggle\n"
-sudo cp files/touchpad_toggle /usr/local/bin/
-sudo chown $USER /usr/local/bin/touchpad_toggle
-
-printf "~/bin...\n"
-dir="~/bin"
-if [[ ! -e $dir ]]; then
-    mkdir $dir
-elif [[ ! -d $dir ]]; then
-    mkdir $dir
-fi
-sudo cp -r files/bin /home/$USER/
-
 echo "gtk.css"
 cp files/gtk.css /home/$USER/.config/gtk-3.0/gtk.css
+
+printf "~/bin...\n"
+BIN_DIR="/home/$USER/bin"
+if [ ! -d $BIN_DIR ]; then
+    mkdir $BIN_DIR
+    cp files/bin/* $BIN_DIR/
+else
+    rsync -a --delete files/bin/ $BIN_DIR/
+fi
 
 printf "singing_bowl.wav\n"
 cp files/singing_bowl.wav /home/$USER/Music/
@@ -156,7 +112,6 @@ echo "________________"
 VIM_DIR="/home/$USER/.vim"
 
 echo "skeletons..." 
-echo "________________"
 if [ -e $VIM_DIR/skeletons ]; then
     rsync -a --delete files/skeletons/ /home/$USER/.vim/skeletons/
 else 
@@ -164,7 +119,7 @@ else
 fi
 
 echo "vim-superman..." 
-if [ -d $VIM_DIR/bundle/vim-superman ]; then
+if [ ! -d $VIM_DIR/bundle/vim-superman ]; then
     git clone https://github.com/jez/vim-superman ~/.vim/bundle/vim-superman
 fi
 
@@ -176,6 +131,8 @@ echo "YouCompleteMe..."
 
 echo "vim-plug plugins..." 
 vim -c 'PlugInstall' -c 'qa!'
+
+. /home/$USER/.bashrc
 
 
 ###########
