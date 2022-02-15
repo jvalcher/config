@@ -18,9 +18,6 @@ export PATH=$PATH:/home/$USER/bin
 # read man pages with vim
 export PATH="$PATH:$HOME/.vim/bundle/vim-superman/bin"
 
-# man to vman (vim-superman)
-alias vman="man"
-
 # connect to easytether via usb
 alias easy="sudo systemctl restart systemd-networkd; sudo easytether-usb"
 

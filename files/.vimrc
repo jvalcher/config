@@ -19,15 +19,15 @@ call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
+""""""""""""""""""""
+" Plugin directory: -->    ~/.vim/bundle/
+""""""""""""""""""""
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
 " YouCompleteMe
 Plugin 'ycm-core/YouCompleteMe'
-
-" vim-superman
-Plugin 'jez/vim-superman'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
