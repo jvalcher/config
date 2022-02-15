@@ -11,10 +11,6 @@ fi
 # prompt
 PS1="\[\033[1;38;5;25m\]\W/ $ \[\033[0m\]"
 
-# add bins to path
-export PATH=$PATH:/home/$USER/.local/bin
-export PATH=$PATH:/home/$USER/bin
-
 # read man pages with vim
 export MANPAGER='/bin/bash -c "vim -MRn -c \"set buftype=nofile showtabline=0 ft=man ts=8 nomod nolist norelativenumber nonu noma\" -c \"normal L\" -c \"nmap q :qa<CR>\"</dev/tty <(col -b)"'
 

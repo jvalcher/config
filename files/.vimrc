@@ -26,9 +26,6 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-" YouCompleteMe
-Plugin 'ycm-core/YouCompleteMe'
-
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -217,26 +214,6 @@ xnoremap <expr> p '"_d"'.v:register.'p'
 " Navigate up/down long lines with j, k
 nnoremap j gj
 nnoremap k gk
-
-" turn off automatic YouCompleteMe cursor hover info in order to...
-let g:ycm_auto_hover = ''
-
-" toggle language hover info with F3
-map <F3> <plug>(YCMHover)
-
-" toggle YouCompleteMe on and off with F4
-let g:ycm_auto_trigger = 0
-function Toggle_ycm()
-    if g:ycm_auto_trigger == 0
-        let g:ycm_auto_trigger = 1
-    elseif g:ycm_auto_trigger == 1
-        let g:ycm_auto_trigger = 0
-    endif
-endfunction
-map <F4> :call Toggle_ycm() <CR>
-
-" turn syntax checker in YouCompletMe off
-let g:ycm_show_diagnostics_ui = 0
 
 " enable vim-markdown concealing
 set conceallevel=2
