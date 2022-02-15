@@ -22,6 +22,7 @@ sudo apt install -y \
     python3-dev \
     aptitude \
     tree \
+    trash-cli \
     grub-customizer
 
 
