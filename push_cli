@@ -22,7 +22,6 @@ rsync -a --delete /home/$USER/bin/ files/bin_cli/
 
 # push to github
 git add . 
-git commit -m "update"
-gitPush
+git commit
 
 

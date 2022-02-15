@@ -38,7 +38,6 @@ rsync -a --delete /home/$USER/Pictures/wallpapers/ wallpapers/
 ##################
 
 git add . 
-git commit -m "update"
-git push
+git commit
 
 
