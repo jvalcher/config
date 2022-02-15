@@ -11,6 +11,9 @@ fi
 # prompt
 PS1="\[\033[1;38;5;25m\]\W/ $ \[\033[0m\]"
 
+# make vim default editor
+export EDITOR="/usr/bin/vim.gtk3"
+
 # read man pages with vim
 export MANPAGER='/bin/bash -c "vim -MRn -c \"set buftype=nofile showtabline=0 ft=man ts=8 nomod nolist norelativenumber nonu noma\" -c \"normal L\" -c \"nmap q :qa<CR>\"</dev/tty <(col -b)"'
 
