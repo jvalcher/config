@@ -231,6 +231,23 @@ set undodir=$HOME/.vim/undodir
 " use interactive shell -> access to .bash_alias functions
 set shellcmdflag=-ic
 
+" open 40% pane to right (F5)
+function Tmux_split()
+    call system("tmux split-window -h -p 40")
+    :silent exec "!fileRename %"
+    :redraw!
+endfunction
+noremap <F5> :call Tmux_split() <CR>
+
+" close pane to right (F6)
+function Exit_pane()
+    call system("tmux send-keys -t .1 C-c")
+    call system("tmux send-keys -t .1 C-d")
+    :silent exec "!fileRename %"
+    :redraw!
+endfunction
+noremap <F6> :call Exit_pane() <CR>
+
 " rename tmux window and pane on save with .bash_aliases function
 autocmd BufWrite * :silent exec "!fileRename %" | :redraw!
 
