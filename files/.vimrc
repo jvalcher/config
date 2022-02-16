@@ -243,6 +243,7 @@ noremap <F5> :call Tmux_split() <CR>
 function Exit_pane()
     call system("tmux send-keys -t .1 C-c")
     call system("tmux send-keys -t .1 C-d")
+    call system("tmux select-pane -t .0 -T ' " . expand("%:t") . " '")
 endfunction
 noremap <F6> :call Exit_pane() <CR>
 
