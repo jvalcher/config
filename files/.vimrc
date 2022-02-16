@@ -234,8 +234,8 @@ set shellcmdflag=-ic
 " open 40% pane to right (F5)
 function Tmux_split()
     call system("tmux split-window -h -p 40")
-    :silent exec "!fileRename %"
-    :redraw!
+    call system("tmux send-keys -t .1 'tmux select-pane -t .0 -T " . expand("%:t") . "' Enter")
+    call system("tmux send-keys -t .1 clear Enter")
 endfunction
 noremap <F5> :call Tmux_split() <CR>
 
@@ -243,8 +243,6 @@ noremap <F5> :call Tmux_split() <CR>
 function Exit_pane()
     call system("tmux send-keys -t .1 C-c")
     call system("tmux send-keys -t .1 C-d")
-    :silent exec "!fileRename %"
-    :redraw!
 endfunction
 noremap <F6> :call Exit_pane() <CR>
 
