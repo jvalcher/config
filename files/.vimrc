@@ -26,6 +26,12 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
+" tabular  (for vim-markdown)
+Plugin 'godlygeek/tabular'
+
+" vim-markdown
+Plugin 'preservim/vim-markdown'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
