@@ -15,6 +15,7 @@ sudo apt install -y \
 #!/bin/bash
     vim-gtk3 \
     tmux \
+	gdb \
     xclip \
     curl \
     cmake \
@@ -48,6 +49,9 @@ sudo cp files/jvalcher /etc/sudoers.d/jvalcher
 
 echo ".tmux.conf"
 cp files/.tmux.conf /home/$USER/
+
+echo ".gdbinit"
+cp files/.gdbinit /home/$USER/
 
 printf "~/bin...\n"
 BIN_DIR="/home/$USER/bin"

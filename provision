@@ -20,7 +20,7 @@ echo "________________"
 sudo apt install -y \
     vim-gtk3 \
     tmux \
-    git \
+	gdb \
     google-chrome-stable \
     gnome-tweaks \
     snapd \
@@ -81,6 +81,9 @@ dconf load /org/gnome/terminal/ < files/gnome_terminal_jvalcher
 
 echo ".tmux.conf"
 cp files/.tmux.conf /home/$USER/
+
+echo ".gdbinit"
+cp files/.gdbinit /home/$USER/
 
 echo "gtk.css"
 cp files/gtk.css /home/$USER/.config/gtk-3.0/gtk.css
