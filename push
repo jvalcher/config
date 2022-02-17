@@ -17,6 +17,9 @@ rsync -a --delete /home/$USER/.vimrc files/
 # vim skeletons
 rsync -a --delete /home/$USER/.vim/skeletons files/
 
+# gdbinit
+rsync -a --delete /home/$USER/.gdbinit files/
+
 # ~/bin
 rsync -a --delete /home/$USER/bin/ files/bin_cli/
 

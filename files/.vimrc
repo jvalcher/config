@@ -184,6 +184,9 @@ set backspace=indent,eol,start
 " confirmation dialogue before closing unsaved file
 set confirm
 
+" paste blocks of code without extra spacing from vim settings
+set paste
+
 " increase history limit
 set history=1000
 
