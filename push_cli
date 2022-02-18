@@ -33,7 +33,6 @@ read -p "Show changes? (y/n): " ANS
 if [[ $ANS == [yY] ]]
 then
     git diff --cached
-    read -n 1 -s -r -p "Press any key to continue"
 fi
 
 git commit
