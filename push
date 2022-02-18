@@ -20,6 +20,9 @@ rsync -a --delete /home/$USER/.vim/skeletons files/
 # gdbinit
 rsync -a --delete /home/$USER/.gdbinit files/
 
+# .gitconfig
+rsync -a --delete /home/$USER/.gitconfig files/
+
 # ~/bin
 rsync -a --delete /home/$USER/bin/ files/bin_cli/
 
@@ -41,6 +44,14 @@ rsync -a --delete /home/$USER/Pictures/wallpapers/ wallpapers/
 ##################
 
 git add . 
+
+read -p "Show changes? (y/n): " ANS
+if [[ $ANS == [yY] ]]
+then
+    git diff --cached
+    read -n 1 -s -r -p "Press any key to continue"
+fi
+
 git commit
 git push
 

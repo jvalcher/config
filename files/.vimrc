@@ -185,7 +185,7 @@ set backspace=indent,eol,start
 set confirm
 
 " paste blocks of code without extra spacing from vim settings
-set paste
+"set paste
 
 " increase history limit
 set history=1000
@@ -259,14 +259,17 @@ noremap <F6> :call Exit_pane() <CR>
 " rename tmux window and pane on save with .bash_aliases function
 autocmd BufWrite * :silent exec "!fileRename %" | :redraw!
 
-" HTML boilerplate ( :Html )
-command Html 0r ~/.vim/skeletons/main.html
+" Bash boilerplate ( :Bash )
+command Bash 0r ~/.vim/skeletons/bash
 
 " C boilerplate ( :C )
-command C 0r ~/.vim/skeletons/base.c
+command C 0r ~/.vim/skeletons/c
 
 " C++ boilerplate ( :Cpp )
-command Cpp 0r ~/.vim/skeletons/base.cpp
+command Cpp 0r ~/.vim/skeletons/cpp
+
+" HTML boilerplate ( :Html )
+command Html 0r ~/.vim/skeletons/main.html
 
 " NERDTree settings
     " I == toggle h(I)dden file view

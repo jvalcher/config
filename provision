@@ -25,6 +25,7 @@ sudo apt install -y \
     gnome-tweaks \
     snapd \
     xclip \
+    tofrodos \
     apt-transport-https \
     ca-certificates \
     curl \
@@ -84,6 +85,9 @@ cp files/.tmux.conf /home/$USER/
 
 echo ".gdbinit"
 cp files/.gdbinit /home/$USER/
+
+echo ".gitconfig"
+cp files/.gitconfig /home/$USER/
 
 echo "gtk.css"
 cp files/gtk.css /home/$USER/.config/gtk-3.0/gtk.css

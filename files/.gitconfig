@@ -1,0 +1,6 @@
+[user]
+	email = jvalcher@gmail.com
+	name = jvalcher
+[core]
+    # line endings in checked out files for Linux
+	autocrlf = input
