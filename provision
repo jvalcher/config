@@ -92,13 +92,16 @@ cp files/.gitconfig /home/$USER/
 echo "gtk.css"
 cp files/gtk.css /home/$USER/.config/gtk-3.0/gtk.css
 
+echo "gnome-terminal"
+dconf load /org/gnome/terminal/legacy/profiles:/ < files/gnome-terminal-profiles.dconf
+
 printf "~/bin...\n"
 BIN_DIR="/home/$USER/bin"
 if [ ! -d $BIN_DIR ]; then
     mkdir $BIN_DIR
     cp files/bin/* $BIN_DIR/
 else
-    rsync -a --delete files/bin/ $BIN_DIR/
+    rsync -a --delete files/bin/ $BIN_DIR
 fi
 
 printf "singing_bowl.wav\n"
@@ -132,9 +135,6 @@ fi
 
 echo "vundle plugins..." 
 vim -c 'PluginInstall' -c 'qa!'
-
-echo "YouCompleteMe..." 
-(cd $VIM_DIR/bundle/YouCompleteMe && python3 install.py --clangd-completer)
 
 echo "vim-plug plugins..." 
 vim -c 'PlugInstall' -c 'qa!'
