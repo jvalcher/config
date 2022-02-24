@@ -225,7 +225,7 @@ nnoremap j gj
 nnoremap k gk
 
 " enable vim-markdown concealing
-set conceallevel=2
+set conceallevel=0
 
 " turn off vim-markdown folding
 let g:vim_markdown_folding_disabled = 1

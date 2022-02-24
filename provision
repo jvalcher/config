@@ -29,6 +29,7 @@ sudo apt install -y \
     apt-transport-https \
     ca-certificates \
     curl \
+    cpu-checker \
     gnupg \
     pandoc \
     feh \
