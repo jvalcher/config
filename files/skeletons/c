@@ -6,7 +6,13 @@
 
 #include <stdio.h>
 
-#define MARK printf("<< MARK-> %s: %d >>\n", __FILE__, __LINE__);
+
+#define DEBUG 0
+#define MK     printf("<< MARK-> %d >>\n", __LINE__)  // mark location
+#define PI(n)  printf(#n ": %d\n", n)                 // print int value
+#define PC(c)  printf(#c ": %c\n", c)                 // print char value
+#define FC     printf("%s called\n", __func__)        // function called
+#define FR     printf("%s returns\n", __func__)       // function returned
 
 
 int main () 
