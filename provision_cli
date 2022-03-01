@@ -23,9 +23,12 @@ sudo apt install -y \
     build-essential \
     python3-dev \
     aptitude \
+    snap \
     tree \
     trash-cli \
     grub-customizer
+
+sudo snap install mediainfo
 
 
 printf "\n\nCopying, sourcing .bash_aliases...\n"

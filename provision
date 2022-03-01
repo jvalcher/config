@@ -65,6 +65,7 @@ printf "\n\nInstalling Snap software...\n"
 echo "________________"
 sudo snap install spotify
 sudo snap install discord
+sudo snap install mediainfo
 
 
 #############

@@ -32,6 +32,9 @@ Plugin 'godlygeek/tabular'
 " vim-markdown
 Plugin 'preservim/vim-markdown'
 
+"YouCompletMe
+Plugin 'ycm-core/YouCompleteMe'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -63,6 +66,9 @@ Plug 'joshdick/onedark.vim'
 
 " NERDTree
 Plug 'scrooloose/nerdtree'
+
+"Goyo
+Plug 'junegunn/goyo.vim'
 
 " INSTALL PLUGINS with:   
     "  :source %
@@ -224,11 +230,14 @@ xnoremap <expr> p '"_d"'.v:register.'p'
 nnoremap j gj
 nnoremap k gk
 
-" enable vim-markdown concealing
+" enable (2), disable (0) vim-markdown concealing
 set conceallevel=0
 
 " turn off vim-markdown folding
 let g:vim_markdown_folding_disabled = 1
+
+" unmap K (exits vim to man page for term under cursor)
+nnoremap K <Nop>
 
 " set persistent undo, target directory
 set undofile
@@ -239,6 +248,10 @@ set undodir=$HOME/.vim/undodir
 
 " use interactive shell -> access to .bash_alias functions
 set shellcmdflag=-ic
+
+"YouCompletMe
+let g:ycm_server_keep_logfiles = 1
+let g:ycm_server_log_level = 'debug'
 
 " open 40% pane to right (F5)
 function Tmux_split()
@@ -269,7 +282,7 @@ command C 0r ~/.vim/skeletons/c
 command Cpp 0r ~/.vim/skeletons/cpp
 
 " HTML boilerplate ( :Html )
-command Html 0r ~/.vim/skeletons/main.html
+command Html 0r ~/.vim/skeletons/html
 
 " NERDTree settings
     " I == toggle h(I)dden file view
