@@ -39,6 +39,9 @@ alias pclip="pwd | xclip -sel clip"
 # play singing_bowl sound 
 alias bowl="(aplay -q ~/Music/singing_bowl.wav > /dev/null 2>&1 &)"
 
+# WSL Chrome 
+alias chrome="/c/Program\ Files\ \(x86\)/Google/Chrome/Application/chrome.exe"
+
 # add autocomplete for markdown files when using google-chrome
 complete -f -X '!*.md' google-chrome
 
