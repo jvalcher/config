@@ -250,8 +250,9 @@ set undodir=$HOME/.vim/undodir
 set shellcmdflag=-ic
 
 "YouCompletMe
-let g:ycm_server_keep_logfiles = 1
-let g:ycm_server_log_level = 'debug'
+let g:ycm_semantic_triggers = {
+    \   'css': [ 're!^\s{4}', 're!:\s+' ],
+    \ }
 
 " open 40% pane to right (F5)
 function Tmux_split()
