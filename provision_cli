@@ -12,7 +12,6 @@ sudo apt upgrade -y
 printf "\n\nInstalling Apt software...\n"
 echo "________________"
 sudo apt install -y \
-#!/bin/bash
     vim-gtk3 \
     tmux \
 	gdb \

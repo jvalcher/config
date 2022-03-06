@@ -1,8 +1,0 @@
-#!/bin/bash
-
-printf "\nld --verbose\n----------\n"
-ld --verbose | grep SEARCH_DIR | tr -s ' ;' \\012
-
-printf "\ngcc -L\n----------\n"
-gcc -print-search-dirs | sed '/^lib/b 1;d;:1;s,/[^/.][^/]*/\.\./,/,;t 1;s,:[^=]*=,:;,;s,;,;  ,g' | tr \; \\012
-printf "\n"
