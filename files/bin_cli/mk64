@@ -4,7 +4,7 @@
 
 #python3 ~/Downloads/m64py-0.2.5/bin/m64py
 mupen64plus \
-    --resolution 1920x1080 \
+    --fullscreen \
     --set UI-console[VideoPlugin]=mupen64plus-video-glide64mk2.so \
     ~/bin/MK64.n64
 
