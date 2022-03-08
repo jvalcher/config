@@ -12,6 +12,7 @@
 
 printf "\n\nUpdating, upgrading APT...\n"
 echo "________________"
+sudo cp files/prox.conf /etc/apt/apt.conf.d/
 sudo apt update
 sudo apt upgrade -y
 
@@ -26,6 +27,7 @@ sudo apt install -y \
     snapd \
     xclip \
     tofrodos \
+    imagemagick \
     apt-transport-https \
     ca-certificates \
     curl \
@@ -73,7 +75,6 @@ sudo apt autoremove -y
 
 printf "\n\nInstalling Snap software...\n"
 echo "________________"
-sudo snap install spotify
 sudo snap install discord
 sudo snap install mediainfo
 

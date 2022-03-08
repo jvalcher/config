@@ -6,6 +6,7 @@
 
 printf "\n\nUpdating, upgrading APT...\n"
 echo "________________"
+sudo cp files/prox.conf /etc/apt/apt.conf.d/
 sudo apt update
 sudo apt upgrade -y
 

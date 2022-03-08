@@ -29,6 +29,9 @@ rsync -a --delete /home/$USER/bin/ files/bin_cli/
 # gtk.css
 rsync -a --delete /home/$USER/.config/gtk-3.0/gtk.css files/ 
 
+# apt.conf 
+sudo rsync -a --delete /etc/apt/apt.conf.d/prox.conf files/ 
+
 # gnome-terminal
 dconf dump /org/gnome/terminal/legacy/profiles:/ > files/gnome-terminal-profiles.dconf
 
