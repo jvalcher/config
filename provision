@@ -19,6 +19,7 @@ sudo apt upgrade -y
 printf "\n\nInstalling APT software...\n"
 echo "________________"
 sudo apt install -y \
+    software-properties-common \
     vim-gtk3 \
     tmux \
 	gdb \
@@ -54,6 +55,7 @@ sudo apt install -y \
     okular \
     virtualbox \
     virtualbox-ext-pack
+
 
 printf "\n\nInstalling Spotify...\n"
 echo "________________"

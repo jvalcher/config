@@ -249,19 +249,22 @@ set undodir=$HOME/.vim/undodir
 " use interactive shell -> access to .bash_alias functions
 set shellcmdflag=-ic
 
-"WSL yank to clipboard
-let s:clip = '/mnt/c/Windows/System32/clip.exe'
-if executable(s:clip)
-    augroup WSLYank
-        autocmd!
-        autocmd TextYankPost * if v:event.operator ==# 'y' | call system(s:clip, @0) | endif
-    augroup END
-endif
+""WSL yank to clipboard
+"let s:clip = '/mnt/c/Windows/System32/clip.exe'
+"if executable(s:clip)
+"    augroup WSLYank
+"        autocmd!
+"        autocmd TextYankPost * if v:event.operator ==# 'y' | call system(s:clip, @0) | endif
+"    augroup END
+"endif
 
-"YouCompletMe
+"YouCompletMe CSS dropdown
 let g:ycm_semantic_triggers = {
     \   'css': [ 're!^\s{4}', 're!:\s+' ],
     \ }
+
+"YouCompletMe turn off hover info
+let g:ycm_auto_hover=''
 
 " open 40% pane to right (F5)
 function Tmux_split()

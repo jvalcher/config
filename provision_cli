@@ -22,6 +22,11 @@ sudo apt install -y \
     tofrodos \
     build-essential \
     python3-dev \
+    mono-complete \
+    golang \
+    nodejs \
+    default-jdk \
+    npm \
     aptitude \
     snap \
     tree \
