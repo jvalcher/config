@@ -204,8 +204,8 @@ noremap <Down> <C-E>
 noremap <Up> <C-Y>
 
 " keep cursor in center of screen
-set so=999
-"set so=0
+"set so=999
+set so=0
 
 " center screen to cursor when going to last line with G
 noremap G Gzz
@@ -308,6 +308,9 @@ command Bash 0r ~/.vim/skeletons/bash
 
 " C boilerplate ( :C )
 command C 0r ~/.vim/skeletons/c
+
+" C debug macros ( :C )
+command Cd 0r ~/.vim/skeletons/c_debug
 
 " C++ boilerplate ( :Cpp )
 command Cpp 0r ~/.vim/skeletons/cpp
