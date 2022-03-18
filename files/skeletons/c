@@ -15,8 +15,7 @@
 #define FR     printf("%s returns\n", __func__)       // function returned
 
 
-int main () 
-{
+int main () {
 
 
     return 0;

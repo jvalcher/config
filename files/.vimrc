@@ -258,13 +258,31 @@ set shellcmdflag=-ic
 "    augroup END
 "endif
 
-"YouCompletMe CSS dropdown
-let g:ycm_semantic_triggers = {
-    \   'css': [ 're!^\s{4}', 're!:\s+' ],
-    \ }
+"Toggle YouCompleteMe on and off with F3
+let g:ycm_auto_trigger = 0
+let g:ycm_show_diagnostics_ui = 0
+function Toggle_ycm()
+    if g:ycm_show_diagnostics_ui == 0
+        let g:ycm_auto_trigger = 1
+        let g:ycm_show_diagnostics_ui = 1
+		:YcmRestartServer
+		:e
+		:echo "YCM on"
+    elseif g:ycm_show_diagnostics_ui == 1
+        let g:ycm_auto_trigger = 0
+        let g:ycm_show_diagnostics_ui = 0
+		:YcmRestartServer
+		:e
+		:echo "YCM off"
+    endif
+endfunction
+map <F3> :call Toggle_ycm() <CR>
 
-"YouCompletMe turn off hover info
-let g:ycm_auto_hover=''
+"Turn off YouCompletMe hover info
+let g:ycm_auto_hover=""
+
+"Toggle YouCompletMe language hover info with F4
+map <F4> <plug>(YCMHover)
 
 " open 40% pane to right (F5)
 function Tmux_split()
