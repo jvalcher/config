@@ -127,6 +127,9 @@ set tabstop=4
 " set tabs to 2 for htm, html, yml, yaml, json files
 autocmd BufRead,BufNewFile *.htm,*.html,*.yml,*.yaml,*.json setlocal tabstop=2 shiftwidth=2 softtabstop=2
 
+" set tabs to 8 for .c, .h files
+autocmd BufRead,BufNewFile *.c,*.h setlocal tabstop=8 shiftwidth=8 softtabstop=8
+
 " convert tabs to spaces, backspace removes tab
 set softtabstop=4 expandtab
 
