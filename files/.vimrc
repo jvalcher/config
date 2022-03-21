@@ -329,4 +329,6 @@ command Html 0r ~/.vim/skeletons/html
 map <F2> :NERDTreeToggle<CR>
 " make pwd the parent directory
 let g:NERDTreeChDirMode=3
+" close after opening file
+let NERDTreeQuitOnOpen=1
 

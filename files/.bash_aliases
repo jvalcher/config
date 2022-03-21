@@ -109,6 +109,9 @@ lla () {
 }
 alias la="lla"
 
+# add ~/include to C header path
+export C_INCLUDE_PATH=$C_INCLUDE_PATH:/home/$USER/include
+
 # change cd and vim functionality to automatically rename tmux windows and panes
 CHAR_LIMIT=20
 MY_VIM="/usr/bin/vim.gtk3"
