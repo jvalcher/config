@@ -118,20 +118,30 @@ set autoindent
 " round indentation to nearest multiple of shiftwidth when shifting lines
 set shiftround
 
-" indent 4 spaces when shifting
-set shiftwidth=4
-
 " insert tabstop number of spaces when tab is pressed
 set tabstop=4
+" indent n spaces when shifting
+set shiftwidth=4
+" convert tabs to spaces, backspace removes tab
+set softtabstop=4 expandtab
+
+" toggle tabs between 4 and 8 with F7
+let tab_var=4 
+function Toggle_tab()
+    if g:tab_var == 4
+        :setlocal tabstop=8 shiftwidth=8 softtabstop=8
+        :let g:tab_var = 8
+        :echo "tabs 8"
+    elseif g:tab_var == 8
+        :setlocal tabstop=4 shiftwidth=4 softtabstop=4
+        :let g:tab_var = 4
+        :echo "tabs 4"
+    endif
+endfunction
+map <F7> :call Toggle_tab() <CR>
 
 " set tabs to 2 for htm, html, yml, yaml, json files
 autocmd BufRead,BufNewFile *.htm,*.html,*.yml,*.yaml,*.json setlocal tabstop=2 shiftwidth=2 softtabstop=2
-
-" set tabs to 8 for .c, .h files
-autocmd BufRead,BufNewFile *.c,*.h setlocal tabstop=8 shiftwidth=8 softtabstop=8
-
-" convert tabs to spaces, backspace removes tab
-set softtabstop=4 expandtab
 
 " Search with no highlights
 set nohlsearch
