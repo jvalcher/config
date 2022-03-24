@@ -333,7 +333,7 @@ command Bash 0r ~/.vim/skeletons/bash
 " C boilerplate ( :C )
 command C 0r ~/.vim/skeletons/c
 
-" C debug macros ( :C )
+" C debug macros ( :Cd )
 command Cd 0r ~/.vim/skeletons/c_debug
 
 " C++ boilerplate ( :Cpp )
