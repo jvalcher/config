@@ -216,9 +216,20 @@ set clipboard=unnamedplus
 noremap <Down> <C-E>
 noremap <Up> <C-Y>
 
-" keep cursor in center of screen
-"set so=999
-set so=0
+" toggle keep cursor in center of screen with F8
+let so_var=0
+function Toggle_cursor()
+    if g:so_var == 0
+        :setlocal so=999
+        :let g:so_var=999
+        :echo "cursor center"
+    elseif g:so_var == 999
+        :setlocal so=0
+        :let g:so_var=0
+        :echo "cursor free"
+    endif
+endfunction
+map <F8> :call Toggle_cursor() <CR>
 
 " center screen to cursor when going to last line with G
 noremap G Gzz

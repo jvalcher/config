@@ -24,7 +24,7 @@ rsync -a --delete /home/$USER/.gdbinit files/
 rsync -a --delete /home/$USER/.gitconfig files/
 
 # include/...
-rsync -a --delete /home/$USER/include files/include/
+rsync -a --delete /home/$USER/include/ files/include/
 
 # ~/bin
 rsync -a --delete /home/$USER/bin/ files/bin_cli/

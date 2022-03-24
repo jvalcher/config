@@ -11,7 +11,7 @@
  */
 
 #define __FILENAME__ (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__)
-#define MK     printf("<< MARK-> %d, %s >>\n", __LINE__, __FILENAME__)  // mark location
+#define MK     printf("<< MARK -> line: %d, %s >>\n", __LINE__, __FILENAME__)  // mark location
 #define PI(n)  printf(#n ": %d\n", n)                 // print int value
 #define PC(c)  printf(#c ": %c\n", c)                 // print char value
 #define FC     printf("%s() called\n", __func__)        // function called
