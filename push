@@ -38,6 +38,9 @@ sudo rsync -a --delete /etc/apt/apt.conf.d/proxy.conf files/
 # gnome-terminal
 dconf dump /org/gnome/terminal/legacy/profiles:/ > files/gnome-terminal-profiles.dconf
 
+# gnome keybindings
+dconf dump /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/ > files/gnome-keybindings.dconf
+
 # wallpapers
 rsync -a --delete /home/$USER/Pictures/wallpapers/ wallpapers/
 

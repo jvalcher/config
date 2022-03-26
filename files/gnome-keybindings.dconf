@@ -1,0 +1,9 @@
+[custom0]
+binding='<Primary>space'
+command='playerctl play-pause'
+name='YouTube Play/Pause'
+
+[custom1]
+binding='<Primary><Alt>o'
+command='okular'
+name='Okular'
