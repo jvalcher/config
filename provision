@@ -178,7 +178,7 @@ printf "\n\n"
 printf "Setting wallpaper...\n"
 echo "________________"
 
-WALLPAPER="forest2.jpg"
+WALLPAPER="codeRain.jpg"
 LOGIN="gradient_blue.png"
 PICTURES_DIR="/home/$USER/Pictures/wallpapers"
 
