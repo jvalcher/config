@@ -27,7 +27,7 @@ rsync -a --delete /home/$USER/.gitconfig files/
 rsync -a --delete /home/$USER/include files/include/
 
 # apt.conf 
-sudo rsync -a --delete /etc/apt/apt.conf.d/prox.conf files/ 
+sudo rsync -a --delete /etc/apt/apt.conf.d/proxy.conf files/ 
 
 # ~/bin
 rsync -a --delete /home/$USER/bin/ files/bin_cli/
