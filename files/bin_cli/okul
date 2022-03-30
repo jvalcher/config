@@ -1,0 +1,5 @@
+
+#!/bin/bash
+
+# open most recent file in Okular
+okular "$(cat ~/.local/share/okular/docdata/"$(ls -ct ~/.local/share/okular/docdata | head -n1)" | grep 'documentInfo url' | cut -d\" -f2)"

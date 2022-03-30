@@ -112,6 +112,10 @@ alias la="lla"
 # add ~/include to C header path
 export C_INCLUDE_PATH=$C_INCLUDE_PATH:/home/$USER/include
 
+# mount android via usb
+alias android-connect="mtpfs -o allow_other /media/Samsung"
+alias android-disconnect="fusermount -u /media/Samsung"
+
 # change cd and vim functionality to automatically rename tmux windows and panes
 CHAR_LIMIT=20
 MY_VIM="/usr/bin/vim.gtk3"
