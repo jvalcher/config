@@ -18,6 +18,12 @@ export MANPAGER='/bin/bash -c "vim -MRn -c \"set buftype=nofile showtabline=0 ft
 export PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
 shopt -s histappend
 
+# add cargo bin to path
+export PATH=$PATH:/home/$USER/.cargo/bin
+
+# add ~/.local/bin to path
+export PATH=$PATH:/home/$USER/.local/bin
+
 # connect to easytether via usb
 alias easy="sudo systemctl restart systemd-networkd; sudo easytether-usb"
 
