@@ -1,90 +1,137 @@
 #!/bin/bash
 
 
-# hit 'q' to exit
+##################
+# Interval Timer #
+##################
+
+# Usage:   workout 35
+# Press 'q' or ctrl-C to exit
+# Uses figlet to display numbers
+
+
+# interval sound
+SOUND="/home/jvalcher/Music/singing_bowl.wav"
+
+
+# center text vertically
+function center_vertically ()
+{
+    # number of lines in current terminal
+    TOT_LINES=$(tput lines)
+
+    # number of lines to skip 
+    NUM_LINES=$(( TOT_LINES / 3 ))
     
+    # while NUM_LINES is greater than 0...
+    while [ $NUM_LINES -gt 0 ]
+    do
+        # print new line
+        echo ""
 
-# zoom in, clear screen, turn off cursor
-tput civis
-clear
+        # subtract line
+        NUM_LINES=$(( NUM_LINES - 1 ))
 
-# timer function
-function workout_timer() {
-    secs=$1
-    while [ $secs -gt 0 ]
+    done
+}
+
+# exit program
+function quit () 
+{
+    # return cursor
+    tput cnorm 
+
+    clear
+    exit 0
+}
+
+# countdown timer
+function timer_loop() 
+{
+    # set duration to first argument
+    SECS=$1
+
+    # while SECS is greater than 0...
+    while [ $SECS -ge 0 ]
     do
 
-        # return cursor on ctrl-c (2 -> SIGINT)
+        # print second
+        clear
+        printf "\n   Press 'q' to quit"
+        center_vertically
+        figlet -f big -k -c -r $SECS
+
+        # 1-second timeout to store single-character
+        read -t 1 -N 1 INPUT
+
+        # run quit if 'q' pressed
+        if [[ $INPUT = "q" ]]; then
+            quit
+        fi
+
+        # run quit if ctrl-C pressed
         function trap_ctrlc () {
-            tput cnorm 
-            exit 2
+            quit
         }
         trap "trap_ctrlc" 2
 
-        # print second
-        echo -ne "$secs\033[0K\r"
-
-        # one-second timeout to receive single-character input 
-        read -t 1 -N 1 input
-
-        # hit 'q' to exit
-        if [[ $input = "q" ]]; then
-            tput cnorm
-            clear
-            exit 0
-        fi
-
         # subtract second
-        secs=$(( secs -1 ))
+        SECS=$(( SECS -1 ))
 
     done
-
-    # timer complete sound
-    aplay ~/Music/singing_bowl.wav > /dev/null 2>&1 &
+    
+    # play sound
+    aplay $SOUND > /dev/null 2>&1 &
 }
 
-# print current, next exercise
-function print_exercise() {
-    EXERCISE=$1;
-    NEXT=$2;
-    printf "\e[1;33m$EXERCISE\e[0m\n\n"
-    printf "\e[1;32mnext: $NEXT\e[0m\n\n"
-}
 
-# repeating 30-second timer
+# check if argument supplied
+if [ $# -eq 0 ]; then
+    printf "\nUsage: \n\tworkout <seconds>\n\n"
+    exit 1;
+fi
+
+
+# turn off cursor
+tput civis
+
+
+# 5-second countdown to start
+clear
+center_vertically
+figlet -f big -k -c -r "Get Ready..."
+sleep 5
+aplay $SOUND > /dev/null 2>&1 &
+
+
+# set interval duration in seconds to first command line argument
+INTERVAL=$1
+
+# repeat timer indefinitely
 while true; do
 
-    workout_timer 30
+    timer_loop $INTERVAL
 
 done
 
-## exercises
-#printf "\n\n\e[1;31mGet ready!\e[0m\n\n"
-#workout_timer 5
-#print_exercise "Jumping Jacks" "Right Torso Stretch"
-#workout_timer 60
-#print_exercise "Right Torso Stretch" "Left Torso Stretch"
-#workout_timer 30
-#print_exercise "Left Torso Stretch" "Squats"
-#workout_timer 30
-#print_exercise "Squats" "Down Stretch"
-#workout_timer 60
-#print_exercise "Down Stretch" "Crunches/Knee Raises"
-#workout_timer 60
-#print_exercise "Crunches/Knee Raises" "Butterfly Stretch"
-#workout_timer 60
-#print_exercise "Butterfly Stretch" "Supermans"
-#workout_timer 60
-#print_exercise "Supermans" "Right Side Kicks"
-#workout_timer 60
-#print_exercise "Right Side Kicks" "Left Side Kicks"
-#workout_timer 30
-#print_exercise "Left Side Kicks" "Neck Exercises"
-#workout_timer 30
-#print_exercise "Neck Exercises" "Triceps and Biceps"
-#workout_timer 60
-#printf "\e[1;33mTriceps and Biceps...\e[0m\n\n"
 
-# turn on cursor, regular zoom
-tput cnorm
+
+## Create workout session
+#
+## print current, next exercise
+#function print_exercise() {
+#    EXERCISE=$1;
+#    NEXT=$2;
+#    printf "\e[1;33m$EXERCISE\e[0m\n\n"
+#    printf "\e[1;32mnext: $NEXT\e[0m\n\n"
+#}
+#
+#print_exercise "Jumping Jacks" "Right Torso Stretch"
+#timer_loop 60
+#print_exercise "Right Torso Stretch" "Left Torso Stretch"
+#timer_loop 30
+#print_exercise "Left Torso Stretch" "Squats"
+#timer_loop 30
+#print_exercise "Squats" "Down Stretch"
+#timer_loop 30
 
