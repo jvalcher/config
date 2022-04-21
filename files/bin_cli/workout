@@ -8,10 +8,11 @@
 # Usage:   workout 35
 # Press 'q' or ctrl-C to exit
 # Uses figlet to display numbers
+# Uses cvlc to play sounds (VLC)
 
 
 # interval sound
-SOUND="/home/jvalcher/Music/singing_bowl.wav"
+SOUND="/home/jvalcher/Music/correct_bing.mp3"
 
 
 # center text vertically
@@ -81,7 +82,7 @@ function timer_loop()
     done
     
     # play sound
-    aplay $SOUND > /dev/null 2>&1 &
+    cvlc $SOUND > /dev/null 2>&1 &
 }
 
 
@@ -101,7 +102,7 @@ clear
 center_vertically
 figlet -f big -k -c -r "Get Ready..."
 sleep 5
-aplay $SOUND > /dev/null 2>&1 &
+cvlc $SOUND > /dev/null 2>&1 &
 
 
 # set interval duration in seconds to first command line argument

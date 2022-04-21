@@ -216,23 +216,33 @@ set clipboard=unnamedplus
 noremap <Down> <C-E>
 noremap <Up> <C-Y>
 
-" toggle keep cursor in center of screen with F8
-let so_var=0
-function Toggle_cursor()
-    if g:so_var == 0
-        :setlocal so=999
-        :let g:so_var=999
-        :echo "cursor center"
-    elseif g:so_var == 999
-        :setlocal so=0
-        :let g:so_var=0
-        :echo "cursor free"
+" toggle keeping cursor centered vertically
+autocmd CursorMoved,CursorMovedI * call Center_cursor()
+function! Center_cursor()
+    let pos = getpos(".")
+    normal! zz
+    call setpos(".", pos)
+endfunction
+let s:center=1
+function Toggle_center_cursor()
+    if s:center
+        autocmd! CursorMoved,CursorMovedI *
+        let s:center=0
+        echo "Cursor free"
+    else
+        autocmd CursorMoved,CursorMovedI * call Center_cursor()
+        let s:center=1
+        echo "Cursor center"
     endif
 endfunction
-map <F8> :call Toggle_cursor() <CR>
+map <F8> :call Toggle_center_cursor() <CR>
 
-" center screen to cursor when going to last line with G
-noremap G Gzz
+" navigate wrapped lines
+nnoremap j gj
+nnoremap k gk
+
+" center screen to cursor when jumping to last line with G
+nnoremap G Gzz
 
 " less escape key delay
 set timeout timeoutlen=50
@@ -249,10 +259,6 @@ vnoremap > >gv
 
 " Preserve copied data when replacing with visual mode
 xnoremap <expr> p '"_d"'.v:register.'p'
-
-" Navigate up/down long lines with j, k
-nnoremap j gj
-nnoremap k gk
 
 " enable (2), disable (0) vim-markdown concealing
 set conceallevel=0
