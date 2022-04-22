@@ -195,6 +195,8 @@ set noerrorbells
 
 " enable mouse for scrolling and resizing
 set mouse=a
+map <ScrollWheelDown> gj
+map <ScrollWheelUp> gk
 
 " allow backspacing over indentation, line breaks, insertion start
 " to preserve source spacing when pasting multiple lines use 'set paste'
@@ -213,8 +215,8 @@ set history=1000
 set clipboard=unnamedplus
 
 " remap scrolling to up, down arrow
-noremap <Down> <C-E>
-noremap <Up> <C-Y>
+"noremap <Down> <C-E>
+"noremap <Up> <C-Y>
 
 " toggle keeping cursor centered vertically
 autocmd CursorMoved,CursorMovedI * call Center_cursor()
