@@ -1,3 +1,4 @@
+#!/bin/bash
 
 # F11 == toggle fullscreen mode
 
