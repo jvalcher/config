@@ -1,0 +1,5 @@
+html {
+    background-color: #203239;
+    color: #E0DDAA;
+    font-family: sans-serif;
+}

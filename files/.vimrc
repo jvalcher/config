@@ -33,7 +33,7 @@ Plugin 'godlygeek/tabular'
 Plugin 'preservim/vim-markdown'
 
 "YouCompletMe
-Plugin 'ycm-core/YouCompleteMe'
+"Plugin 'ycm-core/YouCompleteMe'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -68,7 +68,7 @@ Plug 'joshdick/onedark.vim'
 Plug 'scrooloose/nerdtree'
 
 "Goyo
-Plug 'junegunn/goyo.vim'
+"Plug 'junegunn/goyo.vim'
 
 " INSTALL PLUGINS with:   
     "  :source %
@@ -349,6 +349,9 @@ command Cpp 0r ~/.vim/skeletons/cpp
 
 " HTML boilerplate ( :Html )
 command Html 0r ~/.vim/skeletons/html
+
+" CSS boilerplate ( :Css )
+command Css 0r ~/.vim/skeletons/css
 
 " NERDTree settings
     " I == toggle h(I)dden file view
