@@ -1,14 +1,14 @@
 #!/bin/bash
 
 
-##################
-# Interval Timer #
-##################
+###################
+# Countdown Timer #
+###################
 
-# Usage:   workout 35
+# Usage:   ctd 00:15:30
 # Press 'q' or ctrl-C to exit
-# Uses toilet to display numbers
-# Uses cvlc to play sounds (VLC)
+# Requires toilet to display numbers
+# Requires cvlc to play sounds (VLC)
 
 
 # interval sound
@@ -36,6 +36,7 @@ function center_vertically ()
     done
 }
 
+# prepend '0' if number is less than 10
 function prepend_zero ()
 {
     NUM=$1
@@ -82,9 +83,6 @@ function timer ()
         SEC=$(( SECS%60 ))
         SEC=$(prepend_zero $SEC)
         toilet -f mono9 "$HOUR:$MIN:$SEC"
-        #toilet -f smbraille "$HOUR:$MIN:$SEC"
-        #toilet -f smmono9 "$HOUR:$MIN:$SEC"
-        #toilet -t -f wideterm "$HOUR:$MIN:$SEC"
 
         # 1-second timeout to store single-character ('q')
         read -t 1 -N 1 INPUT
@@ -120,8 +118,7 @@ fi
 # turn off cursor
 tput civis
 
-
-# set interval duration in seconds to first command line argument
+# set interval duration to first command line argument (format -> xx:xx:xx)
 INTERVAL=$1
 
 # repeat timer indefinitely
