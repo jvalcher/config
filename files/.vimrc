@@ -71,6 +71,9 @@ Plug 'joshdick/onedark.vim'
 " NERDTree
 Plug 'scrooloose/nerdtree'
 
+" Automatically show Vim's autocomplete menu
+Plug 'vim-scripts/AutoComplPop'
+
 "Goyo
 "Plug 'junegunn/goyo.vim'
 
@@ -329,6 +332,15 @@ let g:ycm_auto_hover=""
 
 "Toggle YouCompletMe language hover info with F4
 map <F4> <plug>(YCMHover)
+
+" Turn off YouCompleteMe for html, css files
+autocmd BufRead,BufNewFile *.htm,*.html,*.css
+\ let g:ycm_auto_trigger=0 |
+\ let g:ycm_show_diagnostics_ui=0
+
+" enable Vim's html, css autocompletion
+set omnifunc=csscomplete#CompleteCSS
+set omnifunc=htmlcomplete#CompleteTags
 
 " open 40% pane to right (F5)
 function Tmux_split()
