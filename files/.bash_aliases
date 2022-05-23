@@ -25,9 +25,6 @@ export PATH=$PATH:/home/$USER/.cargo/bin
 # add ~/.local/bin to path
 export PATH=$PATH:/home/$USER/.local/bin
 
-# add /usr/local/bin to path
-export PATH=$PATH:/usr/local/bin
-
 # connect to easytether via usb
 alias easy="sudo systemctl restart systemd-networkd; sudo easytether-usb"
 
@@ -128,7 +125,7 @@ alias android-disconnect="fusermount -u /media/Samsung"
 
 # change cd and vim functionality to automatically rename tmux windows and panes
 CHAR_LIMIT=20
-MY_VIM="/usr/local/bin/vim"
+MY_VIM="/usr/bin/vim.gtk3"
 
 tmux ls > /dev/null 2>&1
 TMUX_STATUS=$?

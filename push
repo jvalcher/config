@@ -58,7 +58,7 @@ then
     read -n 1 -s -r -p "Press any key to continue"
 fi
 
-git commit
-git push
+#git commit
+#git push
 
 

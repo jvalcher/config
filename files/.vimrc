@@ -74,6 +74,9 @@ Plug 'scrooloose/nerdtree'
 " Automatically show Vim's autocomplete menu
 Plug 'vim-scripts/AutoComplPop'
 
+" OnSyntaxChange  (disable AutoComplPop inside comments)
+Plug 'vim-scripts/OnSyntaxChange'
+
 "Goyo
 "Plug 'junegunn/goyo.vim'
 
@@ -112,21 +115,35 @@ call plug#end()
 "    endif
 "endif
 
-" Use termguicolors inside tmux
+
+""""""""""""""""
+" Color scheme "
+""""""""""""""""
+
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
-" fixes glitch? in colors when using vim with tmux
+" fixes glitch(?) in colors when using vim with tmux
 set background=dark
 set t_Co=256
 
+set term=xterm-256color
 set termguicolors
 
+" set color scheme
+silent! colorscheme onedark
+
+" show line numbers
+set number
+
+" change line number color  (not working)
+highlight LineNr ctermfg=24
 
 
-"""""""""""""""""""""""""""""""""
-" Miscellaneous settings
-""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""
+" Miscellaneous settings "
+""""""""""""""""""""""""""
 
 
 " new lines inherit indentation of previous lines
@@ -137,12 +154,14 @@ set shiftround
 
 " insert tabstop number of spaces when tab is pressed
 set tabstop=4
+
 " indent n spaces when shifting
 set shiftwidth=4
+
 " convert tabs to spaces, backspace removes tab
 set softtabstop=4 expandtab
 
-" toggle tabs between 4 and 8 with F7
+" toggle tabs between 4 and 8  <F7>
 let tab_var=4 
 function Toggle_tab()
     if g:tab_var == 4
@@ -164,7 +183,7 @@ autocmd BufRead,BufNewFile *.htm,*.html,*.yml,*.yaml,*.json setlocal tabstop=2 s
 set nohlsearch
 "set hlsearch
 
-" stop incremental search at EOF
+" stop search at end of file
 set nowrapscan
 
 " jump to last position when opening file
@@ -192,22 +211,13 @@ set linebreak
 " enable syntax highlighting
 syntax on
 
-" show line numbers
-set number
-
-" set color scheme
-silent! colorscheme onedark
-
-" change line number color
-highlight LineNr ctermfg=24
-
 " always show cursor position
 set ruler
 
 " display command line's tab complete options as menu
 set wildmenu
 
-" disable error beeps, flash screen instead
+" disable error beeps
 set noerrorbells
 
 " enable mouse for scrolling and resizing
@@ -215,15 +225,21 @@ set mouse=a
 map <ScrollWheelDown> gj
 map <ScrollWheelUp> gk
 
-" allow backspacing over indentation, line breaks, insertion start
-" to preserve source spacing when pasting multiple lines use 'set paste'
+" allow backspacing over indentation, line breaks
 set backspace=indent,eol,start
 
-" confirmation dialogue before closing unsaved file
+" disable automatically wrapping comments and inserting lead quotation mark with <Enter> and <o,O> on newlines
+autocmd BufNewFile,BufRead * setlocal formatoptions-=cro
+
+" show confirmation dialogue before closing unsaved file
 set confirm
 
-" paste blocks of code without extra spacing from vim settings
-"set paste
+" toggle paste, nopaste  <F5>
+function! Toggle_paste()
+    :set paste!
+    :set paste?
+endfunction
+map <F5> :call Toggle_paste() <CR>
 
 " increase history limit
 set history=1000
@@ -235,7 +251,7 @@ set clipboard=unnamedplus
 "noremap <Down> <C-E>
 "noremap <Up> <C-Y>
 
-" toggle keeping cursor centered vertically
+" toggle keeping cursor vertically centered on screen  <F8>
 autocmd CursorMoved,CursorMovedI * call Center_cursor()
 function! Center_cursor()
     let pos = getpos(".")
@@ -266,20 +282,20 @@ nnoremap G Gzz
 " less escape key delay
 set timeout timeoutlen=50
 
-" navigate vim panes (ctrl+w + h,j,k,l)
+" navigate vim panes  <ctrl+w + h,j,k,l>
 nnoremap <C-W><J> <C-W><C-J>
 nnoremap <C-W><K> <C-W><C-K>
 nnoremap <C-W><L> <C-W><C-L>
 nnoremap <C-W><H> <C-W><C-H>
 
-" Reselect visual block for multiple indents
+" reselect visual block for multiple indents
 vnoremap < <gv
 vnoremap > >gv
 
 " Preserve copied data when replacing with visual mode
 xnoremap <expr> p '"_d"'.v:register.'p'
 
-" enable (2), disable (0) vim-markdown concealing
+" disable vim-markdown concealing (enable -> 2)
 set conceallevel=0
 
 " turn off vim-markdown folding
@@ -295,9 +311,6 @@ if !isdirectory(expand("$HOME/.vim/undodir"))
 endif
 set undodir=$HOME/.vim/undodir
 
-" use interactive shell -> access to .bash_alias functions
-set shellcmdflag=-ic
-
 ""WSL yank to clipboard
 "let s:clip = '/mnt/c/Windows/System32/clip.exe'
 "if executable(s:clip)
@@ -307,7 +320,7 @@ set shellcmdflag=-ic
 "    augroup END
 "endif
 
-"Toggle YouCompleteMe on and off with F3
+"Toggle YouCompleteMe  <F3>
 let g:ycm_auto_trigger = 1
 let g:ycm_show_diagnostics_ui = 1
 function Toggle_ycm()
@@ -327,66 +340,62 @@ function Toggle_ycm()
 endfunction
 map <F3> :call Toggle_ycm() <CR>
 
-"Turn off YouCompletMe hover info
+"Toggle YouCompletMe language hover info <F4>
 let g:ycm_auto_hover=""
-
-"Toggle YouCompletMe language hover info with F4
 map <F4> <plug>(YCMHover)
 
-" Turn off YouCompleteMe for html, css files
-autocmd BufRead,BufNewFile *.htm,*.html,*.css
+" Turn off YouCompleteMe for html, css, js files
+autocmd BufRead,BufNewFile *.htm,*.html,*.css,*.js
 \ let g:ycm_auto_trigger=0 |
 \ let g:ycm_show_diagnostics_ui=0
 
-" enable Vim's html, css autocompletion
-set omnifunc=csscomplete#CompleteCSS
-set omnifunc=htmlcomplete#CompleteTags
+" enable Vim's builtin html, css, js autocompletion
+autocmd BufRead,BufNewFile *.css            set omnifunc=csscomplete#CompleteCSS
+autocmd BufRead,BufNewFile *.htm,*.html     set omnifunc=htmlcomplete#CompleteTags
+autocmd BufRead,BufNewFile *.js             set omnifunc=javascriptcomplete#CompleteJS
 
-" open 40% pane to right (F5)
-function Tmux_split()
-    call system("tmux split-window -h -p 40")
-    call system("tmux send-keys -t .1 'tmux select-pane -t .0 -T " . expand("%:t") . "' Enter")
-    call system("tmux send-keys -t .1 clear Enter")
-endfunction
-noremap <F5> :call Tmux_split() <CR>
+" only load vim-css-color for css files
+    " must disable the following call in .vim/bundle/autoload/css_color.vim
+autocmd BufRead,BufNewFile *.css call css_color#enable()
 
-" close pane to right (F6)
-function Exit_pane()
-    call system("tmux send-keys -t .1 C-c")
-    call system("tmux send-keys -t .1 C-d")
-    call system("tmux select-pane -t .0 -T ' " . expand("%:t") . " '")
-endfunction
-noremap <F6> :call Exit_pane() <CR>
+" disable AutoComplPop inside comments
+call OnSyntaxChange#Install('Comment', '^Comment$', 0, 'i')
+autocmd User SyntaxCommentEnterI silent! AcpLock
+autocmd User SyntaxCommentLeaveI silent! AcpUnlock
 
-" rename tmux window and pane on save with .bash_aliases function
-autocmd BufWrite * :silent exec "!fileRename %" | :redraw!
-
-" Bash boilerplate ( :Bash )
-command Bash 0r ~/.vim/skeletons/bash
-
-" C boilerplate ( :C )
-command C 0r ~/.vim/skeletons/c
-
-" C debug macros ( :Cd )
-command Cd 0r ~/.vim/skeletons/c_debug
-
-" C++ boilerplate ( :Cpp )
-command Cpp 0r ~/.vim/skeletons/cpp
-
-" HTML boilerplate ( :Html )
-command Html 0r ~/.vim/skeletons/html
-
-" CSS boilerplate ( :Css )
-command Css 0r ~/.vim/skeletons/css
+" use interactive shell in order to access .bash_aliases functions
+"set shellcmdflag=-ic
+" rename tmux window and pane to filename when saving with fileRename() from .bash_aliases
+"if exists('$TMUX')
+"    autocmd BufWrite * :silent exec "!fileRename %" | :redraw!
+"endif
 
 " NERDTree settings
     " I == toggle h(I)dden file view
     " C == make selection (C)urrent working directory
     " U == go (U)p directory
-" NERDTree toggle, (F2)
+" open/close NERDTree <F2>
 map <F2> :NERDTreeToggle<CR>
 " make pwd the parent directory
 let g:NERDTreeChDirMode=3
-" close after opening file
+" close menu after opening file
 let NERDTreeQuitOnOpen=1
+
+
+"""""""""""""""
+" Boilerplate "
+"""""""""""""""
+
+" Bash boilerplate ( :Bash )
+command Bash 0r ~/.vim/skeletons/bash
+" C boilerplate ( :C )
+command C 0r ~/.vim/skeletons/c
+" C debug macros ( :Cd )
+command Cd 0r ~/.vim/skeletons/c_debug
+" C++ boilerplate ( :Cpp )
+command Cpp 0r ~/.vim/skeletons/cpp
+" HTML boilerplate ( :Html )
+command Html 0r ~/.vim/skeletons/html
+" CSS boilerplate ( :Css )
+command Css 0r ~/.vim/skeletons/css
 
