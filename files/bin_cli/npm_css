@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Set up node environment with:
+
+    # create src and build directories
+
+    # CSS plugins:
+        # vendor prefixing (autoprefixer)
+
+
+mkdir src
+mkdir build
+
+npm init -y
+
+# install plugins
+npm i -D postcss \
+         postcss-cli \
+         autoprefixer \
+         npm-add-script
+
+npmAddScript -k css -v "postcss -u autoprefixer -o build/style.css src/style.css"
+
+printf "\n*********\n\nRun CSS autoprefixer with:  npm run css\n\n"

@@ -25,6 +25,9 @@ export PATH=$PATH:/home/$USER/.cargo/bin
 # add ~/.local/bin to path
 export PATH=$PATH:/home/$USER/.local/bin
 
+# add nodejs path
+export PATH=$PATH:/usr/local/lib/nodejs/bin
+
 # connect to easytether via usb
 alias easy="sudo systemctl restart systemd-networkd; sudo easytether-usb"
 

@@ -38,6 +38,9 @@ Plugin 'ycm-core/YouCompleteMe'
 " CSS color value highlighting
 Plugin 'ap/vim-css-color'
 
+" PostCSS Syntax
+Plugin 'stephenway/postcss.vim'
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
