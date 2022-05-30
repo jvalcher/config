@@ -104,6 +104,9 @@ cp files/.gdbinit /home/$USER/
 echo ".gitconfig"
 cp files/.gitconfig /home/$USER/
 
+echo ".ssh/config"
+cp files/config /home/$USER/.ssh/config
+
 echo "~/include"
 cp files/include /home/$USER/
 
