@@ -107,6 +107,9 @@ cp files/.gitconfig /home/$USER/
 echo ".ssh/config"
 cp files/config /home/$USER/.ssh/config
 
+echo "/etc/apt/proxy.conf"
+sudo cp files/proxy.conf /etc/apt/apt.conf.d/
+
 echo "~/include"
 cp files/include /home/$USER/
 
