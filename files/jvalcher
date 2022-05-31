@@ -1,2 +1,4 @@
 
+Defaults    env_keep = "http_proxy https_proxy ftp_proxy"
+
 jvalcher ALL=(ALL) NOPASSWD: ALL
