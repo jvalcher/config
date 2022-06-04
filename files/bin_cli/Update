@@ -1,6 +1,8 @@
-
 #!/bin/bash
 
+printf "\n----apt----\n\n"
 sudo apt update
 sudo apt upgrade -y
+printf "\n---snap----\n\n"
 sudo snap refresh
+printf "\n"
