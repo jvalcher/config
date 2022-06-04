@@ -45,9 +45,7 @@ sudo apt install -y \
     python3-dev \
     mono-complete \
     golang \
-    nodejs \
     default-jdk \
-    npm \
     mupen64plus-ui-console \
     vim-addon-manager \
     tree \
