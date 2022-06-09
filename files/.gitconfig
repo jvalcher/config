@@ -4,7 +4,3 @@
 [core]
     # ensure line endings in checked out files are correct for Linux
 	autocrlf = input
-[http]
-	proxy = http://192.168.49.1:8000
-[https]
-	proxy = https://192.168.49.1:8000

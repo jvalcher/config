@@ -30,7 +30,7 @@ rsync -a --delete /home/$USER/.ssh/config files/
 rsync -a --delete /home/$USER/include/ files/include/
 
 # ~/bin
-rsync -a --delete /home/$USER/bin/ files/bin_cli/
+rsync -a --delete /home/$USER/bin/ files/bin/
 
 # gtk.css
 rsync -a --delete /home/$USER/.config/gtk-3.0/gtk.css files/ 
@@ -39,10 +39,10 @@ rsync -a --delete /home/$USER/.config/gtk-3.0/gtk.css files/
 sudo rsync -a --delete /etc/apt/apt.conf.d/proxy.conf files/ 
 
 # gnome-terminal
-dconf dump /org/gnome/terminal/legacy/profiles:/ > files/gnome-terminal-profiles.dconf
+#dconf dump /org/gnome/terminal/legacy/profiles:/ > files/gnome-terminal-profiles.dconf
 
 # gnome keybindings
-dconf dump /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/ > files/gnome-keybindings.dconf
+#dconf dump /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/ > files/gnome-keybindings.dconf
 
 # wallpapers
 rsync -a --delete /home/$USER/Pictures/wallpapers/ wallpapers/

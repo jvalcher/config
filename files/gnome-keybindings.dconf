@@ -4,6 +4,11 @@ command='playerctl play-pause'
 name='YouTube Play/Pause'
 
 [custom1]
-binding='<Primary><Alt>o'
-command='okular'
-name='Okular'
+binding='<Primary><Alt>c'
+command='google-chrome'
+name='Chrome'
+
+[custom2]
+binding='<Primary><Alt>b'
+command='gnome-control-center bluetooth'
+name='Bluetooth Settings'

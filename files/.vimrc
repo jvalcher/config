@@ -358,7 +358,6 @@ autocmd BufRead,BufNewFile *.htm,*.html     set omnifunc=htmlcomplete#CompleteTa
 autocmd BufRead,BufNewFile *.js             set omnifunc=javascriptcomplete#CompleteJS
 
 " only load vim-css-color for css files
-    " must disable the following call in .vim/bundle/autoload/css_color.vim
 autocmd BufRead,BufNewFile *.css call css_color#enable()
 
 " disable AutoComplPop inside comments

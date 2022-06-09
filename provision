@@ -1,10 +1,10 @@
+#!/bin/bash
 
 ###########
 # Provision Ubuntu 21.10
 ###########
 
 
-#!/bin/bash
 
 ###########
 # Install software
@@ -12,7 +12,6 @@
 
 printf "\n\nUpdating, upgrading APT...\n"
 echo "________________"
-sudo cp files/prox.conf /etc/apt/apt.conf.d/
 sudo apt update
 sudo apt upgrade -y
 
@@ -55,13 +54,6 @@ sudo apt install -y \
     virtualbox-ext-pack
 
 
-printf "\n\nInstalling Spotify...\n"
-echo "________________"
-curl -sS https://download.spotify.com/debian/pubkey_5E3C45D7B312C643.gpg | sudo apt-key add - 
-echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
-sudo apt-get update && sudo apt-get install spotify-client -y
-
-
 printf "\n\nCopying, sourcing .bash_aliases...\n"
 echo "________________"
 cp files/.bash_aliases /home/$USER/.bash_aliases
@@ -87,11 +79,8 @@ printf "\n\n"
 printf "Copying configuration files and scripts...\n" 
 echo "________________"
 
-printf "jvalcher (sudoers.d)\n"
+echo "sudoers.d/jvalcher"
 sudo cp files/jvalcher /etc/sudoers.d/jvalcher
-
-printf "Gnome terminal\n"
-dconf load /org/gnome/terminal/ < files/gnome_terminal_jvalcher
 
 echo ".tmux.conf"
 cp files/.tmux.conf /home/$USER/
@@ -102,14 +91,11 @@ cp files/.gdbinit /home/$USER/
 echo ".gitconfig"
 cp files/.gitconfig /home/$USER/
 
-echo ".ssh/config"
-cp files/config /home/$USER/.ssh/config
-
 echo "/etc/apt/proxy.conf"
 sudo cp files/proxy.conf /etc/apt/apt.conf.d/
 
 echo "~/include"
-cp files/include /home/$USER/
+cp -r files/include /home/$USER/
 
 echo "gtk.css"
 cp files/gtk.css /home/$USER/.config/gtk-3.0/gtk.css
@@ -146,33 +132,43 @@ echo "________________"
 
 VIM_DIR="/home/$USER/.vim"
 
+echo "-----"
 echo "Copying skeletons..." 
 if [ -e $VIM_DIR/skeletons ]; then
     rsync -a --delete files/skeletons/ /home/$USER/.vim/skeletons/
 else 
     cp -r files/skeletons $VIM_DIR/
 fi
+echo "-----"
 
 echo "Installing vundle..." 
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+if [ ! -d $VIM_DIR/bundle/Vundle.vim ]; then
+    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+else
+    (cd $VIM_DIR/bundle/Vundle.vim; git fetch; git merge FETCH_HEAD)
+fi
+echo "-----"
+
+echo "Installing vundle plugins..." 
+vim -c 'PluginInstall' -c 'qa!'
+echo "-----"
 
 echo "Installing vim-plug..." 
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-echo "Installing vundle plugins..." 
-vim -c 'PluginInstall' -c 'qa!'
+echo "-----"
 
 echo "Installing vim-plug plugins..." 
 vim -c 'PlugInstall' -c 'qa!'
+echo "-----"
 
 echo "Installing vim-superman..." 
 if [ ! -d $VIM_DIR/bundle/vim-superman ]; then
     git clone https://github.com/jez/vim-superman ~/.vim/bundle/vim-superman
+else
+    (cd $VIM_DIR/bundle/vim-superman; git fetch; git merge FETCH_HEAD)
 fi
-
-echo "Installing YouCompleteMe..." 
-(cd ~/.vim/bundle/YouCompleteMe; python3 install.py --all)
+echo "-----"
 
 . /home/$USER/.bashrc
 
@@ -194,7 +190,7 @@ if [ -e $PICTURES_DIR ]; then
     rsync -a --delete wallpapers/* $PICTURES_DIR 
 else
     mkdir $PICTURES_DIR
-    cp wallpapers/* $PICTURES/DIRA
+    cp wallpapers/* $PICTURES_DIR
 fi
 
 # Change wallpaper
@@ -228,6 +224,11 @@ printf "\n\n\n"
 echo "________________"
 printf "Provisioning complete\n"
 echo "________________"
+echo ""
+echo "Finish installing YouCompleteMe by running:" 
+echo "$ python3 install.py --all"
+echo "in \"~/.vim/bundle/YouCompleteMe\""
+
 printf "\n\n"
 
 
